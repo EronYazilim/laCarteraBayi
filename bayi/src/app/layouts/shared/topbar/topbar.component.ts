@@ -117,7 +117,7 @@ export class TopbarComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Evet, Çık',
-      confirmButtonColor: '#E20D71',
+      confirmButtonColor: '#C49C5C',
       cancelButtonText: 'İptal',
       cancelButtonColor: '#222'
     }).then(async (result) => {
@@ -166,7 +166,7 @@ export class TopbarComponent implements OnInit {
 					icon: 'warning',
 					showCancelButton: true,
 					confirmButtonText: 'Evet, Güncelle',
-					confirmButtonColor: '#E20D71',
+					confirmButtonColor: '#C49C5C',
 					cancelButtonText: 'İptal',
 					cancelButtonColor: '#222'
 				}).then((result) => {

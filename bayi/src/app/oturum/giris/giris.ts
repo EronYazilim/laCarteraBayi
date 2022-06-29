@@ -30,6 +30,7 @@ export class girisComponent implements OnInit {
 
 		if (this.store.getItem("laCartera_bayi_e_kull_adi") != '') {
 			this.girisFormu.patchValue({
+				e_bayi_kodu	: this.store.getItem("laCartera_bayi_e_bayi_kodu"),
 				e_kull_adi	: this.store.getItem("laCartera_bayi_e_kull_adi"),
 				e_beni_hatirla	: true,
 			})
@@ -40,7 +41,8 @@ export class girisComponent implements OnInit {
   responseData
 
   girisFormu = new FormGroup ({
-		e_mail_adresi	: new FormControl(''),
+		e_bayi_kodu   	: new FormControl(''),
+		e_kull_adi    	: new FormControl(''),
 		e_sifre					: new FormControl(''),
 		e_beni_hatirla	: new FormControl(''),
   })
@@ -61,9 +63,11 @@ export class girisComponent implements OnInit {
         this.authenticationService.login(this.responseData[0])
 
         if (this.requestData.e_beni_hatirla == true) {
+          this.store.setItem("laCartera_bayi_e_bayi_kodu", this.requestData.e_bayi_kodu)
           this.store.setItem("laCartera_bayi_e_kull_adi", this.requestData.e_kull_adi)
         } else {
           this.store.setItem("laCartera_bayi_e_kull_adi", "")
+          this.store.setItem("laCartera_bayi_e_bayi_kodu", "")
         }
 
         window.location.href = './anasayfa'

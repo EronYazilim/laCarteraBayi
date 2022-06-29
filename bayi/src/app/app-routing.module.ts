@@ -9,6 +9,12 @@ const bayiRoutes: Routes = [
   {
     path: 'anasayfa', 
     loadChildren: () => import('./pages/anasayfa/anasayfa').then(m => m.anasayfaModule)
+  }, {
+    path: 'kayitlar',
+    loadChildren: () => import('./pages/kayitlar/kayitlar').then(m => m.kayitlarModule)
+  }, {
+    path: 'islemler',
+    loadChildren: () => import('./pages/islemler/islemler').then(m => m.islemlerModule)
   }
 ]
 

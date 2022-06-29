@@ -12,8 +12,13 @@
                 <form validControl class="form-horizontal" [formGroup]="girisFormu" (submit)="girisYap()">
                   <div class="form-group auth-form-group-custom mb-4">
                     <i class="ri-user-2-line auti-custom-input-icon"></i>
-                    <label>Mail Adresi</label>
-                    <input type="email" class="form-control" formControlName="e_mail_adresi" title="Mail Adresi" required placeholder="Mail Adresiniz...">
+                    <label>Bayi Kodu</label>
+                    <input type="text" class="form-control" formControlName="e_bayi_kodu" title="Bayi Kodu" required placeholder="Bayi Kodu">
+                  </div>
+                  <div class="form-group auth-form-group-custom mb-4">
+                    <i class="ri-user-2-line auti-custom-input-icon"></i>
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" class="form-control" formControlName="e_kull_adi" title="Kullanıcı Adı" required placeholder="Kullanıcı Adı">
                   </div>
                   <div class="form-group auth-form-group-custom mb-4">
                     <i class="ri-lock-2-line auti-custom-input-icon"></i>

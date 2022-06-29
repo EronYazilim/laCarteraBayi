@@ -1,0 +1,125 @@
+<ng-template #modalkullaniciTanimlari let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{modalHeader.title}}</h4>
+    </div>
+    <div class="modal-body">
+      <form validControl [formGroup]="kullaniciTanimlariFormu" (submit)="islemiKaydet()">
+        <div class="row m-0">
+          <div class="col-md-12 form-group">
+            <label>Kullanıcı Adı</label>
+            <input type="text" class="form-control" formControlName="e_kull_adi" title="Kullanıcı Adı">
+          </div>
+          <div class="col-md-12 form-group">
+            <label>Şifre *</label>
+            <input type="password" class="form-control" formControlName="e_sifre" title="Şifre" required>
+          </div>
+          <div class="col-md-12 form-group">
+            <label>Durum *</label>
+            <select class="form-control" formControlName="e_durum" title="Durum">
+              <option value="">-- Seçiniz --</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Pasif">Pasif</option>
+            </select>
+          </div>
+        </div>
+        <button id="submitButton" class="hidden">Kaydet</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary mr-1 w-lg" *ngIf="!islemiKaydetBtn" onclick="document.getElementById('submitButton').click()">
+        <i class="fas fa-check mr-2"></i> Kaydet
+      </button>
+      <button class="btn btn-primary mr-1 w-lg" *ngIf="islemiKaydetBtn">
+        <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
+      </button>
+      <button class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
+    </div>
+  </ng-template>
+  
+  <div class="separator-breadcrumb border-top mb-3"></div>
+  
+  <div class="card shadow-primary mb-3">
+    <div class="card-body">
+      <form class="row m-0" (submit)="kullaniciTanimlariListele()">
+        <div class="form-group col-md-8">
+          <label>Arama:</label>
+          <input type="text" class="form-control" [(ngModel)]="filterData.ARAMA" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group col-md-2">
+          <label>Durum:</label>
+          <select class="form-control" [(ngModel)]="filterData.e_durum" [ngModelOptions]="{standalone: true}" (change)="kullaniciTanimlariListele()">
+            <option value="">-- Tümü --</option>
+            <option value="Aktif">Aktif</option>
+            <option value="Pasif">Pasif</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label>&nbsp;</label>
+          <button class="btn btn-dark btn-block"><i class="fas fa-sync mr-2"></i> Filtrele</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="alert alert-primary p-4" *ngIf="!kullaniciTanimlari && !mainLoader">
+    <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
+    <span class=" valign-middle">Listelemek istediğiniz kayıt bulunamadı.</span>
+    <button class="btn btn-primary fa-pull-right w-25" (click)="ekleButton()"><span class="fas fa-plus mr-2"></span> Yeni Kullanıcı Ekle</button>
+  </div>
+  
+  <div class="alert alert-primary p-4" *ngIf="mainLoader">
+    <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
+    <span class=" valign-middle">Kullanıcı kayıtları listeleniyor, lütfen bekleyiniz.</span>
+  </div>
+  
+  <div class="card full-list-1" [hidden]="!kullaniciTanimlari || mainLoader">
+    <div class="card-body" *ngIf="kullaniciTanimlari && !mainLoader">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead>
+            <tr class="alert-primary">
+              <th class="text-center w-5">Sıra</th>
+              <th class="text-center w-35">Kullanıcı Adı</th>
+              <th class="text-center w-15">Durum</th>
+              <th class="text-center w-20">
+                <button class="btn btn-primary btn-sm btn-block " (click)="ekleButton()"  ><i class="fas fa-plus mr-1"></i> Yeni Kullanıcı Ekle</button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let kullanici of kullaniciTanimlari; let i = index">
+              <td class="text-center">{{i+1}}</td>
+              <td class="text-left">{{kullanici.e_kull_adi}}</td>
+              <td><span class="badge badge-success p-1 w-100 " *ngIf="kullanici.e_durum == 'Aktif'">Aktif</span>
+                <span class="badge badge-secondary p-1 w-100 " *ngIf="kullanici.e_durum != 'Aktif'">Pasif</span></td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;" (click)="duzenleButton(kullanici)" ><i class="fas fa-edit"></i></button>
+                <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[kullanici.e_id]" (click)="silButton(kullanici, 'kullaniciIslemleri/kullaniciSil');"><i class="fas fa-times"></i></button>
+                <button class="btn btn-sm btn-dark w-48" *ngIf="silinenKayitBtn[kullanici.e_id]"><div class="spinner-glow spinner-glow-light mt-0"></div></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="card-footer-pagination">
+        <pagination
+          [boundaryLinks]="true"
+          [totalItems]="kullaniciTanimlari ? kullaniciTanimlari[0].TKS : 0"
+          [itemsPerPage]="filterData.KS"
+          [(ngModel)]="filterData.SS"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          firstText="İlk Sayfa"
+          lastText="Son Sayfa"
+          [maxSize]="5"
+          [rotate]="false"
+          (pageChanged)="filterData.SS = $event.page; kullaniciTanimlariListele()"
+        ></pagination>
+        <div class="text-center" *ngIf="kullaniciTanimlari && !mainLoader">
+          <small>Toplam <strong>{{kullaniciTanimlari[0].TKS}}</strong> kayıt içinden <strong>{{kullaniciTanimlari.length}}</strong> tanesi listelendi.</small>
+        </div>
+      </div>
+    </div>
+  </div>
