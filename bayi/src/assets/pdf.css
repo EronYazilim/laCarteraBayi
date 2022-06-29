@@ -1,0 +1,642 @@
+.pdf-body {
+  width: calc(100%);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
+  font-weight: 100 !important;
+  color: #222;
+}
+
+.pdf-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.pdf-body .row-area {
+  display: -webkit-box;
+  width: 100%;
+}
+
+.pdf-body small { font-size: 13px !important; }
+
+.pdf-body b { font-weight: 600 !important; }
+
+.pdf-body .text-success { color: #4CAF50 !important }
+.pdf-body .text-danger { color: #ab0707 !important }
+
+.pdf-body .text-justify { text-align: justify !important; }
+.pdf-body .text-center { text-align: center !important; }
+.pdf-body .text-right { text-align: right !important; }
+.pdf-body .text-left { text-align: left !important; }
+
+.pdf-body .valign-top { vertical-align: text-top !important; }
+.pdf-body .valign-middle { vertical-align: middle !important; }
+.pdf-body .valign-bottom { vertical-align: text-bottom !important; }
+
+.pdf-body .pull-right { float: right !important; }
+.pdf-body .pull-left { float: left !important; }
+
+.pdf-body .text-light { color: #888; }
+.pdf-body .text-white { color: #fff; }
+.pdf-body .text-warning { color: #f9b920 }
+
+.pdf-body .table {
+  border-collapse: collapse !important
+}
+
+.pdf-body .table-bordered td,
+.pdf-body .table-bordered th {
+  border: 1px solid #ddd !important
+}
+
+.pdf-body .table>tbody>tr>td,
+.pdf-body .table>tbody>tr>th,
+.pdf-body .table>tfoot>tr>td,
+.pdf-body .table>tfoot>tr>th,
+.pdf-body .table>thead>tr>td,
+.pdf-body .table>thead>tr>th {
+  padding: 7px 15px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  border-bottom: 1px dashed #ddd
+}
+
+.pdf-body .table>thead>tr>th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd
+}
+
+.pdf-body .table>caption+thead>tr:first-child>td,
+.pdf-body .table>caption+thead>tr:first-child>th,
+.pdf-body .table>colgroup+thead>tr:first-child>td,
+.pdf-body .table>colgroup+thead>tr:first-child>th,
+.pdf-body .table>thead:first-child>tr:first-child>td,
+.pdf-body .table>thead:first-child>tr:first-child>th {
+  border-top: 0
+}
+
+.pdf-body .alert-primary {
+  background-color: #fbe5d3;
+}
+
+.pdf-body .alert-success {
+  background-color: #dbefdc;
+}
+
+.pdf-body .alert-warning {
+  background-color: #fff1d3;
+}
+
+.pdf-body .alert-danger {
+  background-color: #eecdcd;
+}
+
+.pdf-body .alert-danger {
+  background-color: #eecdcd;
+}
+
+.pdf-body .alert-light {
+  background-color: #eee;
+}
+
+.pdf-body .border-0 { border: 0 !important; }
+.pdf-body .border-1 { border: 1px solid #333 !important; }
+.pdf-body .border-1-top { border-top: 1px solid #333 !important; }
+.pdf-body .border-1-bottom { border-bottom: 1px solid #333 !important; }
+.pdf-body .border-1-right { border-right: 1px solid #333 !important; }
+.pdf-body .border-1-left { border-left: 1px solid #333 !important; }
+
+/* --- WIDTH AYARLARI --- */
+.pdf-body .w-1   { width:   1%; }
+.pdf-body .w-2   { width:   2%; }
+.pdf-body .w-3   { width:   3%; }
+.pdf-body .w-4   { width:   4%; }
+.pdf-body .w-5   { width:   5%; }
+.pdf-body .w-6   { width:   6%; }
+.pdf-body .w-7   { width:   7%; }
+.pdf-body .w-8   { width:   8%; }
+.pdf-body .w-9   { width:   9%; }
+.pdf-body .w-10  { width:  10%; }
+.pdf-body .w-11  { width:  11%; }
+.pdf-body .w-12  { width:  12%; }
+.pdf-body .w-13  { width:  13%; }
+.pdf-body .w-14  { width:  14%; }
+.pdf-body .w-15  { width:  15%; }
+.pdf-body .w-16  { width:  16%; }
+.pdf-body .w-17  { width:  17%; }
+.pdf-body .w-18  { width:  18%; }
+.pdf-body .w-19  { width:  19%; }
+.pdf-body .w-20  { width:  20%; }
+.pdf-body .w-21  { width:  21%; }
+.pdf-body .w-22  { width:  22%; }
+.pdf-body .w-23  { width:  23%; }
+.pdf-body .w-24  { width:  24%; }
+.pdf-body .w-25  { width:  25%; }
+.pdf-body .w-26  { width:  26%; }
+.pdf-body .w-27  { width:  27%; }
+.pdf-body .w-28  { width:  28%; }
+.pdf-body .w-29  { width:  29%; }
+.pdf-body .w-30  { width:  30%; }
+.pdf-body .w-31  { width:  31%; }
+.pdf-body .w-32  { width:  32%; }
+.pdf-body .w-33  { width:  33%; }
+.pdf-body .w-34  { width:  34%; }
+.pdf-body .w-35  { width:  35%; }
+.pdf-body .w-36  { width:  36%; }
+.pdf-body .w-37  { width:  37%; }
+.pdf-body .w-38  { width:  38%; }
+.pdf-body .w-39  { width:  39%; }
+.pdf-body .w-40  { width:  40%; }
+.pdf-body .w-41  { width:  41%; }
+.pdf-body .w-42  { width:  42%; }
+.pdf-body .w-43  { width:  43%; }
+.pdf-body .w-44  { width:  44%; }
+.pdf-body .w-45  { width:  45%; }
+.pdf-body .w-46  { width:  46%; }
+.pdf-body .w-47  { width:  47%; }
+.pdf-body .w-48  { width:  48%; }
+.pdf-body .w-49  { width:  49%; }
+.pdf-body .w-50  { width:  50%; }
+.pdf-body .w-51  { width:  51%; }
+.pdf-body .w-52  { width:  52%; }
+.pdf-body .w-53  { width:  53%; }
+.pdf-body .w-54  { width:  54%; }
+.pdf-body .w-55  { width:  55%; }
+.pdf-body .w-56  { width:  56%; }
+.pdf-body .w-57  { width:  57%; }
+.pdf-body .w-58  { width:  58%; }
+.pdf-body .w-59  { width:  59%; }
+.pdf-body .w-60  { width:  60%; }
+.pdf-body .w-61  { width:  61%; }
+.pdf-body .w-62  { width:  62%; }
+.pdf-body .w-63  { width:  63%; }
+.pdf-body .w-64  { width:  64%; }
+.pdf-body .w-65  { width:  65%; }
+.pdf-body .w-66  { width:  66%; }
+.pdf-body .w-67  { width:  67%; }
+.pdf-body .w-68  { width:  68%; }
+.pdf-body .w-69  { width:  69%; }
+.pdf-body .w-70  { width:  70%; }
+.pdf-body .w-71  { width:  71%; }
+.pdf-body .w-72  { width:  72%; }
+.pdf-body .w-73  { width:  73%; }
+.pdf-body .w-74  { width:  74%; }
+.pdf-body .w-75  { width:  75%; }
+.pdf-body .w-76  { width:  76%; }
+.pdf-body .w-77  { width:  77%; }
+.pdf-body .w-78  { width:  78%; }
+.pdf-body .w-79  { width:  79%; }
+.pdf-body .w-80  { width:  80%; }
+.pdf-body .w-81  { width:  81%; }
+.pdf-body .w-82  { width:  82%; }
+.pdf-body .w-83  { width:  83%; }
+.pdf-body .w-84  { width:  84%; }
+.pdf-body .w-85  { width:  85%; }
+.pdf-body .w-86  { width:  86%; }
+.pdf-body .w-87  { width:  87%; }
+.pdf-body .w-88  { width:  88%; }
+.pdf-body .w-89  { width:  89%; }
+.pdf-body .w-90  { width:  90%; }
+.pdf-body .w-91  { width:  91%; }
+.pdf-body .w-92  { width:  92%; }
+.pdf-body .w-93  { width:  93%; }
+.pdf-body .w-94  { width:  94%; }
+.pdf-body .w-95  { width:  95%; }
+.pdf-body .w-96  { width:  96%; }
+.pdf-body .w-97  { width:  97%; }
+.pdf-body .w-98  { width:  98%; }
+.pdf-body .w-99  { width:  99%; }
+.pdf-body .w-100 { width: 100%; }
+
+/* --- MARGIN AYARLARI --- */
+.pdf-body .m-a  { margin: auto !important; }
+.pdf-body .mt-a { margin-top: auto !important; }
+.pdf-body .mb-a { margin-bottom: auto !important; }
+.pdf-body .mr-a { margin-right: auto !important; }
+.pdf-body .ml-a { margin-left: auto !important; }
+
+.pdf-body .m-0   { margin:   0px !important; }
+.pdf-body .m-5   { margin:   5px !important; }
+.pdf-body .m-10  { margin:  10px !important; }
+.pdf-body .m-15  { margin:  15px !important; }
+.pdf-body .m-20  { margin:  20px !important; }
+.pdf-body .m-25  { margin:  25px !important; }
+.pdf-body .m-30  { margin:  30px !important; }
+.pdf-body .m-35  { margin:  35px !important; }
+.pdf-body .m-40  { margin:  40px !important; }
+.pdf-body .m-45  { margin:  45px !important; }
+.pdf-body .m-50  { margin:  50px !important; }
+.pdf-body .m-55  { margin:  55px !important; }
+.pdf-body .m-60  { margin:  60px !important; }
+.pdf-body .m-65  { margin:  65px !important; }
+.pdf-body .m-70  { margin:  70px !important; }
+.pdf-body .m-75  { margin:  75px !important; }
+.pdf-body .m-80  { margin:  80px !important; }
+.pdf-body .m-85  { margin:  85px !important; }
+.pdf-body .m-90  { margin:  90px !important; }
+.pdf-body .m-95  { margin:  95px !important; }
+.pdf-body .m-100 { margin: 100px !important; }
+.pdf-body .m-120 { margin: 120px !important; }
+.pdf-body .m-140 { margin: 140px !important; }
+.pdf-body .m-160 { margin: 160px !important; }
+.pdf-body .m-180 { margin: 180px !important; }
+.pdf-body .m-200 { margin: 200px !important; }
+
+.pdf-body .mt-0   { margin-top:   0px !important; }
+.pdf-body .mt-5   { margin-top:   5px !important; }
+.pdf-body .mt-10  { margin-top:  10px !important; }
+.pdf-body .mt-15  { margin-top:  15px !important; }
+.pdf-body .mt-20  { margin-top:  20px !important; }
+.pdf-body .mt-25  { margin-top:  25px !important; }
+.pdf-body .mt-30  { margin-top:  30px !important; }
+.pdf-body .mt-35  { margin-top:  35px !important; }
+.pdf-body .mt-40  { margin-top:  40px !important; }
+.pdf-body .mt-45  { margin-top:  45px !important; }
+.pdf-body .mt-50  { margin-top:  50px !important; }
+.pdf-body .mt-55  { margin-top:  55px !important; }
+.pdf-body .mt-60  { margin-top:  60px !important; }
+.pdf-body .mt-65  { margin-top:  65px !important; }
+.pdf-body .mt-70  { margin-top:  70px !important; }
+.pdf-body .mt-75  { margin-top:  75px !important; }
+.pdf-body .mt-80  { margin-top:  80px !important; }
+.pdf-body .mt-85  { margin-top:  85px !important; }
+.pdf-body .mt-90  { margin-top:  90px !important; }
+.pdf-body .mt-95  { margin-top:  95px !important; }
+.pdf-body .mt-100 { margin-top: 100px !important; }
+.pdf-body .mt-120 { margin-top: 120px !important; }
+.pdf-body .mt-140 { margin-top: 140px !important; }
+.pdf-body .mt-160 { margin-top: 160px !important; }
+.pdf-body .mt-180 { margin-top: 180px !important; }
+.pdf-body .mt-200 { margin-top: 200px !important; }
+
+.pdf-body .mb-0   { margin-bottom:   0px !important; }
+.pdf-body .mb-5   { margin-bottom:   5px !important; }
+.pdf-body .mb-10  { margin-bottom:  10px !important; }
+.pdf-body .mb-15  { margin-bottom:  15px !important; }
+.pdf-body .mb-20  { margin-bottom:  20px !important; }
+.pdf-body .mb-25  { margin-bottom:  25px !important; }
+.pdf-body .mb-30  { margin-bottom:  30px !important; }
+.pdf-body .mb-35  { margin-bottom:  35px !important; }
+.pdf-body .mb-40  { margin-bottom:  40px !important; }
+.pdf-body .mb-45  { margin-bottom:  45px !important; }
+.pdf-body .mb-50  { margin-bottom:  50px !important; }
+.pdf-body .mb-55  { margin-bottom:  55px !important; }
+.pdf-body .mb-60  { margin-bottom:  60px !important; }
+.pdf-body .mb-65  { margin-bottom:  65px !important; }
+.pdf-body .mb-70  { margin-bottom:  70px !important; }
+.pdf-body .mb-75  { margin-bottom:  75px !important; }
+.pdf-body .mb-80  { margin-bottom:  80px !important; }
+.pdf-body .mb-85  { margin-bottom:  85px !important; }
+.pdf-body .mb-90  { margin-bottom:  90px !important; }
+.pdf-body .mb-95  { margin-bottom:  95px !important; }
+.pdf-body .mb-100 { margin-bottom: 100px !important; }
+.pdf-body .mb-120 { margin-bottom: 120px !important; }
+.pdf-body .mb-140 { margin-bottom: 140px !important; }
+.pdf-body .mb-160 { margin-bottom: 160px !important; }
+.pdf-body .mb-180 { margin-bottom: 180px !important; }
+.pdf-body .mb-200 { margin-bottom: 200px !important; }
+
+.pdf-body .mr-0   { margin-right:   0px !important; }
+.pdf-body .mr-5   { margin-right:   5px !important; }
+.pdf-body .mr-10  { margin-right:  10px !important; }
+.pdf-body .mr-15  { margin-right:  15px !important; }
+.pdf-body .mr-20  { margin-right:  20px !important; }
+.pdf-body .mr-25  { margin-right:  25px !important; }
+.pdf-body .mr-30  { margin-right:  30px !important; }
+.pdf-body .mr-35  { margin-right:  35px !important; }
+.pdf-body .mr-40  { margin-right:  40px !important; }
+.pdf-body .mr-45  { margin-right:  45px !important; }
+.pdf-body .mr-50  { margin-right:  50px !important; }
+.pdf-body .mr-55  { margin-right:  55px !important; }
+.pdf-body .mr-60  { margin-right:  60px !important; }
+.pdf-body .mr-65  { margin-right:  65px !important; }
+.pdf-body .mr-70  { margin-right:  70px !important; }
+.pdf-body .mr-75  { margin-right:  75px !important; }
+.pdf-body .mr-80  { margin-right:  80px !important; }
+.pdf-body .mr-85  { margin-right:  85px !important; }
+.pdf-body .mr-90  { margin-right:  90px !important; }
+.pdf-body .mr-95  { margin-right:  95px !important; }
+.pdf-body .mr-100 { margin-right: 100px !important; }
+.pdf-body .mr-120 { margin-right: 120px !important; }
+.pdf-body .mr-140 { margin-right: 140px !important; }
+.pdf-body .mr-160 { margin-right: 160px !important; }
+.pdf-body .mr-180 { margin-right: 180px !important; }
+.pdf-body .mr-200 { margin-right: 200px !important; }
+
+.pdf-body .ml-0   { margin-left:   0px !important; }
+.pdf-body .ml-5   { margin-left:   5px !important; }
+.pdf-body .ml-10  { margin-left:  10px !important; }
+.pdf-body .ml-15  { margin-left:  15px !important; }
+.pdf-body .ml-20  { margin-left:  20px !important; }
+.pdf-body .ml-25  { margin-left:  25px !important; }
+.pdf-body .ml-30  { margin-left:  30px !important; }
+.pdf-body .ml-35  { margin-left:  35px !important; }
+.pdf-body .ml-40  { margin-left:  40px !important; }
+.pdf-body .ml-45  { margin-left:  45px !important; }
+.pdf-body .ml-50  { margin-left:  50px !important; }
+.pdf-body .ml-55  { margin-left:  55px !important; }
+.pdf-body .ml-60  { margin-left:  60px !important; }
+.pdf-body .ml-65  { margin-left:  65px !important; }
+.pdf-body .ml-70  { margin-left:  70px !important; }
+.pdf-body .ml-75  { margin-left:  75px !important; }
+.pdf-body .ml-80  { margin-left:  80px !important; }
+.pdf-body .ml-85  { margin-left:  85px !important; }
+.pdf-body .ml-90  { margin-left:  90px !important; }
+.pdf-body .ml-95  { margin-left:  95px !important; }
+.pdf-body .ml-100 { margin-left: 100px !important; }
+.pdf-body .ml-120 { margin-left: 120px !important; }
+.pdf-body .ml-140 { margin-left: 140px !important; }
+.pdf-body .ml-160 { margin-left: 160px !important; }
+.pdf-body .ml-180 { margin-left: 180px !important; }
+.pdf-body .ml-200 { margin-left: 200px !important; }
+
+/* --- PADDING AYARLARI --- */
+.pdf-body .p-0   { padding:   0px !important; }
+.pdf-body .p-1   { padding:   1px !important; }
+.pdf-body .p-2   { padding:   2px !important; }
+.pdf-body .p-3   { padding:   3px !important; }
+.pdf-body .p-4   { padding:   4px !important; }
+.pdf-body .p-5   { padding:   5px !important; }
+.pdf-body .p-10  { padding:  10px !important; }
+.pdf-body .p-15  { padding:  15px !important; }
+.pdf-body .p-20  { padding:  20px !important; }
+.pdf-body .p-25  { padding:  25px !important; }
+.pdf-body .p-30  { padding:  30px !important; }
+.pdf-body .p-35  { padding:  35px !important; }
+.pdf-body .p-40  { padding:  40px !important; }
+.pdf-body .p-45  { padding:  45px !important; }
+.pdf-body .p-50  { padding:  50px !important; }
+.pdf-body .p-55  { padding:  55px !important; }
+.pdf-body .p-60  { padding:  60px !important; }
+.pdf-body .p-65  { padding:  65px !important; }
+.pdf-body .p-70  { padding:  70px !important; }
+.pdf-body .p-75  { padding:  75px !important; }
+.pdf-body .p-80  { padding:  80px !important; }
+.pdf-body .p-85  { padding:  85px !important; }
+.pdf-body .p-90  { padding:  90px !important; }
+.pdf-body .p-95  { padding:  95px !important; }
+.pdf-body .p-100 { padding: 100px !important; }
+.pdf-body .p-120 { padding: 120px !important; }
+.pdf-body .p-140 { padding: 140px !important; }
+.pdf-body .p-160 { padding: 160px !important; }
+.pdf-body .p-180 { padding: 180px !important; }
+.pdf-body .p-200 { padding: 200px !important; }
+
+.pdf-body .py-0   { padding-top:   0px !important; padding-bottom:   0px !important; }
+.pdf-body .py-1   { padding-top:   1px !important; padding-bottom:   1px !important; }
+.pdf-body .py-2   { padding-top:   2px !important; padding-bottom:   2px !important; }
+.pdf-body .py-3   { padding-top:   3px !important; padding-bottom:   3px !important; }
+.pdf-body .py-4   { padding-top:   4px !important; padding-bottom:   4px !important; }
+.pdf-body .py-5   { padding-top:   5px !important; padding-bottom:   5px !important; }
+.pdf-body .py-10  { padding-top:  10px !important; padding-bottom:  10px !important; }
+.pdf-body .py-15  { padding-top:  15px !important; padding-bottom:  15px !important; }
+.pdf-body .py-20  { padding-top:  20px !important; padding-bottom:  20px !important; }
+.pdf-body .py-25  { padding-top:  25px !important; padding-bottom:  25px !important; }
+.pdf-body .py-30  { padding-top:  30px !important; padding-bottom:  30px !important; }
+.pdf-body .py-35  { padding-top:  35px !important; padding-bottom:  35px !important; }
+.pdf-body .py-40  { padding-top:  40px !important; padding-bottom:  40px !important; }
+.pdf-body .py-45  { padding-top:  45px !important; padding-bottom:  45px !important; }
+.pdf-body .py-50  { padding-top:  50px !important; padding-bottom:  50px !important; }
+.pdf-body .py-55  { padding-top:  55px !important; padding-bottom:  55px !important; }
+.pdf-body .py-60  { padding-top:  60px !important; padding-bottom:  60px !important; }
+.pdf-body .py-65  { padding-top:  65px !important; padding-bottom:  65px !important; }
+.pdf-body .py-70  { padding-top:  70px !important; padding-bottom:  70px !important; }
+.pdf-body .py-75  { padding-top:  75px !important; padding-bottom:  75px !important; }
+.pdf-body .py-80  { padding-top:  80px !important; padding-bottom:  80px !important; }
+.pdf-body .py-85  { padding-top:  85px !important; padding-bottom:  85px !important; }
+.pdf-body .py-90  { padding-top:  90px !important; padding-bottom:  90px !important; }
+.pdf-body .py-95  { padding-top:  95px !important; padding-bottom:  95px !important; }
+.pdf-body .py-100 { padding-top: 100px !important; padding-bottom: 100px !important; }
+.pdf-body .py-120 { padding-top: 120px !important; padding-bottom: 120px !important; }
+.pdf-body .py-140 { padding-top: 140px !important; padding-bottom: 140px !important; }
+.pdf-body .py-160 { padding-top: 160px !important; padding-bottom: 160px !important; }
+.pdf-body .py-180 { padding-top: 180px !important; padding-bottom: 180px !important; }
+.pdf-body .py-200 { padding-top: 200px !important; padding-bottom: 200px !important; }
+
+.pdf-body .px-0   { padding-right:   0px !important; padding-left:   0px !important; }
+.pdf-body .px-1   { padding-right:   1px !important; padding-left:   1px !important; }
+.pdf-body .px-2   { padding-right:   2px !important; padding-left:   2px !important; }
+.pdf-body .px-3   { padding-right:   3px !important; padding-left:   3px !important; }
+.pdf-body .px-4   { padding-right:   4px !important; padding-left:   4px !important; }
+.pdf-body .px-5   { padding-right:   5px !important; padding-left:   5px !important; }
+.pdf-body .px-10  { padding-right:  10px !important; padding-left:  10px !important; }
+.pdf-body .px-15  { padding-right:  15px !important; padding-left:  15px !important; }
+.pdf-body .px-20  { padding-right:  20px !important; padding-left:  20px !important; }
+.pdf-body .px-25  { padding-right:  25px !important; padding-left:  25px !important; }
+.pdf-body .px-30  { padding-right:  30px !important; padding-left:  30px !important; }
+.pdf-body .px-35  { padding-right:  35px !important; padding-left:  35px !important; }
+.pdf-body .px-40  { padding-right:  40px !important; padding-left:  40px !important; }
+.pdf-body .px-45  { padding-right:  45px !important; padding-left:  45px !important; }
+.pdf-body .px-50  { padding-right:  50px !important; padding-left:  50px !important; }
+.pdf-body .px-55  { padding-right:  55px !important; padding-left:  55px !important; }
+.pdf-body .px-60  { padding-right:  60px !important; padding-left:  60px !important; }
+.pdf-body .px-65  { padding-right:  65px !important; padding-left:  65px !important; }
+.pdf-body .px-70  { padding-right:  70px !important; padding-left:  70px !important; }
+.pdf-body .px-75  { padding-right:  75px !important; padding-left:  75px !important; }
+.pdf-body .px-80  { padding-right:  80px !important; padding-left:  80px !important; }
+.pdf-body .px-85  { padding-right:  85px !important; padding-left:  85px !important; }
+.pdf-body .px-90  { padding-right:  90px !important; padding-left:  90px !important; }
+.pdf-body .px-95  { padding-right:  95px !important; padding-left:  95px !important; }
+.pdf-body .px-100 { padding-right: 100px !important; padding-left: 100px !important; }
+.pdf-body .px-120 { padding-right: 120px !important; padding-left: 120px !important; }
+.pdf-body .px-140 { padding-right: 140px !important; padding-left: 140px !important; }
+.pdf-body .px-160 { padding-right: 160px !important; padding-left: 160px !important; }
+.pdf-body .px-180 { padding-right: 180px !important; padding-left: 180px !important; }
+.pdf-body .px-200 { padding-right: 200px !important; padding-left: 200px !important; }
+
+.pdf-body .pt-0   { padding-top:   0px !important; }
+.pdf-body .pt-1   { padding-top:   1px !important; }
+.pdf-body .pt-2   { padding-top:   2px !important; }
+.pdf-body .pt-3   { padding-top:   3px !important; }
+.pdf-body .pt-4   { padding-top:   4px !important; }
+.pdf-body .pt-5   { padding-top:   5px !important; }
+.pdf-body .pt-10  { padding-top:  10px !important; }
+.pdf-body .pt-15  { padding-top:  15px !important; }
+.pdf-body .pt-20  { padding-top:  20px !important; }
+.pdf-body .pt-25  { padding-top:  25px !important; }
+.pdf-body .pt-30  { padding-top:  30px !important; }
+.pdf-body .pt-35  { padding-top:  35px !important; }
+.pdf-body .pt-40  { padding-top:  40px !important; }
+.pdf-body .pt-45  { padding-top:  45px !important; }
+.pdf-body .pt-50  { padding-top:  50px !important; }
+.pdf-body .pt-55  { padding-top:  55px !important; }
+.pdf-body .pt-60  { padding-top:  60px !important; }
+.pdf-body .pt-65  { padding-top:  65px !important; }
+.pdf-body .pt-70  { padding-top:  70px !important; }
+.pdf-body .pt-75  { padding-top:  75px !important; }
+.pdf-body .pt-80  { padding-top:  80px !important; }
+.pdf-body .pt-85  { padding-top:  85px !important; }
+.pdf-body .pt-90  { padding-top:  90px !important; }
+.pdf-body .pt-95  { padding-top:  95px !important; }
+.pdf-body .pt-100 { padding-top: 100px !important; }
+.pdf-body .pt-120 { padding-top: 120px !important; }
+.pdf-body .pt-140 { padding-top: 140px !important; }
+.pdf-body .pt-160 { padding-top: 160px !important; }
+.pdf-body .pt-180 { padding-top: 180px !important; }
+.pdf-body .pt-200 { padding-top: 200px !important; }
+
+.pdf-body .pb-0   { padding-bottom:   0px !important; }
+.pdf-body .pb-1   { padding-bottom:   1px !important; }
+.pdf-body .pb-2   { padding-bottom:   2px !important; }
+.pdf-body .pb-3   { padding-bottom:   3px !important; }
+.pdf-body .pb-4   { padding-bottom:   4px !important; }
+.pdf-body .pb-5   { padding-bottom:   5px !important; }
+.pdf-body .pb-10  { padding-bottom:  10px !important; }
+.pdf-body .pb-15  { padding-bottom:  15px !important; }
+.pdf-body .pb-20  { padding-bottom:  20px !important; }
+.pdf-body .pb-25  { padding-bottom:  25px !important; }
+.pdf-body .pb-30  { padding-bottom:  30px !important; }
+.pdf-body .pb-35  { padding-bottom:  35px !important; }
+.pdf-body .pb-40  { padding-bottom:  40px !important; }
+.pdf-body .pb-45  { padding-bottom:  45px !important; }
+.pdf-body .pb-50  { padding-bottom:  50px !important; }
+.pdf-body .pb-55  { padding-bottom:  55px !important; }
+.pdf-body .pb-60  { padding-bottom:  60px !important; }
+.pdf-body .pb-65  { padding-bottom:  65px !important; }
+.pdf-body .pb-70  { padding-bottom:  70px !important; }
+.pdf-body .pb-75  { padding-bottom:  75px !important; }
+.pdf-body .pb-80  { padding-bottom:  80px !important; }
+.pdf-body .pb-85  { padding-bottom:  85px !important; }
+.pdf-body .pb-90  { padding-bottom:  90px !important; }
+.pdf-body .pb-95  { padding-bottom:  95px !important; }
+.pdf-body .pb-100 { padding-bottom: 100px !important; }
+.pdf-body .pb-120 { padding-bottom: 120px !important; }
+.pdf-body .pb-140 { padding-bottom: 140px !important; }
+.pdf-body .pb-160 { padding-bottom: 160px !important; }
+.pdf-body .pb-180 { padding-bottom: 180px !important; }
+.pdf-body .pb-200 { padding-bottom: 200px !important; }
+
+.pdf-body .pr-0   { padding-right:   0px !important; }
+.pdf-body .pr-1   { padding-right:   1px !important; }
+.pdf-body .pr-2   { padding-right:   2px !important; }
+.pdf-body .pr-3   { padding-right:   3px !important; }
+.pdf-body .pr-4   { padding-right:   4px !important; }
+.pdf-body .pr-5   { padding-right:   5px !important; }
+.pdf-body .pr-10  { padding-right:  10px !important; }
+.pdf-body .pr-15  { padding-right:  15px !important; }
+.pdf-body .pr-20  { padding-right:  20px !important; }
+.pdf-body .pr-25  { padding-right:  25px !important; }
+.pdf-body .pr-30  { padding-right:  30px !important; }
+.pdf-body .pr-35  { padding-right:  35px !important; }
+.pdf-body .pr-40  { padding-right:  40px !important; }
+.pdf-body .pr-45  { padding-right:  45px !important; }
+.pdf-body .pr-50  { padding-right:  50px !important; }
+.pdf-body .pr-55  { padding-right:  55px !important; }
+.pdf-body .pr-60  { padding-right:  60px !important; }
+.pdf-body .pr-65  { padding-right:  65px !important; }
+.pdf-body .pr-70  { padding-right:  70px !important; }
+.pdf-body .pr-75  { padding-right:  75px !important; }
+.pdf-body .pr-80  { padding-right:  80px !important; }
+.pdf-body .pr-85  { padding-right:  85px !important; }
+.pdf-body .pr-90  { padding-right:  90px !important; }
+.pdf-body .pr-95  { padding-right:  95px !important; }
+.pdf-body .pr-100 { padding-right: 100px !important; }
+.pdf-body .pr-120 { padding-right: 120px !important; }
+.pdf-body .pr-140 { padding-right: 140px !important; }
+.pdf-body .pr-160 { padding-right: 160px !important; }
+.pdf-body .pr-180 { padding-right: 180px !important; }
+.pdf-body .pr-200 { padding-right: 200px !important; }
+
+.pdf-body .pl-0   { padding-left:   0px !important; }
+.pdf-body .pl-1   { padding-left:   1px !important; }
+.pdf-body .pl-2   { padding-left:   2px !important; }
+.pdf-body .pl-3   { padding-left:   3px !important; }
+.pdf-body .pl-4   { padding-left:   4px !important; }
+.pdf-body .pl-5   { padding-left:   5px !important; }
+.pdf-body .pl-10  { padding-left:  10px !important; }
+.pdf-body .pl-15  { padding-left:  15px !important; }
+.pdf-body .pl-20  { padding-left:  20px !important; }
+.pdf-body .pl-25  { padding-left:  25px !important; }
+.pdf-body .pl-30  { padding-left:  30px !important; }
+.pdf-body .pl-35  { padding-left:  35px !important; }
+.pdf-body .pl-40  { padding-left:  40px !important; }
+.pdf-body .pl-45  { padding-left:  45px !important; }
+.pdf-body .pl-50  { padding-left:  50px !important; }
+.pdf-body .pl-55  { padding-left:  55px !important; }
+.pdf-body .pl-60  { padding-left:  60px !important; }
+.pdf-body .pl-65  { padding-left:  65px !important; }
+.pdf-body .pl-70  { padding-left:  70px !important; }
+.pdf-body .pl-75  { padding-left:  75px !important; }
+.pdf-body .pl-80  { padding-left:  80px !important; }
+.pdf-body .pl-85  { padding-left:  85px !important; }
+.pdf-body .pl-90  { padding-left:  90px !important; }
+.pdf-body .pl-95  { padding-left:  95px !important; }
+.pdf-body .pl-100 { padding-left: 100px !important; }
+.pdf-body .pl-120 { padding-left: 120px !important; }
+.pdf-body .pl-140 { padding-left: 140px !important; }
+.pdf-body .pl-160 { padding-left: 160px !important; }
+.pdf-body .pl-180 { padding-left: 180px !important; }
+.pdf-body .pl-200 { padding-left: 200px !important; }
+
+/* --- FONT SIZE AYARLARI --- */
+.pdf-body .fs-10 { font-size: 10pt !important; }
+.pdf-body .fs-11 { font-size: 11pt !important; }
+.pdf-body .fs-12 { font-size: 12pt !important; }
+.pdf-body .fs-13 { font-size: 13pt !important; }
+.pdf-body .fs-14 { font-size: 14pt !important; }
+.pdf-body .fs-15 { font-size: 15pt !important; }
+.pdf-body .fs-16 { font-size: 16pt !important; }
+.pdf-body .fs-17 { font-size: 17pt !important; }
+.pdf-body .fs-18 { font-size: 18pt !important; }
+.pdf-body .fs-19 { font-size: 19pt !important; }
+.pdf-body .fs-20 { font-size: 20pt !important; }
+.pdf-body .fs-21 { font-size: 21pt !important; }
+.pdf-body .fs-22 { font-size: 22pt !important; }
+.pdf-body .fs-23 { font-size: 23pt !important; }
+.pdf-body .fs-24 { font-size: 24pt !important; }
+.pdf-body .fs-25 { font-size: 25pt !important; }
+.pdf-body .fs-26 { font-size: 26pt !important; }
+.pdf-body .fs-27 { font-size: 27pt !important; }
+.pdf-body .fs-28 { font-size: 28pt !important; }
+.pdf-body .fs-29 { font-size: 29pt !important; }
+.pdf-body .fs-30 { font-size: 30pt !important; }
+
+/* --- FONT WEIGHT AYARLARI --- */
+.pdf-body .fw-100 { font-weight: 100 !important; }
+.pdf-body .fw-200 { font-weight: 200 !important; }
+.pdf-body .fw-300 { font-weight: 300 !important; }
+.pdf-body .fw-400 { font-weight: 400 !important; }
+.pdf-body .fw-500 { font-weight: 500 !important; }
+.pdf-body .fw-600 { font-weight: 600 !important; }
+.pdf-body .fw-700 { font-weight: 700 !important; }
+.pdf-body .fw-800 { font-weight: 800 !important; }
+.pdf-body .fw-900 { font-weight: 900 !important; }
+
+.pdf-body .tt-uppercase { text-transform: uppercase; }
+.pdf-body .tt-lowercase { text-transform: lowercase; }
+.pdf-body .tt-capitalize { text-transform: capitalize; }
+
+.pdf-body .div-block span {
+  font-weight: 600;
+}
+
+.pdf-body .bg-warning {
+  background-color: #f9b920;
+}
+
+.pdf-body .bg-outline-primary {
+  background-color: rgba(233, 125, 35, 0.3);
+}
+
+.pdf-body .bg-outline-success {
+  background-color: rgba(76, 175, 80, 0.3);
+}
+
+.pdf-body .bg-outline-warning {
+  background-color: rgba(255, 170, 0, 0.3);
+}
+
+.pdf-body .bg-outline-danger {
+  background-color: rgba(255, 125, 125, 0.3);
+}
+
+.pdf-body .bg-outline-info {
+  background-color: rgba(93, 214, 221, 0.3);
+}
+
+.pdf-body .bg-outline-dark {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.pdf-body .bg-outline-gray {
+  background-color: rgba(100, 100, 100, 0.1);
+}

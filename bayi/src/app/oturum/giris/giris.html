@@ -1,0 +1,46 @@
+<div class="container-fluid p-0">
+  <div class="row no-gutters">
+    <div class="col-lg-4">
+      <div class="authentication-page-content p-4 d-flex align-items-center min-vh-100">
+        <div class="w-100">
+          <div class="row justify-content-center">
+            <div class="col-lg-9">
+              <div class="text-center">
+                <img src="assets/images/logo.png" style="max-width: 90%;">
+              </div>
+              <div class="p-2 mt-5">
+                <form validControl class="form-horizontal" [formGroup]="girisFormu" (submit)="girisYap()">
+                  <div class="form-group auth-form-group-custom mb-4">
+                    <i class="ri-user-2-line auti-custom-input-icon"></i>
+                    <label>Mail Adresi</label>
+                    <input type="email" class="form-control" formControlName="e_mail_adresi" title="Mail Adresi" required placeholder="Mail Adresiniz...">
+                  </div>
+                  <div class="form-group auth-form-group-custom mb-4">
+                    <i class="ri-lock-2-line auti-custom-input-icon"></i>
+                    <label for="e_sifre">Şifre</label>
+                    <input type="password" class="form-control" formControlName="e_sifre" title="Şifre" required placeholder="Şifreniz">
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" id="e_beni_hatirla" class="custom-control-input" formControlName="e_beni_hatirla">
+                    <label class="custom-control-label" for="e_beni_hatirla">Beni Hatırla</label>
+                  </div>
+                  <div class="mt-4 text-center">
+                    <button class="btn btn-primary btn-block" *ngIf="!girisYapBtn"><i class="fas fa-sign-in-alt mr-2"></i> Giriş Yap</button>
+                    <button type="button" class="btn btn-primary btn-block mt-4" *ngIf="girisYapBtn">
+                      <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Giriş Yapılıyor
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="authentication-bg">
+        <!-- <div class="bg-overlay"></div> -->
+      </div>
+    </div>
+  </div>
+</div>

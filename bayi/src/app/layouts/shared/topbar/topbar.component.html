@@ -1,0 +1,103 @@
+<ng-template #modalSifreGuncelleme let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Şifre Güncelleme Formu</h4>
+  </div>
+  <div class="modal-body">
+    <form validControl [formGroup]="sifreGuncellemeFormu">
+      <div class="form-group auth-form-group-custom mb-4">
+        <i class="ri-lock-unlock-line auti-custom-input-icon"></i>
+        <label for="e_sifre">Eski Şifreniz</label>
+        <input type="password" class="form-control" formControlName="e_eski_sifre" title="Eski Şifre" required placeholder="Eski Şifrenizi Yazın">
+      </div>
+      <div class="form-group auth-form-group-custom mb-4">
+        <i class="ri-lock-2-line auti-custom-input-icon"></i>
+        <label for="e_sifre">Yeni Şifreniz</label>
+        <input type="password" class="form-control" formControlName="e_sifre" title="Yeni Şifre" required placeholder="Yeni Şifrenizi Belirleyin">
+      </div>
+      <div class="form-group auth-form-group-custom mb-4">
+        <i class="ri-lock-password-line auti-custom-input-icon"></i>
+        <label>Yeni Şifreniz (Tekrar)</label>
+        <input type="password" class="form-control" formControlName="e_sifre_tekrar" placeholder="Yeni Şifrenizi Tekrar Yazın">
+      </div>
+      <div class="mt-4 text-center">
+        <div class="row m-0">
+          <div class="col-md-6">
+            <button type="button" class="btn btn-outline-dark btn-block" (click)="modal.dismiss('')">
+              <i class="fas fa-times mr-2"></i> İptal
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary btn-block" *ngIf="!sifreGuncellemeBtn" (click)="sifreGuncellemeKaydet()">
+              <i class="fas fa-sync-alt mr-2"></i> Şifreyi Güncelle
+            </button>
+            <button type="button" class="btn btn-primary btn-block" *ngIf="sifreGuncellemeBtn">
+              <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Şifre Güncelleniyor
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<header id="page-topbar">
+  <div class="navbar-header">
+    <div class="d-flex">
+      <div class="navbar-brand-box">
+        <a routerLink="/anasayfa" class="logo logo-light" >
+          <span class="logo-sm text-center">
+            <img src="assets/images/logo-sm-light.png" height="40">
+          </span>
+          <span class="logo-lg">
+            <img src="assets/images/logo-light.png" style="width: 135px; height: auto; display: block; margin: 11px auto auto">
+          </span>
+        </a>
+      </div>
+
+      <button type="button" class="btn btn-sm px-3 font-size-24 header-item" id="vertical-menu-btn" (click)="toggleMobileMenu($event)">
+        <i class="ri-menu-2-line align-middle"></i>
+      </button>
+
+      <div class="d-lg-inline-block mr-3 ml-3">
+        <div class="header-item">
+          <h5 class="m-0" style="line-height: 70px;">{{anaBaslik}}</h5>
+        </div>
+      </div>
+
+      <div class="d-lg-inline-block">
+        <ol class="breadcrumb p-0 bg-transparent m-0" *ngIf="(breadcrump)">
+          <h5 class="mb-0 mr-3" style="line-height: 70px; font-size: 14px;">|</h5>
+          <li class="breadcrumb-item" style="line-height: 70px;"><a routerLink="/anasayfa">Anasayfa</a></li>
+          <li class="breadcrumb-item active" style="line-height: 70px;" *ngFor="let baslik of breadcrump; let last = last">
+            <a *ngIf="baslik == 'Hesap Kartları' && !last" routerLink="/tanimlar/hesapKartlari">{{baslik}}</a>
+            <span *ngIf="(1 == 1
+              && baslik != 'Hesap Kartları'
+            ) || last">{{baslik}}</span>
+          </li>
+        </ol>  
+      </div>
+    </div>
+
+    <div class="d-flex">
+      <div class="dropdown d-none d-lg-inline-block ml-1">
+        <button type="button" class="btn header-item noti-icon" (click)="fullscreen()">
+          <i class="ri-fullscreen-line"></i>
+        </button>
+      </div>
+
+      <div class="dropdown d-inline-block user-dropdown" ngbDropdown>
+        <button type="button" ngbDropdownToggle class="btn header-item" id="page-header-user-dropdown"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img class="rounded-circle header-profile-user" src="assets/images/user.jpg">
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+          <div class="dropdown-header">
+            <i class="ri-user-line mr-1"></i> {{loginOlanKullaniciAdi}}
+          </div>
+          <a class="dropdown-item c-pointer" (click)="sifreGuncellemeButton()"><i class="fas fa-unlock-alt align-middle mr-2"></i> Şifreyi Güncelle</a>
+          <a class="dropdown-item c-pointer" (click)="logout()"><i class="fas fa-sign-out-alt align-middle mr-2"></i> Çıkış Yap</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
