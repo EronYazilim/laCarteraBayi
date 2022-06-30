@@ -9,6 +9,7 @@ import { NgxMaskModule } from "ngx-mask";
 import { islemlerRoutingModule } from "./islemler-routing";
 
 import { siparisIslemleriComponent } from "./siparisIslemleri/siparisIslemleri";
+import { satisIslemleriComponent } from "./satisIslemleri/satisIslemleri";
 
 import { FormDirective } from "./islemler-directive";
 
@@ -29,6 +30,7 @@ import { FormDirective } from "./islemler-directive";
     ],
     declarations: [
         siparisIslemleriComponent,
+        satisIslemleriComponent,
 
         FormDirective
     ]

@@ -21,6 +21,9 @@ export const MENU: MenuItem[] = [
 		subItems: [{
 			label: 'Sipariş İşlemleri',
 			link: '/islemler/siparisIslemleri'
+		}, {
+			label: 'Satış İşlemleri',
+			link: '/islemler/satisIslemleri'
 		}]
 	}
 ]

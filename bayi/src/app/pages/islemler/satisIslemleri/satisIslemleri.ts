@@ -9,12 +9,12 @@ import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
-    selector: 'app-siparisIslemleri',
-    templateUrl: './siparisIslemleri.html',
+    selector: 'app-satisIslemleri',
+    templateUrl: './satisIslemleri.html',
     animations: [SharedAnimations]
 })
 
-export class siparisIslemleriComponent implements OnInit {
+export class satisIslemleriComponent implements OnInit {
     constructor(
         public islem : webServisIslemCalistir,
         private toastr: ToastrService,
@@ -28,8 +28,8 @@ export class siparisIslemleriComponent implements OnInit {
         modalConfig.size = 'sm'
     }
 
-    @ViewChild('modalSiparis') modalSiparis: ElementRef
-    @ViewChild('modalSiparisDetay') modalSiparisDetay: ElementRef
+    @ViewChild('modalSatis') modalSatis: ElementRef
+    @ViewChild('modalSatisDetay') modalSatisDetay: ElementRef
   
     modalHeader = { title: '' }
 
@@ -42,7 +42,7 @@ export class siparisIslemleriComponent implements OnInit {
     }
 
     detayFilterData = {
-        e_siparis_unique_id   : ''
+        e_satis_unique_id   : ''
     }
 
     urunFilterData = {
@@ -51,29 +51,31 @@ export class siparisIslemleriComponent implements OnInit {
         KS      : '',
         e_durum : ''
     }
-
-    siparisEklemeFormu = new FormGroup({
+    
+    satisEklemeFormu = new FormGroup({
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
-        e_aciklama          :   new FormControl(''),
+        e_odeme_tipi        :   new FormControl(''),
         e_durum             :   new FormControl(''),
-        e_siparis_unique_id :   new FormControl(''),
+        e_satis_unique_id   :   new FormControl(''),
         ESKI_ID             :   new FormControl('')
     })
 
-    siparisDetayAktarmaFormu = new FormGroup({
+    satisDetayAktarmaFormu = new FormGroup({
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
-        e_siparis_unique_id :   new FormControl(''),
+        e_satis_unique_id   :   new FormControl(''),
         ESKI_ID             :   new FormControl('')
     })
 
-    siparisDetayEklemeFormu = new FormGroup({
+    satisDetayEklemeFormu = new FormGroup({
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
         e_stok_kart_id      :   new FormControl(''),
         e_miktar            :   new FormControl(''),
-        e_siparis_unique_id :   new FormControl(''),
+        e_satir_toplami     :   new FormControl(''),
+        e_satis_id          :   new FormControl(''),
+        e_satis_unique_id   :   new FormControl(''),
         ESKI_ID             :   new FormControl('')
     })
 
@@ -83,19 +85,20 @@ export class siparisIslemleriComponent implements OnInit {
     detayLoader = false
     urunLoader = false
     
-    siparisListesi
-    siparisDetayListesi
+    satisListesi
+    satisDetayListesi
     urunListesi
     secilenKayit
     
     islemiKaydetBtn = false
+    islemiKaydetBtn2 = false
     silinenKayitBtn = [false]
 
     ngOnInit() {
-        this.titleService.setTitle("laCartera | Sipariş İşlemleri")
-        this.bs.change(["İşlemler", "Sipariş İşlemleri"])
+        this.titleService.setTitle("laCartera | Satış İşlemleri")
+        this.bs.change(["İşlemler", "Satış İşlemleri"])
 
-        this.siparisListele()
+        this.satisListele()
         this.urunListele()
     }
 
@@ -103,18 +106,18 @@ export class siparisIslemleriComponent implements OnInit {
         this.modalConfig.size = size
         this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
     }
-
-    async siparisListele() {
+    
+    async satisListele() {
         this.mainLoader = true
-        this.siparisListesi = await this.islem.WebServisSorguSonucu("GET", "siparisIslemleri/siparisListesi", this.filterData)
-        if (Object.keys(this.siparisListesi).length == 0) { this.siparisListesi = null}
+        this.satisListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisListesi", this.filterData)
+        if (Object.keys(this.satisListesi).length == 0) { this.satisListesi = null}
         this.mainLoader = false
     }
-
-    async siparisDetayListele() {
+    
+    async satisDetayListele() {
         this.detayLoader = true
-        this.siparisDetayListesi = await this.islem.WebServisSorguSonucu("GET", "siparisIslemleri/siparisDetayListesi", this.detayFilterData)
-        if (Object.keys(this.siparisDetayListesi).length == 0) { this.siparisDetayListesi = null}
+        this.satisDetayListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisDetayListesi", this.detayFilterData)
+        if (Object.keys(this.satisDetayListesi).length == 0) { this.satisDetayListesi = null}
         this.detayLoader = false
     }
 
@@ -122,85 +125,86 @@ export class siparisIslemleriComponent implements OnInit {
         this.urunLoader = true
         this.urunListesi = await this.islem.WebServisSorguSonucu("GET", "stokKartIslemleri/stokKartListesi", this.urunFilterData)
         if (Object.keys(this.urunListesi).length == 0) { this.urunListesi = null}
-        console.log(this.urunListesi)
         this.urunLoader = false
     }
 
-    siparisEkleButton() {
+    satisEkleButton() {
         this.secilenKayit = null
-        this.siparisEklemeFormu.patchValue({
-            islem               :   'siparisIslemleri/siparisEkle',
+        this.satisEklemeFormu.patchValue({
+            islem               :   'satisIslemleri/satisEkle',
             method              :   'POST',
-            e_odeme_tipi          :   '',
-            e_satis_unique_id :   '',
+            e_odeme_tipi        :   '',
+            e_satis_unique_id   :   '',
             e_durum             :   ''
         })
-        this.detayFilterData.e_siparis_unique_id = ''
+        this.detayFilterData.e_satis_unique_id = ''
 
-        this.siparisDetayListele()
+        this.satisDetayListele()
         this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSiparis, 'lg')
+        this.modalAc(this.modalSatis, 'lg')
     }
 
-    siparisDetayEkleButton() {
-        this.siparisDetayEklemeFormu.patchValue({
-            islem               :   'siparisIslemleri/siparisDetayEkle',
+    satisDetayEkleButton() {
+        this.satisDetayEklemeFormu.patchValue({
+            islem               :   'satisIslemleri/satisDetayEkle',
             method              :   'POST',
             e_stok_kart_id      :   '',
             e_miktar            :   '',
-            e_siparis_unique_id :   this.secilenKayit ? this.secilenKayit.e_unique_id : ""
+            e_satir_toplami     :   '',
+            e_satis_unique_id   :   this.secilenKayit ? this.secilenKayit.e_unique_id : ""
         })
         this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSiparisDetay, 'md')
+        this.modalAc(this.modalSatisDetay, 'md')
     }
 
-    siparisDetayDuzenleButton(secilenKayit) {
-        this.siparisDetayEklemeFormu.patchValue({
-            islem               :   'siparisIslemleri/siparisDetayDuzenle',
+    async satisDuzenleButton(secilenKayit) {
+        this.satisEklemeFormu.patchValue({
+            islem               :   'satisIslemleri/satisDuzenle',
             method              :   'PUT',
-            e_stok_kart_id      :   secilenKayit.e_stok_kart_id,
-            e_miktar            :   secilenKayit.e_miktar,
-            e_siparis_unique_id :   secilenKayit.e_siparis_unique_id,
-            ESKI_ID             :   secilenKayit.e_id
-        })
-        this.modalHeader.title = 'Düzenleme'
-        this.modalAc(this.modalSiparisDetay, 'md')
-    }
-
-    async siparisDuzenleButton(secilenKayit) {
-        this.siparisEklemeFormu.patchValue({
-            islem               :   'siparisIslemleri/siparisDuzenle',
-            method              :   'PUT',
-            e_aciklama          :   secilenKayit.e_aciklama,
+            e_odeme_tipi        :   secilenKayit.e_odeme_tipi,
             e_durum             :   secilenKayit.e_durum,
-            e_siparis_unique_id :   secilenKayit.e_unique_id,
+            e_satis_unique_id   :   secilenKayit.e_unique_id,
             ESKI_ID             :   secilenKayit.e_id,
         })
-        this.siparisDetayAktarmaFormu.patchValue({
-            islem               : 'siparisIslemleri/siparisDetayAktar',
+        this.satisDetayAktarmaFormu.patchValue({
+            islem               : 'satisIslemleri/satisDetayAktar',
             method              : 'POST',
-            e_siparis_unique_id : secilenKayit.e_unique_id,
+            e_satis_unique_id   : secilenKayit.e_unique_id,
             ESKI_ID             : secilenKayit.e_id
         })
-        this.detayFilterData.e_siparis_unique_id = secilenKayit.e_unique_id
-        this.requestData = Object.assign({}, this.siparisDetayAktarmaFormu.value)
+        this.detayFilterData.e_satis_unique_id = secilenKayit.e_unique_id
+        this.requestData = Object.assign({}, this.satisDetayAktarmaFormu.value)
         this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
         this.secilenKayit = secilenKayit
         this.modalHeader.title = 'Düzenleme'
-        await this.siparisDetayListele()
-        this.modalAc(this.modalSiparis, 'lg')
-    }    
+        await this.satisDetayListele()
+        this.modalAc(this.modalSatis, 'lg')
+    }
+
+    satisDetayDuzenleButton(secilenKayit) {
+        this.satisDetayEklemeFormu.patchValue({
+            islem               :   'satisIslemleri/satisDetayDuzenle',
+            method              :   'PUT',
+            e_stok_kart_id      :   secilenKayit.e_stok_kart_id,
+            e_miktar            :   secilenKayit.e_miktar,
+            e_satir_toplami     :   secilenKayit.e_satir_toplami,
+            e_satis_unique_id   :   secilenKayit.e_satis_unique_id,
+            ESKI_ID             :   secilenKayit.e_id
+        })
+        this.modalHeader.title = 'Düzenleme'
+        this.modalAc(this.modalSatisDetay, 'md')
+    }
 
     async islemiKaydet(): Promise<void> {
-        if (this.siparisEklemeFormu.valid) {
+        if (this.satisEklemeFormu.valid) {
           this.islemiKaydetBtn = true
     
-          this.requestData = Object.assign({}, this.siparisEklemeFormu.value)
+          this.requestData = Object.assign({}, this.satisEklemeFormu.value)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
     
           if (this.responseData[0].S == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
-            this.siparisListele()
+            this.satisListele()
             this.modalService.dismissAll()
           } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
@@ -211,46 +215,46 @@ export class siparisIslemleriComponent implements OnInit {
     }
 
     async islemiKaydetDetayEkle(): Promise<void> {
-        if (this.siparisDetayEklemeFormu.valid) {
-          this.islemiKaydetBtn = true
+        if (this.satisDetayEklemeFormu.valid) {
+          this.islemiKaydetBtn2 = true
     
-          this.requestData = Object.assign({}, this.siparisDetayEklemeFormu.value)
+          this.requestData = Object.assign({}, this.satisDetayEklemeFormu.value)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
     
           if (this.responseData[0].S == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
-            this.siparisDetayListele()
+            this.satisDetayListele()
             // this.modalService.dismissAll()
             document.getElementById('detayKapatBtn').click()
           } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
           }
     
-          this.islemiKaydetBtn = false
+          this.islemiKaydetBtn2 = false
         }
     }
-    
+
     silButton(secilenKayit, islem) {
-    Swal.fire({
-        title: 'Sipariş Silinecek!',
-        text: "Siparişi sistemden kalıcı olarak silmek istediğinize emin misiniz ?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Evet, Sil',
-        confirmButtonColor: '#c49c5c',
-        cancelButtonText: 'İptal',
-        cancelButtonColor: '#222'
-    }).then((result) => {
-        if (result.isConfirmed) {
-        this.kayitSil(secilenKayit, islem)
-        }
-    })
+        Swal.fire({
+            title: 'Satış Silinecek!',
+            text: "Satışı sistemden kalıcı olarak silmek istediğinize emin misiniz ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Evet, Sil',
+            confirmButtonColor: '#c49c5c',
+            cancelButtonText: 'İptal',
+            cancelButtonColor: '#222'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            this.kayitSil(secilenKayit, islem)
+            }
+        })
     }
     
     detaySilButton(secilenDetay, islem) {
         Swal.fire({
-            title: 'Sipariş Detayı Silinecek!',
-            text: "Sipariş detayını sistemden kalıcı olarak silmek istediğinize emin misiniz ?",
+            title: 'Satış Detayı Silinecek!',
+            text: "Satış detayını sistemden kalıcı olarak silmek istediğinize emin misiniz ?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Evet, Sil',
@@ -267,13 +271,12 @@ export class siparisIslemleriComponent implements OnInit {
     async kayitSil(secilenKayit, islem): Promise<void> {
         this.silinenKayitBtn[secilenKayit.e_id] = true
         this.responseData = await this.islem.WebServisSorguSonucu("DELETE", islem, { ESKI_ID: secilenKayit.e_id })
-
         if ((this.responseData[0].S) == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
-            const i = this.siparisListesi.indexOf(secilenKayit)
+            const i = this.satisListesi.indexOf(secilenKayit)
             if (i > -1) {
-            this.siparisListesi.splice(i, 1)
-            if (this.siparisListesi.length == 0) { this.siparisListesi = null }
+            this.satisListesi.splice(i, 1)
+            if (this.satisListesi.length == 0) { this.satisListesi = null }
             }
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
@@ -287,15 +290,15 @@ export class siparisIslemleriComponent implements OnInit {
 
         if ((this.responseData[0].S) == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
-            const i = this.siparisDetayListesi.indexOf(secilenDetay)
+            const i = this.satisDetayListesi.indexOf(secilenDetay)
             if (i > -1) {
-            this.siparisDetayListesi.splice(i, 1)
-            if (this.siparisDetayListesi.length == 0) { this.siparisDetayListesi = null }
+            this.satisDetayListesi.splice(i, 1)
+            if (this.satisDetayListesi.length == 0) { this.satisDetayListesi = null }
             }
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.silinenKayitBtn[secilenDetay.e_id] = false
         }
     }
-
+    
 }
