@@ -30,6 +30,7 @@ export class siparisIslemleriComponent implements OnInit {
 
     @ViewChild('modalSiparis') modalSiparis: ElementRef
     @ViewChild('modalSiparisDetay') modalSiparisDetay: ElementRef
+    @ViewChild('modalUrun') modalUrun: ElementRef
   
     modalHeader = { title: '' }
 
@@ -72,6 +73,7 @@ export class siparisIslemleriComponent implements OnInit {
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
         e_stok_kart_id      :   new FormControl(''),
+        e_stok_kart_adi     :   new FormControl(''),
         e_miktar            :   new FormControl(''),
         e_siparis_unique_id :   new FormControl(''),
         ESKI_ID             :   new FormControl('')
@@ -90,6 +92,7 @@ export class siparisIslemleriComponent implements OnInit {
     
     islemiKaydetBtn = false
     silinenKayitBtn = [false]
+    secilenUrunBtn = [false]
 
     ngOnInit() {
         this.titleService.setTitle("laCartera | Sipariş İşlemleri")
@@ -131,15 +134,15 @@ export class siparisIslemleriComponent implements OnInit {
         this.siparisEklemeFormu.patchValue({
             islem               :   'siparisIslemleri/siparisEkle',
             method              :   'POST',
-            e_odeme_tipi          :   '',
-            e_satis_unique_id :   '',
-            e_durum             :   ''
+            e_odeme_tipi        :   '',
+            e_satis_unique_id   :   '',
+            e_durum             :   'Aktif'
         })
         this.detayFilterData.e_siparis_unique_id = ''
 
         this.siparisDetayListele()
         this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSiparis, 'lg')
+        this.modalAc(this.modalSiparis, 'xl')
     }
 
     siparisDetayEkleButton() {
@@ -151,7 +154,7 @@ export class siparisIslemleriComponent implements OnInit {
             e_siparis_unique_id :   this.secilenKayit ? this.secilenKayit.e_unique_id : ""
         })
         this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSiparisDetay, 'md')
+        this.modalAc(this.modalSiparisDetay, 'lg')
     }
 
     siparisDetayDuzenleButton(secilenKayit) {
@@ -164,7 +167,7 @@ export class siparisIslemleriComponent implements OnInit {
             ESKI_ID             :   secilenKayit.e_id
         })
         this.modalHeader.title = 'Düzenleme'
-        this.modalAc(this.modalSiparisDetay, 'md')
+        this.modalAc(this.modalSiparisDetay, 'xl')
     }
 
     async siparisDuzenleButton(secilenKayit) {
@@ -188,7 +191,7 @@ export class siparisIslemleriComponent implements OnInit {
         this.secilenKayit = secilenKayit
         this.modalHeader.title = 'Düzenleme'
         await this.siparisDetayListele()
-        this.modalAc(this.modalSiparis, 'lg')
+        this.modalAc(this.modalSiparis, 'xl')
     }    
 
     async islemiKaydet(): Promise<void> {
@@ -296,6 +299,21 @@ export class siparisIslemleriComponent implements OnInit {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.silinenKayitBtn[secilenDetay.e_id] = false
         }
+    }
+
+    urunListesiAc() {
+        this.modalAc(this.modalUrun, 'xl')
+    }
+
+    async urunSec(secilenUrun) {
+        this.secilenUrunBtn[secilenUrun.e_id] = true
+        this.siparisDetayEklemeFormu.patchValue({
+            e_stok_kart_adi : secilenUrun.e_stok_kart_adi,
+            e_stok_kart_id : secilenUrun.e_stok_kart_id
+        })
+        console.log(this.siparisDetayEklemeFormu.value.e_stok_kart_adi)
+        console.log(this.siparisDetayEklemeFormu.value.e_stok_kart_id)
+        this.secilenUrunBtn[secilenUrun.e_id] = false
     }
 
 }

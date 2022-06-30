@@ -135,13 +135,13 @@ export class satisIslemleriComponent implements OnInit {
             method              :   'POST',
             e_odeme_tipi        :   '',
             e_satis_unique_id   :   '',
-            e_durum             :   ''
+            e_durum             :   'Aktif'
         })
         this.detayFilterData.e_satis_unique_id = ''
 
         this.satisDetayListele()
         this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSatis, 'lg')
+        this.modalAc(this.modalSatis, 'xl')
     }
 
     satisDetayEkleButton() {
@@ -178,7 +178,7 @@ export class satisIslemleriComponent implements OnInit {
         this.secilenKayit = secilenKayit
         this.modalHeader.title = 'Düzenleme'
         await this.satisDetayListele()
-        this.modalAc(this.modalSatis, 'lg')
+        this.modalAc(this.modalSatis, 'xl')
     }
 
     satisDetayDuzenleButton(secilenKayit) {

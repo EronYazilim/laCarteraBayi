@@ -9,14 +9,13 @@
       <div class="container">
         <form validControl [formGroup]="siparisEklemeFormu" (submit)="islemiKaydet()">
           <div class="row m-0">
-            <div class="col-md-12 form-group">
+            <div class="col-md-6 form-group">
               <label>Açıklama *</label>
               <input type="text" class="form-control" formControlName="e_aciklama" title="Açıklama" required>
             </div>
-            <div class="col-md-12 form-group">
+            <div class="col-md-6 form-group">
               <label>Durum *</label>
               <select class="form-control" formControlName="e_durum" title="Durum">
-                <option value="">-- Seçiniz --</option>
                 <option value="Aktif">Aktif</option>
                 <option value="Pasif">Pasif</option>
               </select>
@@ -24,6 +23,49 @@
           </div>
           <button id="submitButton" class="hidden">Kaydet</button>
         </form>
+      </div>
+    </div>
+    <div class="container mt-1">
+      <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px;">
+        <h5 class="m-0 mt-2 ng-tns-c77-6">Sipariş Detayları</h5><button class="btn btn-block btn-primary w-20 ng-tns-c77-6" (click)="siparisDetayEkleButton()"><i class="fas fa-plus mr-2 ng-tns-c77-6"></i> Sipariş Detayı Ekle</button>
+    </div>
+      <div class="alert alert-primary p-4 m-3" *ngIf="!siparisDetayListesi && !detayLoader">
+        <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
+        <span class=" valign-middle">Listelemek istediğiniz detay kaydı bulunamadı.</span>
+        <!-- <button class="btn btn-primary fa-pull-right w-25" (click)="siparisDetayEkleButton()"><span class="fas fa-plus mr-2"></span> Detay Ekle</button> -->
+      </div>
+      <div class="alert alert-primary p-4" *ngIf="detayLoader">
+      <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
+      <span class=" valign-middle">Sipariş Detay kayıtları listeleniyor, lütfen bekleyiniz.</span>
+      </div>
+      <div class="card full-list-1" [hidden]="!siparisDetayListesi || detayLoader">
+        <div class="card-body" *ngIf="siparisDetayListesi && !detayLoader">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr class="alert-primary">
+                  <th class="text-center">Ürün Stok Kodu</th>
+                  <th class="text-center">Ürün Adı</th>
+                  <th class="text-center">Miktar</th>
+                  <th class="text-center"></th>
+                  <!-- <th class="text-center"><button type="button" class="btn btn-sm btn-primary w-100" (click)="siparisDetayEkleButton()"><i class="fas fa-plus mr-1"></i>Detay Ekle</button></th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let detay of siparisDetayListesi">
+                  <td class="text-center">{{detay.e_stok_kart_kodu}}</td>
+                  <td class="text-center">{{detay.e_stok_kart_adi}}</td>
+                  <td class="text-center">{{detay.e_miktar}}</td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;" (click)="siparisDetayDuzenleButton(detay)"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[detay.e_id]" (click)="detaySilButton(detay, 'siparisIslemleri/siparisDetaySil');"><i class="fas fa-times"></i></button>
+                    <button class="btn btn-sm btn-dark w-48" *ngIf="silinenKayitBtn[detay.e_id]"><div class="spinner-glow spinner-glow-light mt-0"></div></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
@@ -34,30 +76,6 @@
             <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
           </button>
           <button class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
-    </div>
-    <div class="container mt-1">
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr class="alert-primary">
-              <th class="text-center">Ürün</th>
-              <th class="text-center">Miktar</th>
-              <th class="text-center"><button type="button" class="btn btn-sm btn-primary w-100" (click)="siparisDetayEkleButton()"><i class="fas fa-plus mr-1"></i>Detay Ekle</button></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let detay of siparisDetayListesi">
-              <td class="text-center">{{detay.e_stok_kart_kodu}} - {{detay.e_stok_kart_adi}}</td>
-              <td class="text-center">{{detay.e_miktar}}</td>
-              <td class="text-center">
-                <button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;" (click)="siparisDetayDuzenleButton(detay)"><i class="fas fa-edit"></i></button>
-                <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[detay.e_id]" (click)="detaySilButton(detay, 'siparisIslemleri/siparisDetaySil');"><i class="fas fa-times"></i></button>
-                <button class="btn btn-sm btn-dark w-48" *ngIf="silinenKayitBtn[detay.e_id]"><div class="spinner-glow spinner-glow-light mt-0"></div></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
 </ng-template>
 
@@ -72,16 +90,15 @@
     <div class="container">
       <form validControl [formGroup]="siparisDetayEklemeFormu" (submit)="islemiKaydetDetayEkle()">
         <div class="row m-0">
-          <div class="col-md-12 form-group">
+          <div class="col-md-6 form-group">
             <label>Ürün *</label>
-            <select class="form-control" formControlName="e_stok_kart_id" title="Ürün" required>
-              <option value="">-- Seçiniz --</option>
-              <option value="{{urun.e_id}}" *ngFor="let urun of urunListesi">{{urun.e_stok_kart_kodu}} - {{urun.e_stok_kart_adi}}</option>
-            </select>
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName="e_stok_kart_id" readonly><button type="button" class="btn btn-sm btn-primary" (click)="urunListesiAc()"><span class="fas fa-plus mr-2"></span> Ürün Seç</button>
+            </div>
           </div>
-          <div class="col-md-12 form-group">
+          <div class="col-md-6 form-group">
             <label>Miktar *</label>
-            <input type="text" class="form-control" formControlName="e_miktar" title="Miktar" required>
+            <input type="number" class="form-control" formControlName="e_miktar" title="Miktar" required>
           </div>
         </div>
         <button id="submitButton2" class="hidden">Kaydet</button>
@@ -96,6 +113,59 @@
           <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
         </button>
         <button id="detayKapatBtn" class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
+  </div>
+</ng-template>
+
+<ng-template #modalUrun let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Sipariş {{modalHeader.title}} Formu</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('');">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <form validControl [formGroup]="siparisDetayEklemeFormu" (submit)="islemiKaydetDetayEkle()">
+        <div class="row m-0">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr class="alert-primary">
+                  <th class="text-center">Ürün Resmi</th>
+                  <th class="text-center">Ürün Kodu</th>
+                  <th class="text-center">Ürün Adı</th>
+                  <th class="text-center">Fiyat</th>
+                  <th class="text-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let urun of urunListesi">
+                  <td class="text-left">-</td>
+                  <td class="text-left">{{urun.e_stok_kart_kodu}}</td>
+                  <td class="text-left">{{urun.e_stok_kart_adi}}</td>
+                  <td class="text-right" *ngIf="siparisListesi[0].e_fiyat_politikasi == '1'">{{urun.e_fiyat_1 | currency: ' '}} ₺</td>
+                  <td class="text-right" *ngIf="siparisListesi[0].e_fiyat_politikasi == '2'">{{urun.e_fiyat_2 | currency: ' '}} ₺</td>
+                  <td class="text-right" *ngIf="siparisListesi[0].e_fiyat_politikasi == '3'">{{urun.e_fiyat_3 | currency: ' '}} ₺</td>
+                  <td class="text-left">
+                    <button type="button" class="btn btn-block btn-primary w-100" (click)="urunSec(urun)"><span class="fas fa-plus mr-2"></span> Seç</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <button id="submitButton2" class="hidden">Kaydet</button>
+      </form>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary mr-1 w-lg" *ngIf="!islemiKaydetBtn" onclick="document.getElementById('submitButton3').click()">
+        <i class="fas fa-check mr-2"></i> Kaydet
+      </button>
+      <button class="btn btn-primary mr-1 w-lg" *ngIf="islemiKaydetBtn">
+        <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
+      </button>
+      <button class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
   </div>
 </ng-template>
   
