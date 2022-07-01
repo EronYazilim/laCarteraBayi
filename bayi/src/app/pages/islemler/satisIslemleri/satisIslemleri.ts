@@ -30,6 +30,7 @@ export class satisIslemleriComponent implements OnInit {
 
     @ViewChild('modalSatis') modalSatis: ElementRef
     @ViewChild('modalSatisDetay') modalSatisDetay: ElementRef
+    @ViewChild('modalUrun') modalUrun: ElementRef
   
     modalHeader = { title: '' }
 
@@ -56,7 +57,6 @@ export class satisIslemleriComponent implements OnInit {
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
         e_odeme_tipi        :   new FormControl(''),
-        e_durum             :   new FormControl(''),
         e_satis_unique_id   :   new FormControl(''),
         ESKI_ID             :   new FormControl('')
     })
@@ -72,6 +72,7 @@ export class satisIslemleriComponent implements OnInit {
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
         e_stok_kart_id      :   new FormControl(''),
+        e_stok_kart_adi     :   new FormControl(''),
         e_miktar            :   new FormControl(''),
         e_satir_toplami     :   new FormControl(''),
         e_satis_id          :   new FormControl(''),
@@ -93,6 +94,7 @@ export class satisIslemleriComponent implements OnInit {
     islemiKaydetBtn = false
     islemiKaydetBtn2 = false
     silinenKayitBtn = [false]
+    secilenUrunBtn = [false]
 
     ngOnInit() {
         this.titleService.setTitle("laCartera | Satış İşlemleri")
@@ -135,7 +137,6 @@ export class satisIslemleriComponent implements OnInit {
             method              :   'POST',
             e_odeme_tipi        :   '',
             e_satis_unique_id   :   '',
-            e_durum             :   'Aktif'
         })
         this.detayFilterData.e_satis_unique_id = ''
 
@@ -154,7 +155,7 @@ export class satisIslemleriComponent implements OnInit {
             e_satis_unique_id   :   this.secilenKayit ? this.secilenKayit.e_unique_id : ""
         })
         this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSatisDetay, 'md')
+        this.modalAc(this.modalSatisDetay, 'lg')
     }
 
     async satisDuzenleButton(secilenKayit) {
@@ -162,7 +163,6 @@ export class satisIslemleriComponent implements OnInit {
             islem               :   'satisIslemleri/satisDuzenle',
             method              :   'PUT',
             e_odeme_tipi        :   secilenKayit.e_odeme_tipi,
-            e_durum             :   secilenKayit.e_durum,
             e_satis_unique_id   :   secilenKayit.e_unique_id,
             ESKI_ID             :   secilenKayit.e_id,
         })
@@ -186,13 +186,14 @@ export class satisIslemleriComponent implements OnInit {
             islem               :   'satisIslemleri/satisDetayDuzenle',
             method              :   'PUT',
             e_stok_kart_id      :   secilenKayit.e_stok_kart_id,
+            e_stok_kart_adi     :   secilenKayit.e_stok_kart_adi,
             e_miktar            :   secilenKayit.e_miktar,
             e_satir_toplami     :   secilenKayit.e_satir_toplami,
             e_satis_unique_id   :   secilenKayit.e_satis_unique_id,
             ESKI_ID             :   secilenKayit.e_id
         })
         this.modalHeader.title = 'Düzenleme'
-        this.modalAc(this.modalSatisDetay, 'md')
+        this.modalAc(this.modalSatisDetay, 'lg')
     }
 
     async islemiKaydet(): Promise<void> {
@@ -299,6 +300,22 @@ export class satisIslemleriComponent implements OnInit {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.silinenKayitBtn[secilenDetay.e_id] = false
         }
+    }
+
+    urunListesiAc() {
+        this.modalAc(this.modalUrun, 'xl')
+    }
+
+    async urunSec(secilenUrun) {
+        this.secilenUrunBtn[secilenUrun.e_id] = true
+        this.satisDetayEklemeFormu.patchValue({
+            e_stok_kart_adi : secilenUrun.e_stok_kart_adi,
+            e_stok_kart_id : secilenUrun.e_id
+        })
+        console.log(this.satisDetayEklemeFormu.value.e_stok_kart_adi)
+        console.log(this.satisDetayEklemeFormu.value.e_id)
+        document.getElementById("modalUrunKpt").click()
+        this.secilenUrunBtn[secilenUrun.e_id] = false
     }
     
 }

@@ -1,0 +1,134 @@
+<div class="separator-breadcrumb border-top mb-3"></div>
+
+<div class="container-fluid m-1 w-100" style="height: calc(100vh - 120px); overflow-y: auto;">
+    <div class="card">
+        <div class="card-body">
+            <form class="row m-0" validControl [formGroup]="satisEklemeFormu">
+                <div class="form-group col-md-8">
+                    <select class="form-control" formControlName="e_odeme_tipi" required>
+                        <option value="">-- Ödeme Şekli Seçiniz --</option>
+                        <option value="Nakit">Nakit</option>
+                        <option value="Kredi Kartı">Kredi Kartı</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" class="btn btn-warning btn-block"><span class="fas fa-solid fa-eraser mr-1"></span> Yeni</button>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" class="btn btn-success btn-block"><span class="fas fa-solid fa-check mr-1"></span> Kaydet</button>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" [ngClass]="{'btn btn-primary btn-block m-0': 1!=1, 'btn btn-outline-primary btn-block m-0': 1==1}"><span class="fas fa-solid fa-mars mr-1"></span> Erkek</button>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" [ngClass]="{'btn btn-primary btn-block m-0': 1!=1, 'btn btn-outline-primary btn-block m-0': 1==1}"><span class="fas fa-solid fa-venus mr-1"></span> Kadın</button>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" [ngClass]="{'btn btn-primary btn-block m-0': 1!=1, 'btn btn-outline-primary btn-block m-0': 1==1}"><span class="fas fa-solid fa-venus-mars mr-1"></span> Unisex</button>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="button" class="btn btn-dark btn-block">Filtre Temizle</button>
+                </div>
+                <div class="form-group col-md-8">
+                    <div class="table-responsive" style="height: 700px; overflow-y: auto">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr class="alert-primary">
+                                <th class="text-center w-10">Ürün Resmi</th>
+                                <th class="text-center w-10">Ürün Kodu</th>
+                                <th class="text-center w-40">Ürün Adı</th>
+                                <th class="text-center w-5">Miktar</th>
+                                <th class="text-center w-20">Fiyat</th>
+                                <th class="text-center w-15"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let urun of urunListesi">
+                                <td class="text-left">
+                                <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="150px" width="150px">
+                                </td>
+                                <td class="text-center">{{urun.e_stok_kart_kodu}}</td>
+                                <td class="text-left">{{urun.e_stok_kart_adi}}</td>
+                                <td class="text-left"><input type="number" [(ngModel)]="urunListesi[0].e_miktar" [ngModelOptions]="{standalone: true}"></td>
+                                <!-- <td class="text-left">{{urun.e_miktar}}</td> -->
+                                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '1'">{{urun.e_fiyat_1 | currency: ' '}} ₺</td>
+                                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '2'">{{urun.e_fiyat_2 | currency: ' '}} ₺</td>
+                                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '3'">{{urun.e_fiyat_3 | currency: ' '}} ₺</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-primary btn-block" *ngIf="1==1" (click)="sepeteEkle(urun)"><span class="fas fa-solid fa-plus mr-1"></span> Sepete Ekle</button>
+                                    <button type="button" class="btn btn-dark btn-block" *ngIf="1!=1"><span class="fas fa-solid fa-times mr-1"></span> Kaldır</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px; width: 485px;">
+                        <h5 class="m-0 mt-2">Sepetim</h5>
+                    </div>
+                    <div class="table-responsive mt-2" *ngIf="satisDetayListesi" style="height: 300px; overflow-y: auto">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr class="alert-primary">
+                                <th class="text-center w-10">Ürün Kodu</th>
+                                <th class="text-center w-40">Ürün Adı</th>
+                                <th class="text-center w-5">Miktar</th>
+                                <th class="text-center w-20">Birim Fiyat</th>
+                                <th class="text-center w-20">Toplam</th>
+                                <th class="text-center w-15"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let detay of satisDetayListesi">
+                                <td class="text-center">{{detay.e_stok_kart_kodu}}</td>
+                                <td class="text-left">{{detay.e_stok_kart_adi}}</td>
+                                <td class="text-left">{{detay.e_miktar}}</td>
+                                <td class="text-left">{{detay.e_birim_fiyat}}</td>
+                                <td class="text-left">{{detay.e_satir_toplami}}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-primary btn-block"><span class="fas fa-solid fa-plus mr-1"></span> Düzenle</button>
+                                    <button type="button" class="btn btn-dark btn-block"><span class="fas fa-solid fa-times mr-1"></span> Kaldır</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="card shadow-primary mb-3">
+    <div class="card-body">
+      <form class="row m-0" (submit)="satisListele()">
+        <div class="form-group col-md-4">
+          <label>Arama:</label>
+          <input type="text" class="form-control" [(ngModel)]="urunFilterData.ARAMA" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group col-md-4">
+          <label>Durum:</label>
+          <select class="form-control" [(ngModel)]="urunFilterData.e_cinsiyet" [ngModelOptions]="{standalone: true}" (change)="satisListele()">s
+            <option value="">-- Tümü --</option>
+            <option value="Erkek">Erkek</option>
+            <option value="Kadın">Kadın</option>
+            <option value="Unisex">Unisex</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label>Cinsiyet:</label>
+          <select class="form-control" [(ngModel)]="urunFilterData.e_durum" [ngModelOptions]="{standalone: true}" (change)="satisListele()">
+            <option value="">-- Tümü --</option>
+            <option value="Aktif">Aktif</option>
+            <option value="Pasif">Pasif</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label>&nbsp;</label>
+          <button class="btn btn-dark btn-block" (click)="satisListele()"><i class="fas fa-sync mr-2"></i> Filtrele</button>
+        </div>
+      </form>
+    </div>
+</div> -->

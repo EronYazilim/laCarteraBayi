@@ -12,6 +12,7 @@ import { siparisIslemleriComponent } from "./siparisIslemleri/siparisIslemleri";
 import { satisIslemleriComponent } from "./satisIslemleri/satisIslemleri";
 
 import { FormDirective } from "./islemler-directive";
+import { satisEkleComponent } from "./satisEkle/satisEkle";
 
 
 
@@ -31,6 +32,7 @@ import { FormDirective } from "./islemler-directive";
     declarations: [
         siparisIslemleriComponent,
         satisIslemleriComponent,
+        satisEkleComponent,
 
         FormDirective
     ]

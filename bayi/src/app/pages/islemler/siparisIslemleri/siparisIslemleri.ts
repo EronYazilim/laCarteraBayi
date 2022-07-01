@@ -125,7 +125,6 @@ export class siparisIslemleriComponent implements OnInit {
         this.urunLoader = true
         this.urunListesi = await this.islem.WebServisSorguSonucu("GET", "stokKartIslemleri/stokKartListesi", this.urunFilterData)
         if (Object.keys(this.urunListesi).length == 0) { this.urunListesi = null}
-        console.log(this.urunListesi)
         this.urunLoader = false
     }
 
@@ -309,10 +308,11 @@ export class siparisIslemleriComponent implements OnInit {
         this.secilenUrunBtn[secilenUrun.e_id] = true
         this.siparisDetayEklemeFormu.patchValue({
             e_stok_kart_adi : secilenUrun.e_stok_kart_adi,
-            e_stok_kart_id : secilenUrun.e_stok_kart_id
+            e_stok_kart_id : secilenUrun.e_id
         })
         console.log(this.siparisDetayEklemeFormu.value.e_stok_kart_adi)
-        console.log(this.siparisDetayEklemeFormu.value.e_stok_kart_id)
+        console.log(this.siparisDetayEklemeFormu.value.e_id)
+        document.getElementById("modalUrunKpt").click()
         this.secilenUrunBtn[secilenUrun.e_id] = false
     }
 

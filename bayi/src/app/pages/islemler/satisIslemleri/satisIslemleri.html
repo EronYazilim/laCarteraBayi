@@ -9,19 +9,12 @@
       <div class="container">
         <form validControl [formGroup]="satisEklemeFormu" (submit)="islemiKaydet()">
           <div class="row m-0">
-            <div class="col-md-6 form-group">
+            <div class="col-md-12 form-group">
               <label>Ödeme Tipi *</label>
               <select class="form-control" formControlName="e_odeme_tipi" title="Ödeme Tipi" required>
                 <option value="">-- Seçiniz --</option>
                 <option value="Nakit">Nakit</option>
                 <option value="Kredi Kartı">Kredi Kartı</option>
-              </select>
-            </div>
-            <div class="col-md-6 form-group">
-              <label>Durum *</label>
-              <select class="form-control" formControlName="e_durum" title="Durum" required>
-                <option value="Aktif">Aktif</option>
-                <option value="Pasif">Pasif</option>
               </select>
             </div>
           </div>
@@ -96,16 +89,15 @@
     <div class="container">
       <form validControl [formGroup]="satisDetayEklemeFormu" (submit)="islemiKaydetDetayEkle()">
         <div class="row m-0">
-          <div class="col-md-12 form-group">
+          <div class="col-md-6 form-group">
             <label>Ürün *</label>
-            <select class="form-control" formControlName="e_stok_kart_id" title="Ürün" required>
-              <option value="">-- Seçiniz --</option>
-              <option value="{{urun.e_id}}" *ngFor="let urun of urunListesi">{{urun.e_stok_kart_kodu}} - {{urun.e_stok_kart_adi}}</option>
-            </select>
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName="e_stok_kart_adi" readonly><button type="button" class="btn btn-sm btn-primary" (click)="urunListesiAc()"><span class="fas fa-plus mr-2"></span> Ürün Seç</button>
+            </div>
           </div>
-          <div class="col-md-12 form-group">
+          <div class="col-md-6 form-group">
             <label>Miktar *</label>
-            <input type="text" class="form-control" formControlName="e_miktar" title="Miktar" required>
+            <input type="number" class="form-control" formControlName="e_miktar" title="Miktar" required>
           </div>
         </div>
         <button id="submitButton2" class="hidden">Kaydet</button>
@@ -120,6 +112,77 @@
           <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
         </button>
         <button id="detayKapatBtn" class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
+  </div>
+</ng-template>
+
+<ng-template #modalUrun let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ürün {{modalHeader.title}} Formu</h4>
+    <button id="modalUrunKpt" type="button" class="close" aria-label="Close" (click)="modal.dismiss('');">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card shadow-primary mb-3">
+      <div class="card-body">
+        <form class="row m-0" (submit)="urunListele()">
+          <div class="form-group col-md-8">
+            <label>Arama:</label>
+            <input type="text" class="form-control" [(ngModel)]="urunFilterData.ARAMA" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group col-md-2">
+            <label>Durum:</label>
+            <select class="form-control" [(ngModel)]="urunFilterData.e_durum" [ngModelOptions]="{standalone: true}" (change)="urunListele()">
+              <option value="">-- Tümü --</option>
+              <option value="Aktif">Aktif</option>
+              <option value="Pasif">Pasif</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2">
+            <label>&nbsp;</label>
+            <button class="btn btn-dark btn-block" (click)="urunListele()"><i class="fas fa-sync mr-2"></i> Filtrele</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="alert alert-primary p-4" *ngIf="!urunListesi && !urunLoader">
+      <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
+      <span class=" valign-middle">Listelemek istediğiniz kayıt bulunamadı.</span>
+    </div>
+    <div class="alert alert-primary p-4" *ngIf="urunLoader">
+      <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
+      <span class=" valign-middle">Ürün kayıtları listeleniyor, lütfen bekleyiniz.</span>
+    </div>
+    <div class="card full-list-1" [hidden]="!urunListesi || urunLoader">
+      <div class="card-body" *ngIf="urunListesi && !urunLoader">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr class="alert-primary">
+                <th class="text-center">Ürün Resmi</th>
+                <th class="text-center">Ürün Kodu</th>
+                <th class="text-center">Ürün Adı</th>
+                <th class="text-center">Fiyat</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let urun of urunListesi">
+                <td class="text-left">-</td>
+                <td class="text-left">{{urun.e_stok_kart_kodu}}</td>
+                <td class="text-left">{{urun.e_stok_kart_adi}}</td>
+                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '1'">{{urun.e_fiyat_1 | currency: ' '}} ₺</td>
+                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '2'">{{urun.e_fiyat_2 | currency: ' '}} ₺</td>
+                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '3'">{{urun.e_fiyat_3 | currency: ' '}} ₺</td>
+                <td class="text-left">
+                  <button type="button" class="btn btn-block btn-primary w-100" (click)="urunSec(urun)"><span class="fas fa-plus mr-2"></span> Seç</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-template>
   
@@ -165,13 +228,12 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr class="alert-primary">
-              <th class="text-center w-10">Tarih</th>
-              <th class="text-center w-15">Ödeme Tipi</th>
-              <th class="text-center w-15">Satışı Yapan</th>
-              <th class="text-center w-10">Durum</th>
-              <th class="text-center w-10">Toplam</th>
+              <th class="text-center w-20">Tarih</th>
+              <th class="text-center w-20">Ödeme Tipi</th>
+              <th class="text-center w-20">Satışı Yapan</th>
+              <th class="text-center w-20">Toplam</th>
               <th class="text-center w-20">
-                <button class="btn btn-primary btn-sm btn-block" (click)="satisEkleButton()"><i class="fas fa-plus mr-1"></i> Yeni Satış Ekle</button>
+                <a href="http://localhost:5772/islemler/satisEkle"><button class="btn btn-outline-success btn-sm btn-block">Yeni Satış Ekle <i class="fas fa-plus ml-1"></i></button></a>
               </th>
             </tr>
           </thead>
@@ -180,10 +242,6 @@
                 <td class="text-center">{{satis.e_tarih | date: 'dd.MM.yyyy - HH:mm'}}</td>
                 <td class="text-left">{{satis.e_odeme_tipi}}</td>
                 <td class="text-left">{{satis.e_satisi_acan_kullanici_adi}}</td>
-                <td class="text-center">
-                    <span class="badge badge-success p-1 w-100 " *ngIf="satis.e_durum == 'Aktif'">Aktif</span>
-                    <span class="badge badge-secondary p-1 w-100 " *ngIf="satis.e_durum != 'Aktif'">Pasif</span>
-                </td>
                 <td class="text-right" *ngIf="satis.e_sepet_toplami != null">{{satis.e_sepet_toplami | currency : ' '}} ₺</td>
                 <td class="text-right" *ngIf="satis.e_sepet_toplami == null">Tutar Yok</td>
                 <td class="text-center">
