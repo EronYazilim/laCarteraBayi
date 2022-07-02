@@ -72,7 +72,7 @@
             <i class="fas fa-check mr-2"></i> Kaydet
         </button>
         <button class="btn btn-primary mr-1 w-lg" *ngIf="islemiKaydetBtn">
-        <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
+          <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
         </button>
         <button class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
     </div>
@@ -233,7 +233,7 @@
               <th class="text-center w-20">Satışı Yapan</th>
               <th class="text-center w-20">Toplam</th>
               <th class="text-center w-20">
-                <a href="http://localhost:5772/islemler/satisEkle"><button class="btn btn-outline-success btn-sm btn-block">Yeni Satış Ekle <i class="fas fa-plus ml-1"></i></button></a>
+                <a href="http://localhost:5772/islemler/satisEkle"><button class="btn btn-primary btn-sm btn-block">Yeni Satış Ekle <i class="fas fa-plus ml-1"></i></button></a>
               </th>
             </tr>
           </thead>
@@ -245,17 +245,17 @@
                 <td class="text-right" *ngIf="satis.e_sepet_toplami != null">{{satis.e_sepet_toplami | currency : ' '}} ₺</td>
                 <td class="text-right" *ngIf="satis.e_sepet_toplami == null">Tutar Yok</td>
                 <td class="text-center">
-                    <button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;" (click)="satisDuzenleButton(satis)"><i class="fas fa-edit"></i></button>
-                    <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[satis.e_id]" (click)="silButton(satis, 'satisIslemleri/satisSil');"><i class="fas fa-times"></i></button>
-                    <button class="btn btn-sm btn-dark w-48" *ngIf="silinenKayitBtn[satis.e_id]"><div class="spinner-glow spinner-glow-light mt-0"></div></button>
+                  <a href="http://localhost:5772/islemler/satisDetaylari/{{satis.e_id}}"><button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;"><i class="fas fa-edit"></i></button></a>
+                  <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[satis.e_id]" (click)="silButton(satis, 'satisIslemleri/satisSil');"><i class="fas fa-times"></i></button>
+                  <button class="btn btn-sm btn-dark w-48" *ngIf="silinenKayitBtn[satis.e_id]"><div class="spinner-glow spinner-glow-light mt-0"></div></button>
                 </td>
             </tr>
             <tr class="alert-primary">
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="text-right">ALT TOPLAM :</td>
-                <td class="text-right"><strong>{{satisListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong></td>
+                <td class="text-right">ALT TOPLAM :<strong> {{satisListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong></td>
+                <td></td>
                 <td></td>
             </tr>
           </tbody>

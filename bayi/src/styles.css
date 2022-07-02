@@ -312,7 +312,7 @@
 }
 
 .shadow-primary {
-  box-shadow: 0 4px 20px 1px rgba(32, 80, 114, 0.2), 0 1px 4px rgba(32, 80, 114, 0.4);
+  box-shadow: 0 4px 20px 1px #c5b9a7, 0 1px 4px #c5b9a7;
 }
 
 .shadow-success {

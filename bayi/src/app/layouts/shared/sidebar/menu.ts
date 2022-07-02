@@ -24,6 +24,9 @@ export const MENU: MenuItem[] = [
 		}, {
 			label: 'Satış İşlemleri',
 			link: '/islemler/satisIslemleri'
+		}, {
+			label: 'Satış Ekleme',
+			link: 'islemler/satisEkle'
 		}]
 	}
 ]
