@@ -112,29 +112,86 @@
             </div>
         </a>
         </div>
-        <div class="col-8" style="height:650px; overflow-y: auto;">
-            <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px; width: 95%;">
+        <div class="col-7" style="height:650px; overflow-x: hidden; overflow-y: auto;">
+            <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px">
                 <h5 class="m-0 mt-2">ÜRÜNLER</h5>
             </div>
+            <div class="row m-0" *ngIf="!urunListesi && !urunLoader">
+                <div class="alert alert-primary col-12 mt-2 p-4">
+                    <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
+                    <span class=" valign-middle">Listelemek istediğiniz ürün bulunamadı.</span>
+                </div>
+            </div>
+            <div class="row m-0" *ngIf="urunLoader">
+                <div class="alert alert-primary col-12 mt-2 p-4">
+                    <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
+                    <span class=" valign-middle">Ürün kayıtları listeleniyor, lütfen bekleyiniz.</span>
+                </div>
+            </div>
+            <div class="row m-0" *ngIf="urunListesi && !urunLoader">
+                <div class="col-6 mt-2 mb-1" *ngFor="let urun of urunListesi" (click)="sepeteEkle(urun)">
+                    <div class="card">
+                        <div class="card-body" style="text-align: right;">
+                            <div class="row m-0">
+                                <div class="col-2">
+                                    <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="80px" width="80px" style="float: left;">
+                                </div>
+                                <div class="col-10">
+                                    <div>
+                                        <strong>{{urun.e_stok_kart_adi}}</strong>
+                                    </div>
+                                    <div class="container mt-3" style="text-align: right;">
+                                        <div *ngIf="satisListesi[0].e_fiyat_politikasi == '1'">
+                                            <strong>{{urun.e_fiyat_1 | currency : ' '}} ₺</strong>
+                                        </div>
+                                        <div *ngIf="satisListesi[0].e_fiyat_politikasi == '2'">
+                                            <strong>{{urun.e_fiyat_2 | currency : ' '}} ₺</strong>
+                                        </div>
+                                        <div *ngIf="satisListesi[0].e_fiyat_politikasi == '3'">
+                                            <strong>{{urun.e_fiyat_3 | currency : ' '}} ₺</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-5" style="height:650px; overflow-x: hidden; overflow-y: auto;">
+            <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px; width: 95%;">
+                <div class="row m-0" style="text-align: center;">
+                    <span class="fas fa-solid fa-cart-plus mr-1 mt-2 fs-16"></span><h5 class="m-0 mt-2">SEPETİM</h5>
+                </div>
+            </div>
             <div class="row m-0">
-                <div class="col-6 mt-2 mb-1" *ngFor="let urun of urunListesi">
+                <div class="col-12 mt-2 mb-1" *ngFor="let detay of satisDetayListesi">
                     <div class="card">
                         <div class="card-body">
-                            <div>
-                                <strong>{{urun.e_stok_kart_adi}}</strong>
+                            <div class="row m-0">
+                                <div class="col-6" style="text-align: center;">
+                                    <strong style="font-size: x-small;">{{detay.e_stok_kart_adi}}</strong>
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
+                                    <button disabled type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar == 1"><i class="fas fa-solid fa-minus"></i></button>
+                                    <strong>{{detay.e_miktar}}</strong>
+                                    <button type="button" class="btn btn-primary ml-2" (click)="detayMiktarDuzenle(detay, 1)"><i class="fas fa-solid fa-plus"></i></button>
+
+                                </div>
+                                <div class="col-2"><strong>{{detay.e_satir_toplami | currency: ' '}} ₺</strong></div>
+                                <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block" (click)="detaySilButton(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
+                                <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block"><i class="fas fa-times fs-16"></i></button></div>
                             </div>
-                            <div class="container" style="margin-left: 80%;">
-                                <div *ngIf="satisListesi[0].e_fiyat_politikasi == '1'">
-                                    <strong>{{urun.e_fiyat_1 | currency : ' '}} ₺</strong>
-                                </div>
-                                <div *ngIf="satisListesi[0].e_fiyat_politikasi == '2'">
-                                    <strong>{{urun.e_fiyat_2 | currency : ' '}} ₺</strong>
-                                </div>
-                                <div *ngIf="satisListesi[0].e_fiyat_politikasi == '3'">
-                                    <strong>{{urun.e_fiyat_3 | currency : ' '}} ₺</strong>
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mt-2 mb-1">
+                    <div class="row m-0">
+                        <div class="card col-12">
+                            <div class="card-body" style="text-align: center;">
+                                <strong>TOPLAM TUTAR : {{satisDetayListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong>
                             </div>
-                        
                         </div>
                     </div>
                 </div>

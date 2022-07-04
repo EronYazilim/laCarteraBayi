@@ -221,6 +221,7 @@ export class satisEkleComponent implements OnInit {
         if ((this.responseData[0].S) == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             const i = this.satisDetayListesi.indexOf(secilenDetay)
+            this.satisDetayListele()
             if (i > -1) {
             this.satisDetayListesi.splice(i, 1)
             if (this.satisDetayListesi.length == 0) { this.satisDetayListesi = null }
@@ -242,5 +243,21 @@ export class satisEkleComponent implements OnInit {
             })
         }
         console.log(this.satisEklemeFormu.value.e_odeme_tipi)
+    }
+
+    async detayMiktarDuzenle(secilenDetay, miktar) {
+        this.requestData = {
+            islem           : 'satisIslemleri/satisDetayDuzenle',
+            method          : 'PUT',
+            e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
+            e_miktar        :   secilenDetay.e_miktar + miktar,
+            e_satir_toplami :   secilenDetay.e_satir_toplami + (miktar * secilenDetay.e_birim_fiyat),
+            ESKI_ID         :   secilenDetay.e_id
+        }
+        this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
+        // secilenDetay.e_miktar = this.requestData.e_miktar
+        // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
+        this.satisDetayListele()
+        
     }
 }
