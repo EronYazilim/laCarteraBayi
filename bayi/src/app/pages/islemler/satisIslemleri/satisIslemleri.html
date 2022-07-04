@@ -97,7 +97,15 @@
           </div>
           <div class="col-md-6 form-group">
             <label>Miktar *</label>
-            <input type="number" class="form-control" formControlName="e_miktar" title="Miktar" required>
+            <div class="row m-0">
+              <div class="col-12">
+                <div class="input-group">
+                  <!-- <span class="input-group-btn"><button type="button" class="btn btn-primary" (click)="detayMiktarDuzenle(secilenDetay, -1)"><span class="fas fa-solid fa-minus"></span></button></span> -->
+                  <input type="number" class="form-control" formControlName="e_miktar" title="Miktar" required>
+                  <!-- <span> class="input-group-btn"><button type="button" class="btn btn-primary" (click)="detayMiktarDuzenle(secilenDetay, 1)"><span class="fas fa-solid fa-plus"></span></button></span> -->
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <button id="submitButton2" class="hidden">Kaydet</button>
@@ -123,7 +131,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <div class="card shadow-primary mb-3">
+    <div class="card shadow-dark mb-3">
       <div class="card-body">
         <form class="row m-0" (submit)="urunListele()">
           <div class="form-group col-md-8">
@@ -188,7 +196,7 @@
   
 <div class="separator-breadcrumb border-top mb-3"></div>
   
-<div class="card shadow-primary mb-3">
+<div class="card shadow-dark mb-3">
   <div class="card-body">
     <form class="row m-0" (submit)="satisListele()">
       <div class="form-group col-md-8">
@@ -219,7 +227,7 @@
   
 <div class="alert alert-primary p-4" *ngIf="mainLoader">
     <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
-    <span class=" valign-middle">Satış kayıtları listeleniyor, lütfen bekleyiniz.</span>
+    <span class="valign-middle">Satış kayıtları listeleniyor, lütfen bekleyiniz.</span>
 </div>
   
 <div class="card full-list-1" [hidden]="!satisListesi || mainLoader">
@@ -245,7 +253,8 @@
                 <td class="text-right" *ngIf="satis.e_sepet_toplami != null">{{satis.e_sepet_toplami | currency : ' '}} ₺</td>
                 <td class="text-right" *ngIf="satis.e_sepet_toplami == null">Tutar Yok</td>
                 <td class="text-center">
-                  <a href="http://localhost:5772/islemler/satisDetaylari/{{satis.e_id}}"><button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;"><i class="fas fa-edit"></i></button></a>
+                  <!-- <a href="http://localhost:5772/islemler/satisDetaylari/{{satis.e_id}}"><button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;"><i class="fas fa-edit"></i></button></a> -->
+                  <button type="button" class="btn btn-sm btn-outline-primary w-48" (click)="satisDuzenleButton(satis)" style="margin-right: 3%;"><i class="fas fa-edit"></i></button>
                   <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[satis.e_id]" (click)="silButton(satis, 'satisIslemleri/satisSil');"><i class="fas fa-times"></i></button>
                   <button class="btn btn-sm btn-dark w-48" *ngIf="silinenKayitBtn[satis.e_id]"><div class="spinner-glow spinner-glow-light mt-0"></div></button>
                 </td>

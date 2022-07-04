@@ -2,119 +2,59 @@
 
 <div class="container-fluid">    
     <form class="row m-0" validControl [formGroup]="satisEklemeFormu" (submit)="satisEkle(); islemiKaydet()">
-        <div class="col-3">
-            <a style="cursor: pointer;" class="card mb-4"
-                [class]="{'shadow-info': odemeTipi == 'Nakit'}"
-                (click)="odemeTipi = 'Nakit'; odemeTipiSec()">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="w-100">
-                        <b class="text-truncate fs-14 mb-2">Nakit</b>
-                        </div>
-                        <div class="text-info ms-auto">
-                        <i class="fas fa-solid fa-money-bill-wave fs-20"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a style="cursor: pointer;" class="card mb-4"
-                [class]="{'shadow-danger':  odemeTipi == 'Kredi Kartı'}"
-                (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="w-100">
-                        <b class="text-truncate fs-14 mb-2">Kredi Kartı</b>
-                        </div>
-                        <div class="text-danger ms-auto">
-                        <i class="fas fa-regular fa-credit-card fs-20"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a style="cursor: pointer;" class="card mb-4"
-                [class]="{'shadow-warning': 1 == 1}">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="w-100">
-                        <b class="text-truncate fs-14 mb-2">Yeni</b>
-                        </div>
-                        <div class="text-warning ms-auto">
-                        <i class="fas fa-sync mb-2 fs-20"></i>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-3">
-            <a style="cursor: pointer;" class="card mb-4"
-                [class]="{'shadow-success': 1 == 1}">
-                <div class="card-body">
-                    <div class="d-flex">
-                        <div class="w-100">
-                        <b class="text-truncate fs-14 mb-2">Kaydet</b>
-                        </div>
-                        <div class="text-success ms-auto">
-                        <i class="fas fa-solid fa-check fs-20"></i>
-                        </div>
-                </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-2">
-            <a style="cursor: pointer;" class="card mb-4"
-            [class]="{'shadow-primary': urunFilterData.e_cinsiyet == 'Erkek'}"
-            (click)="urunFilterData.e_cinsiyet = 'Erkek'; urunListele()">
-            <div class="card-body">
-                <div class="d-flex">
-                    <div class="w-100">
-                    <b class="text-truncate fs-14 mb-2">Erkek</b>
-                    </div>
-                    <div class="text-primary ms-auto">
-                    <i class="fas fa-solid fa-mars fs-20"></i>
-                    </div>
-                </div>
+        <div class="col-7" style="height: 850px; overflow-x: hidden; overflow-y: auto; border-radius: 5px;">
+            <div class="card-header bg-transparent border-1-bottom mx-3" style="border-radius: 10px; display: flex; justify-content: center; text-align: center;">
+                <span class="fas fa-solid fa-tags mr-1 mt-2 fs-16" style="color: #cdab60;"><a style="color: black; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> ÜRÜNLER</a></span>
             </div>
-        </a>
-        </div>
-        <div class="col-2">
-            <a style="cursor: pointer;" class="card mb-4"
-            [class]="{'shadow-primary': urunFilterData.e_cinsiyet == 'Kadın'}"
-            (click)="urunFilterData.e_cinsiyet = 'Kadın'; urunListele()">
-            <div class="card-body">
-                <div class="d-flex">
-                    <div class="w-100">
-                    <b class="text-truncate fs-14 mb-2">Kadın</b>
+            <div class="row m-0 mt-2">
+                <div class="col-4">
+                    <a style="cursor: pointer;" class="card mb-4"
+                    [class]="{'shadow-primary': urunFilterData.e_cinsiyet == 'Erkek'}"
+                    (click)="urunFilterData.e_cinsiyet = 'Erkek'; urunListele()">
+                    <div class="card-body p-4">
+                        <div class="d-flex">
+                            <div class="w-100">
+                            <b class="text-truncate fs-14 mb-2">Erkek</b>
+                            </div>
+                            <div class="text-primary ms-auto">
+                            <i class="fas fa-solid fa-mars fs-20"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-primary ms-auto">
-                    <i class="fas fa-solid fa-venus fs-20"></i>
-                    </div>
+                </a>
                 </div>
-            </div>
-        </a>
-        </div>
-        <div class="col-2">
-            <a style="cursor: pointer;" class="card mb-4"
-            [class]="{'shadow-primary': urunFilterData.e_cinsiyet == 'Unisex'}"
-            (click)="urunFilterData.e_cinsiyet = 'Unisex'; urunListele()">
-            <div class="card-body">
-                <div class="d-flex">
-                    <div class="w-100">
-                    <b class="text-truncate fs-14 mb-2">Unisex</b>
+                <div class="col-4">
+                    <a style="cursor: pointer;" class="card mb-4"
+                    [class]="{'shadow-primary': urunFilterData.e_cinsiyet == 'Kadın'}"
+                    (click)="urunFilterData.e_cinsiyet = 'Kadın'; urunListele()">
+                    <div class="card-body p-4">
+                        <div class="d-flex">
+                            <div class="w-100">
+                            <b class="text-truncate fs-14 mb-2">Kadın</b>
+                            </div>
+                            <div class="text-primary ms-auto">
+                            <i class="fas fa-solid fa-venus fs-20"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-primary ms-auto">
-                    <i class="fas fa-solid fa-venus-mars fs-20"></i>
-                    </div>
+                </a>
                 </div>
-            </div>
-        </a>
-        </div>
-        <div class="col-7" style="height:650px; overflow-x: hidden; overflow-y: auto;">
-            <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px">
-                <h5 class="m-0 mt-2">ÜRÜNLER</h5>
+                <div class="col-4">
+                    <a style="cursor: pointer;" class="card mb-4"
+                    [class]="{'shadow-primary': urunFilterData.e_cinsiyet == 'Unisex'}"
+                    (click)="urunFilterData.e_cinsiyet = 'Unisex'; urunListele()">
+                    <div class="card-body p-4">
+                        <div class="d-flex">
+                            <div class="w-100">
+                            <b class="text-truncate fs-14 mb-2">Unisex</b>
+                            </div>
+                            <div class="text-primary ms-auto">
+                            <i class="fas fa-solid fa-venus-mars fs-20"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                </div>
             </div>
             <div class="row m-0" *ngIf="!urunListesi && !urunLoader">
                 <div class="alert alert-primary col-12 mt-2 p-4">
@@ -131,7 +71,7 @@
             <div class="row m-0" *ngIf="urunListesi && !urunLoader">
                 <div class="col-6 mt-2 mb-1" *ngFor="let urun of urunListesi" (click)="sepeteEkle(urun)">
                     <div class="card">
-                        <div class="card-body" style="text-align: right;">
+                        <div class="card-body" style="text-align: right; box-shadow: 3px 3px 3px gray">
                             <div class="row m-0">
                                 <div class="col-2">
                                     <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="80px" width="80px" style="float: left;">
@@ -158,43 +98,148 @@
                 </div>
             </div>
         </div>
-        <div class="col-5" style="height:650px; overflow-x: hidden; overflow-y: auto;">
-            <div class="card-header bg-transparent d-flex jc-space-between border-1-bottom mx-3" style="border-radius: 10px; width: 95%;">
-                <div class="row m-0" style="text-align: center;">
-                    <span class="fas fa-solid fa-cart-plus mr-1 mt-2 fs-16"></span><h5 class="m-0 mt-2">SEPETİM</h5>
-                </div>
-            </div>
-            <div class="row m-0">
-                <div class="col-12 mt-2 mb-1" *ngFor="let detay of satisDetayListesi">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row m-0">
-                                <div class="col-6" style="text-align: center;">
-                                    <strong style="font-size: x-small;">{{detay.e_stok_kart_adi}}</strong>
-                                </div>
-                                <div class="col-3">
-                                    <button type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
-                                    <button disabled type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar == 1"><i class="fas fa-solid fa-minus"></i></button>
-                                    <strong>{{detay.e_miktar}}</strong>
-                                    <button type="button" class="btn btn-primary ml-2" (click)="detayMiktarDuzenle(detay, 1)"><i class="fas fa-solid fa-plus"></i></button>
-
-                                </div>
-                                <div class="col-2"><strong>{{detay.e_satir_toplami | currency: ' '}} ₺</strong></div>
-                                <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block" (click)="detaySilButton(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
-                                <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block"><i class="fas fa-times fs-16"></i></button></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 mt-2 mb-1">
+        <div class="col-5" style="max-height: 850px; overflow-x: hidden;">
+            <div class="card">
+                <div class="card-header bg-transparent border-1-bottom mx-4" style="border-radius: 10px; width: 96%; display: flex; justify-content: center; text-align: center;">
                     <div class="row m-0">
-                        <div class="card col-12">
-                            <div class="card-body" style="text-align: center;">
-                                <strong>TOPLAM TUTAR : {{satisDetayListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong>
+                        <span class="fas fa-solid fa-cart-plus mr-1 mt-2 fs-16" style="color: #cdab60;"><a style="color: black; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> SEPETİM</a></span>
+                    </div>
+                </div>
+                <div class="card-body bg-transparent" style="height: calc(100vh - 365px) !important; overflow-y: auto;">
+                    <div class="row m-0" *ngIf="!satisDetayListesi && !detayLoader">
+                        <div class="card col-12 mt-2">
+                            <div class="card-body">
+                                <div class="alert alert-primary col-12 m-3 p-4" style="text-align: center; font-size: large;">
+                                    <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
+                                    <span class="valign-middle">Sepetiniz Boş</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="row m-0" *ngIf="detayLoader">
+                        <div class="alert alert-primary col-12 m-3 p-4">
+                            <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
+                            <span class=" valign-middle">Sepetiniz listeleniyor, lütfen bekleyiniz.</span>
+                        </div>
+                    </div>
+                    <div class="row m-0" *ngIf="satisDetayListesi && !detayLoader" style="overflow-y: auto;">
+                        <div class="col-12 mt-2 mb-1" *ngFor="let detay of satisDetayListesi">
+                            <div class="card" style="box-shadow: 3px 3px 3px gray">
+                                <div class="card-body">
+                                    <div class="row m-0">
+                                        <div class="col-6" style="text-align: left;">
+                                            <strong>{{detay.e_stok_kart_adi}}</strong>
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
+                                            <button disabled type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar == 1"><i class="fas fa-solid fa-minus"></i></button>
+                                            <strong>{{detay.e_miktar}}</strong>
+                                            <button type="button" class="btn btn-primary ml-2" (click)="detayMiktarDuzenle(detay, 1)"><i class="fas fa-solid fa-plus"></i></button>
+        
+                                        </div>
+                                        <div class="col-2"><strong>{{detay.e_satir_toplami | currency: ' '}} ₺</strong></div>
+                                        <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block" (click)="detaySilButton(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
+                                        <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block"><i class="fas fa-times fs-16"></i></button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-12 mt-2 mb-1">
+                            <div class="row m-0">
+                                <div class="card col-12">
+                                    <div class="card-body" style="text-align: center;">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
                 </div>
+                <div class="card-footer mt-2" style="border-radius: 5px; position: flex;">
+                    <div class="row m-0">
+                        <div class="col-6">
+                            <a style="cursor: pointer;" class="card mb-4"
+                                [class]="{'shadow-info': odemeTipi == 'Nakit'}"
+                                (click)="odemeTipi = 'Nakit'; odemeTipiSec()">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                        <b class="text-truncate fs-14 mb-2">Nakit</b>
+                                        </div>
+                                        <div class="text-info ms-auto">
+                                        <i class="fas fa-solid fa-money-bill-wave fs-20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a style="cursor: pointer;" class="card mb-4"
+                                [class]="{'shadow-danger':  odemeTipi == 'Kredi Kartı'}"
+                                (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                        <b class="text-truncate fs-14 mb-2">Kredi Kartı</b>
+                                        </div>
+                                        <div class="text-danger ms-auto">
+                                        <i class="fas fa-regular fa-credit-card fs-20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a style="cursor: pointer;" class="card mb-4"
+                                [class]="{'shadow-warning': 1 == 1 }"
+                                (click)="sayfayiTemizle()">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                        <b class="text-truncate fs-14 mb-2">Yenile</b>
+                                        </div>
+                                        <div class="text-warning ms-auto">
+                                        <i class="fas fa-sync"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a style="cursor: pointer;" class="card mb-4"
+                                [class]="{'shadow-dark': 1 == 1}"
+                                (click)="sepetiTemizle()">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                        <b class="text-truncate fs-14 mb-2">Temizle</b>
+                                        </div>
+                                        <div class="text-dark ms-auto">
+                                        <i class="fas fa-solid fa-trash"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a style="cursor: pointer;" class="card shadow-outline-success mb-4"
+                                [class]="{'shadow-success': 1 == 1}"
+                                (click)="satisEkle(); islemiKaydet()">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="w-100">
+                                        <b class="text-truncate fs-14 mb-2">Kaydet</b>
+                                        </div>
+                                        <div class="text-success ms-auto">
+                                        <i class="fas fa-solid fa-check"></i>
+                                        </div>
+                                </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </form>

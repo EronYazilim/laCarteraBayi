@@ -119,6 +119,7 @@ export class satisEkleComponent implements OnInit {
         this.detayLoader = true
         this.satisDetayListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisDetayListesi", this.detayFilterData)
         if (Object.keys(this.satisDetayListesi).length == 0) { this.satisDetayListesi = null}
+        // this.urunListele()
         this.detayLoader = false
     }
 
@@ -170,9 +171,7 @@ export class satisEkleComponent implements OnInit {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
           }
           
-          this.satisEklemeFormu.patchValue({
-            e_odeme_tipi : ''
-          })
+          this.odemeTipi = ''
           this.islemiKaydetBtn = false
         }
     }
@@ -188,7 +187,7 @@ export class satisEkleComponent implements OnInit {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
             // this.modalService.dismissAll()
-            document.getElementById('detayKapatBtn').click()
+            // document.getElementById('detayKapatBtn').click()
           } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
           }
@@ -241,6 +240,10 @@ export class satisEkleComponent implements OnInit {
             this.satisEklemeFormu.patchValue({
                 e_odeme_tipi : 'Kredi Kartı'
             })
+        } else if (this.odemeTipi == '') {
+            this.satisEklemeFormu.patchValue({
+                e_odeme_tipi : ''
+            })
         }
         console.log(this.satisEklemeFormu.value.e_odeme_tipi)
     }
@@ -255,9 +258,35 @@ export class satisEkleComponent implements OnInit {
             ESKI_ID         :   secilenDetay.e_id
         }
         this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
-        // secilenDetay.e_miktar = this.requestData.e_miktar
-        // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
+        secilenDetay.e_miktar = this.requestData.e_miktar
+        secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
+        // this.satisDetayListele() 
+    }
+    
+    async sayfayiTemizle() {
+        this.detayLoader = true
+        this.odemeTipi = ''
+        try {
+            for (let i = 0; i < this.satisDetayListesi.length; i++) {
+                this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetaySil", { ESKI_ID : this.satisDetayListesi[i].e_id})
+            }
+        } catch (error) {
+            this.satisDetayListele()
+        }
         this.satisDetayListele()
-        
+        this.detayLoader = false
+    }
+
+    async sepetiTemizle() {
+        this.detayLoader = true
+        try {
+            for (let i = 0; i < this.satisDetayListesi.length; i++) {
+                this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetaySil", { ESKI_ID : this.satisDetayListesi[i].e_id})
+            }
+        } catch (error) {
+            this.satisDetayListele()
+        }
+        this.satisDetayListele()
+        this.detayLoader = false
     }
 }

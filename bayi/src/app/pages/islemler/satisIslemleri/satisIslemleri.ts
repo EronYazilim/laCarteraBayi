@@ -90,6 +90,7 @@ export class satisIslemleriComponent implements OnInit {
     satisDetayListesi
     urunListesi
     secilenKayit
+    secilenDetay
     
     islemiKaydetBtn = false
     islemiKaydetBtn2 = false
@@ -159,6 +160,7 @@ export class satisIslemleriComponent implements OnInit {
     }
 
     async satisDuzenleButton(secilenKayit) {
+        this.secilenDetay = secilenKayit
         this.satisEklemeFormu.patchValue({
             islem               :   'satisIslemleri/satisDuzenle',
             method              :   'PUT',
@@ -316,6 +318,30 @@ export class satisIslemleriComponent implements OnInit {
         console.log(this.satisDetayEklemeFormu.value.e_id)
         document.getElementById("modalUrunKpt").click()
         this.secilenUrunBtn[secilenUrun.e_id] = false
+    }
+
+    async detayMiktarDuzenle(secilenDetay, miktar) {
+        console.log(secilenDetay)
+        this.requestData = {
+            islem           : 'satisIslemleri/satisDetayDuzenle',
+            method          : 'PUT',
+            e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
+            e_miktar        :   parseInt(secilenDetay.e_miktar) + parseInt(miktar),
+            ESKI_ID         :   secilenDetay.e_id
+        }
+        this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
+        if (this.responseData[0].S == "T") {
+            this.satisDetayEklemeFormu.patchValue({
+                islem   :   'satisIslemleri/satisDetayDuzenle',
+                method  : 'PUT',
+                e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
+                e_miktar        :   parseInt(secilenDetay.e_miktar) + parseInt(miktar),
+                ESKI_ID         :   secilenDetay.e_id
+            })
+        }
+        // secilenDetay.e_miktar = this.requestData.e_miktar
+        // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
+        // this.satisDetayListele() 
     }
     
 }

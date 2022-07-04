@@ -312,7 +312,7 @@
 }
 
 .shadow-primary {
-  box-shadow: 0 4px 20px 1px #c5b9a7, 0 1px 4px #c5b9a7;
+  box-shadow: 0 4px 20px 1px #cdab60, 0 1px 4px #cdab60;
 }
 
 .shadow-success {
@@ -324,11 +324,11 @@
 }
 
 .shadow-danger {
-  box-shadow: 0 4px 20px 1px rgba(134, 5, 5, 0.2), 0 1px 4px rgba(134, 5, 5, 0.4);
+  box-shadow: 0 4px 20px 1px rgba(221, 5, 5, 0.626), 0 1px 4px rgba(134, 5, 5, 0.4);
 }
 
 .shadow-info {
-  box-shadow: 0 4px 20px 1px rgba(101, 195, 209, 0.2), 0 1px 4px rgba(101, 195, 209, 0.4);
+  box-shadow: 0 4px 20px 1px rgba(72, 231, 255, 0.663), 0 1px 4px rgba(101, 195, 209, 0.4);
 }
 
 .shadow-dark {
