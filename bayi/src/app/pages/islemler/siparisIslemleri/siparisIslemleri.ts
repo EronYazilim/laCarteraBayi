@@ -134,6 +134,7 @@ export class siparisIslemleriComponent implements OnInit {
             islem               :   'siparisIslemleri/siparisEkle',
             method              :   'POST',
             e_odeme_tipi        :   '',
+            e_aciklama          :   '',
             e_satis_unique_id   :   '',
             e_durum             :   'Aktif'
         })
@@ -149,6 +150,7 @@ export class siparisIslemleriComponent implements OnInit {
             islem               :   'siparisIslemleri/siparisDetayEkle',
             method              :   'POST',
             e_stok_kart_id      :   '',
+            e_stok_kart_adi     :   '',
             e_miktar            :   '',
             e_siparis_unique_id :   this.secilenKayit ? this.secilenKayit.e_unique_id : ""
         })
@@ -161,12 +163,13 @@ export class siparisIslemleriComponent implements OnInit {
             islem               :   'siparisIslemleri/siparisDetayDuzenle',
             method              :   'PUT',
             e_stok_kart_id      :   secilenKayit.e_stok_kart_id,
+            e_stok_kart_adi     :   secilenKayit.e_stok_kart_adi,
             e_miktar            :   secilenKayit.e_miktar,
             e_siparis_unique_id :   secilenKayit.e_siparis_unique_id,
             ESKI_ID             :   secilenKayit.e_id
         })
         this.modalHeader.title = 'Düzenleme'
-        this.modalAc(this.modalSiparisDetay, 'xl')
+        this.modalAc(this.modalSiparisDetay, 'lg')
     }
 
     async siparisDuzenleButton(secilenKayit) {
@@ -197,6 +200,12 @@ export class siparisIslemleriComponent implements OnInit {
         if (this.siparisEklemeFormu.valid) {
           this.islemiKaydetBtn = true
     
+            if (this.siparisDetayListesi == null) {
+                this.toastr.error("Lütfen Ürün Ekleyiniz!", 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
+                this.islemiKaydetBtn = false
+                return
+            }
+
           this.requestData = Object.assign({}, this.siparisEklemeFormu.value)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
     

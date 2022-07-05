@@ -22,11 +22,14 @@ export const MENU: MenuItem[] = [
 			label: 'Sipariş İşlemleri',
 			link: '/islemler/siparisIslemleri'
 		}, {
+			label: 'Sipariş Ekleme',
+			link: '/islemler/siparisEkle'
+		}, {
 			label: 'Satış İşlemleri',
 			link: '/islemler/satisIslemleri'
 		}, {
 			label: 'Satış Ekleme',
-			link: 'islemler/satisEkle'
+			link: './islemler/satisEkle'
 		}]
 	}
 ]

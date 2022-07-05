@@ -14,6 +14,7 @@ import { satisEkleComponent } from "./satisEkle/satisEkle";
 import { satisDetaylariComponent } from "./satisDetaylari/satisDetaylari";
 
 import { FormDirective } from "./islemler-directive";
+import { siparisEkleComponent } from "./siparisEkle/siparisEkle";
 
 
 
@@ -35,6 +36,7 @@ import { FormDirective } from "./islemler-directive";
         satisIslemleriComponent,
         satisEkleComponent,
         satisDetaylariComponent,
+        siparisEkleComponent,
 
         FormDirective
     ]

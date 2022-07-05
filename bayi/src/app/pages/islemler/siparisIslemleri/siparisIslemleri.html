@@ -11,7 +11,7 @@
           <div class="row m-0">
             <div class="col-md-6 form-group">
               <label>Açıklama *</label>
-              <input type="text" class="form-control" formControlName="e_aciklama" title="Açıklama" required>
+              <input type="text" class="form-control" formControlName="e_aciklama" title="Açıklama">
             </div>
             <div class="col-md-6 form-group">
               <label>Durum *</label>
@@ -253,14 +253,17 @@
           <tbody>
             <tr *ngFor="let siparis of siparisListesi">
               <td class="text-center">{{siparis.e_tarih | date: 'dd.MM.yyyy - HH:mm'}}</td>
-              <td class="text-left">{{siparis.e_aciklama}}</td>
+              <td class="text-left" *ngIf="siparis.e_aciklama != ''">{{siparis.e_aciklama}}</td>
+              <td class="text-left" *ngIf="siparis.e_aciklama == ''" style="color: gray;">(Açıklama Yok)</td>
               <td class="text-left" *ngIf="siparis.e_farkli_kalem_sayisi != 0">{{siparis.e_farkli_kalem_sayisi}} adet</td>
               <td class="text-left" *ngIf="siparis.e_farkli_kalem_sayisi == 0">Ürün Yok</td>
               <td class="text-left">{{siparis.e_siparisi_acan_kullanici_adi}}</td>
               <td class="text-left" *ngIf="siparis.e_toplam_miktar">{{siparis.e_toplam_miktar}} adet</td>
               <td class="text-left" *ngIf="!siparis.e_toplam_miktar">Ürün Yok</td>
-              <td class="text-center"><span class="badge badge-success p-1 w-100 " *ngIf="siparis.e_durum == 'Aktif'">Aktif</span>
-                <span class="badge badge-secondary p-1 w-100 " *ngIf="siparis.e_durum != 'Aktif'">Pasif</span></td>
+              <td class="text-center">
+                <span class="badge badge-success p-1 w-100 " *ngIf="siparis.e_durum == 'Aktif'">Aktif</span>
+                <span class="badge badge-secondary p-1 w-100 " *ngIf="siparis.e_durum != 'Aktif'">Pasif</span>
+              </td>
               <td class="text-center">
                 <button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;" (click)="siparisDuzenleButton(siparis)"><i class="fas fa-edit"></i></button>
                 <button class="btn btn-sm btn-dark w-48" *ngIf="!silinenKayitBtn[siparis.e_id]" (click)="silButton(siparis, 'siparisIslemleri/siparisSil');"><i class="fas fa-times"></i></button>
