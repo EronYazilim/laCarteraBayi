@@ -134,22 +134,14 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-12 mt-2 mb-1">
-                            <div class="row m-0">
-                                <div class="card col-12">
-                                    <div class="card-body" style="text-align: center;">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
                 <div class="card-footer mt-2" style="border-radius: 5px; position: flex;">
                     <div class="row m-0">
                         <div class="col-6">
-                            <a style="cursor: pointer;" class="card mb-4"
+                            <a style="cursor: pointer;" class="card mb-3"
                                 [class]="{'shadow-info': odemeTipi == 'Nakit'}"
+                                [ngStyle]="{'padding' : odemeTipi === 'Nakit' ? '8px' : '' }"
                                 (click)="odemeTipi = 'Nakit'; odemeTipiSec()">
                                 <div class="card-body">
                                     <div class="d-flex">
@@ -164,8 +156,9 @@
                             </a>
                         </div>
                         <div class="col-6">
-                            <a style="cursor: pointer;" class="card mb-4"
+                            <a style="cursor: pointer;" class="card mb-3"
                                 [class]="{'shadow-danger':  odemeTipi == 'Kredi Kartı'}"
+                                [ngStyle]="{'padding' : odemeTipi === 'Kredi Kartı' ? '8px' : '' }"
                                 (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()">
                                 <div class="card-body">
                                     <div class="d-flex">

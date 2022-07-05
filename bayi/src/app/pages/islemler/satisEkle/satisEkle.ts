@@ -181,7 +181,7 @@ export class satisEkleComponent implements OnInit {
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
     
           if (this.responseData[0].S == "T") {
-            this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
+            // this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
             // this.modalService.dismissAll()
             // document.getElementById('detayKapatBtn').click()
@@ -263,27 +263,29 @@ export class satisEkleComponent implements OnInit {
     async sayfayiTemizle() {
         this.detayLoader = true
         this.odemeTipi = ''
-        try {
-            for (let i = 0; i < this.satisDetayListesi.length; i++) {
-                this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetaySil", { ESKI_ID : this.satisDetayListesi[i].e_id})
-            }
-        } catch (error) {
+        this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetayTemizle", { e_satis_unique_id : '' })
+
+        if ((this.responseData[0].S) == "T") {
+            this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
+        } else {
+            this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
-        this.satisDetayListele()
+
         this.detayLoader = false
     }
 
     async sepetiTemizle() {
         this.detayLoader = true
-        try {
-            for (let i = 0; i < this.satisDetayListesi.length; i++) {
-                this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetaySil", { ESKI_ID : this.satisDetayListesi[i].e_id})
-            }
-        } catch (error) {
+        this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetayTemizle", { e_satis_unique_id : '' })
+
+        if ((this.responseData[0].S) == "T") {
+            this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
+        } else {
+            this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
-        this.satisDetayListele()
+
         this.detayLoader = false
     }
 }
