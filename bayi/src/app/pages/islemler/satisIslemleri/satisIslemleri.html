@@ -11,11 +11,42 @@
           <div class="row m-0">
             <div class="col-md-12 form-group">
               <label>Ödeme Tipi *</label>
-              <select class="form-control" formControlName="e_odeme_tipi" title="Ödeme Tipi" required>
-                <option value="">-- Seçiniz --</option>
-                <option value="Nakit">Nakit</option>
-                <option value="Kredi Kartı">Kredi Kartı</option>
-              </select>
+              <div class="row m-0">
+                <div class="col-6">
+                  <a style="cursor: pointer;" class="card mb-3"
+                      [class]="{'shadow-info': odemeTipi == 'Nakit'}"
+                      [ngStyle]="{'padding' : odemeTipi === 'Nakit' ? '8px' : '' }"
+                      (click)="odemeTipi = 'Nakit'; odemeTipiSec()">
+                      <div class="card-body">
+                        <div class="d-flex">
+                          <div class="w-100">
+                          <b class="text-truncate fs-14 mb-2">Nakit</b>
+                          </div>
+                          <div class="text-info ms-auto">
+                          <i class="fas fa-solid fa-money-bill-wave fs-20"></i>
+                          </div>
+                        </div>
+                      </div>
+                  </a>
+                </div>
+                <div class="col-6">
+                  <a style="cursor: pointer;" class="card mb-3"
+                      [class]="{'shadow-danger':  odemeTipi == 'Kredi Kartı'}"
+                      [ngStyle]="{'padding' : odemeTipi === 'Kredi Kartı' ? '8px' : '' }"
+                      (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()">
+                      <div class="card-body">
+                          <div class="d-flex">
+                              <div class="w-100">
+                              <b class="text-truncate fs-14 mb-2">Kredi Kartı</b>
+                              </div>
+                              <div class="text-danger ms-auto">
+                              <i class="fas fa-regular fa-credit-card fs-20"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           <button id="submitButton" class="hidden">Kaydet</button>
@@ -35,9 +66,9 @@
             <div class="spinner-glow spinner-glow-primary m-0 mr-4 valign-middle"></div>
             <span class=" valign-middle">Satış Detay kayıtları listeleniyor, lütfen bekleyiniz.</span>
         </div>
-        <div class="card full-list-1" [hidden]="!satisDetayListesi || detayLoader">
+        <div class="card full-list-1" [hidden]="!satisDetayListesi || detayLoader" style="height: calc(100vh - 400px);">
             <div class="card-body" *ngIf="satisDetayListesi && !detayLoader">
-                <div class="table-responsive">
+                <div class="table-responsive" style="overflow-y: auto;">
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr class="alert-primary">
@@ -92,7 +123,7 @@
           <div class="col-md-6 form-group">
             <label>Ürün *</label>
             <div class="input-group">
-              <input type="text" class="form-control" formControlName="e_stok_kart_adi" readonly><button type="button" class="btn btn-sm btn-primary" (click)="urunListesiAc()"><span class="fas fa-plus mr-2"></span> Ürün Seç</button>
+              <input type="text" class="form-control" formControlName="e_stok_kart_adi" title="Ürün Adı" readonly required><button type="button" class="btn btn-sm btn-primary" (click)="urunListesiAc()"><span class="fas fa-plus mr-2"></span> Ürün Seç</button>
             </div>
           </div>
           <div class="col-md-6 form-group">
@@ -100,9 +131,10 @@
             <div class="row m-0">
               <div class="col-12">
                 <div class="input-group">
-                  <!-- <span class="input-group-btn"><button type="button" class="btn btn-primary" (click)="detayMiktarDuzenle(secilenDetay, -1)"><span class="fas fa-solid fa-minus"></span></button></span> -->
-                  <input type="number" class="form-control" formControlName="e_miktar" title="Miktar" required>
-                  <!-- <span> class="input-group-btn"><button type="button" class="btn btn-primary" (click)="detayMiktarDuzenle(secilenDetay, 1)"><span class="fas fa-solid fa-plus"></span></button></span> -->
+                  <span class="input-group-btn" *ngIf="satisDetayEklemeFormu.value.e_miktar == 1"><button disabled type="button" class="btn btn-primary" ><span class="fas fa-solid fa-minus"></span></button></span>
+                  <span class="input-group-btn" *ngIf="satisDetayEklemeFormu.value.e_miktar > 1"><button type="button" class="btn btn-primary" (click)="detayMiktarDuzenle('-')"><span class="fas fa-solid fa-minus"></span></button></span>
+                  <input id="miktarInput" type="number" class="form-control text-center" formControlName="e_miktar" title="Miktar"  readonly required>
+                  <span class="input-group-btn"><button type="button" class="btn btn-primary" (click)="detayMiktarDuzenle('+')"><span class="fas fa-solid fa-plus"></span></button></span>
                 </div>
               </div>
             </div>
@@ -176,12 +208,12 @@
             </thead>
             <tbody>
               <tr *ngFor="let urun of urunListesi">
-                <td class="text-left">-</td>
+                <td class="text-center">
+                  <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="80px" width="80px">
+                </td>
                 <td class="text-left">{{urun.e_stok_kart_kodu}}</td>
                 <td class="text-left">{{urun.e_stok_kart_adi}}</td>
-                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '1'">{{urun.e_fiyat_1 | currency: ' '}} ₺</td>
-                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '2'">{{urun.e_fiyat_2 | currency: ' '}} ₺</td>
-                <td class="text-right" *ngIf="satisListesi[0].e_fiyat_politikasi == '3'">{{urun.e_fiyat_3 | currency: ' '}} ₺</td>
+                <td class="text-right">{{urun.e_fiyat | currency: ' '}} ₺</td>
                 <td class="text-left">
                   <button type="button" class="btn btn-block btn-primary w-100" (click)="urunSec(urun)"><span class="fas fa-plus mr-2"></span> Seç</button>
                 </td>

@@ -149,10 +149,14 @@ export class satisEkleComponent implements OnInit {
         if (this.satisEklemeFormu.valid) {
           this.islemiKaydetBtn = true
     
-              
         if (this.odemeTipi != 'Nakit' && this.odemeTipi != 'Kredi Kartı') {
             this.toastr.error('Ödeme Tipi Seçiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.islemiKaydetBtn = false
+            return
+        }
+
+        if (this.satisDetayListesi == null) {
+            this.toastr.error('Sepete Ürün Ekleyiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             return
         }
 
@@ -265,6 +269,7 @@ export class satisEkleComponent implements OnInit {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
             this.odemeTipi = ''
+            this.urunFilterData.e_cinsiyet = ''
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
