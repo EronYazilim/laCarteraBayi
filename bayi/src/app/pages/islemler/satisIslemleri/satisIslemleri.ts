@@ -204,7 +204,7 @@ export class satisIslemleriComponent implements OnInit {
     
           this.requestData = Object.assign({}, this.satisEklemeFormu.value)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
-    
+
           if (this.responseData[0].S == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisListele()

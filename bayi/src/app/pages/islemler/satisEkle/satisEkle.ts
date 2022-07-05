@@ -149,6 +149,13 @@ export class satisEkleComponent implements OnInit {
         if (this.satisEklemeFormu.valid) {
           this.islemiKaydetBtn = true
     
+              
+        if (this.odemeTipi != 'Nakit' && this.odemeTipi != 'Kredi Kartı') {
+            this.toastr.error('Ödeme Tipi Seçiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
+            this.islemiKaydetBtn = false
+            return
+        }
+
           this.requestData = Object.assign({}, this.satisEklemeFormu.value)
           console.log(this.requestData)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
