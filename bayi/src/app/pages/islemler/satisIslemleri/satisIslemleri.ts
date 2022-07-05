@@ -314,34 +314,32 @@ export class satisIslemleriComponent implements OnInit {
             e_stok_kart_adi : secilenUrun.e_stok_kart_adi,
             e_stok_kart_id : secilenUrun.e_id
         })
-        console.log(this.satisDetayEklemeFormu.value.e_stok_kart_adi)
-        console.log(this.satisDetayEklemeFormu.value.e_id)
         document.getElementById("modalUrunKpt").click()
         this.secilenUrunBtn[secilenUrun.e_id] = false
     }
 
-    async detayMiktarDuzenle(secilenDetay, miktar) {
-        console.log(secilenDetay)
-        this.requestData = {
-            islem           : 'satisIslemleri/satisDetayDuzenle',
-            method          : 'PUT',
-            e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
-            e_miktar        :   parseInt(secilenDetay.e_miktar) + parseInt(miktar),
-            ESKI_ID         :   secilenDetay.e_id
-        }
-        this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
-        if (this.responseData[0].S == "T") {
-            this.satisDetayEklemeFormu.patchValue({
-                islem   :   'satisIslemleri/satisDetayDuzenle',
-                method  : 'PUT',
-                e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
-                e_miktar        :   parseInt(secilenDetay.e_miktar) + parseInt(miktar),
-                ESKI_ID         :   secilenDetay.e_id
-            })
-        }
-        // secilenDetay.e_miktar = this.requestData.e_miktar
-        // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
-        // this.satisDetayListele() 
-    }
+    // async detayMiktarDuzenle(secilenDetay, miktar) {
+    //     console.log(secilenDetay)
+    //     this.requestData = {
+    //         islem           : 'satisIslemleri/satisDetayDuzenle',
+    //         method          : 'PUT',
+    //         e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
+    //         e_miktar        :   parseInt(secilenDetay.e_miktar) + parseInt(miktar),
+    //         ESKI_ID         :   secilenDetay.e_id
+    //     }
+    //     this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
+    //     if (this.responseData[0].S == "T") {
+    //         this.satisDetayEklemeFormu.patchValue({
+    //             islem   :   'satisIslemleri/satisDetayDuzenle',
+    //             method  : 'PUT',
+    //             e_stok_kart_id  :   secilenDetay.e_stok_kart_id,
+    //             e_miktar        :   parseInt(secilenDetay.e_miktar) + parseInt(miktar),
+    //             ESKI_ID         :   secilenDetay.e_id
+    //         })
+    //     }
+    //     // secilenDetay.e_miktar = this.requestData.e_miktar
+    //     // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
+    //     // this.satisDetayListele() 
+    // }
     
 }
