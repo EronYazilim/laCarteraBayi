@@ -98,7 +98,7 @@ export class satisEkleComponent implements OnInit {
         this.titleService.setTitle("laCartera | Satış Ekle")
         this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
 
-        this.satisListele()
+        this.urunListele()
         this.satisDetayListele()
     }
     
@@ -107,19 +107,10 @@ export class satisEkleComponent implements OnInit {
         this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
     }
     
-    async satisListele() {
-        this.mainLoader = true
-        this.satisListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisListesi", this.filterData)
-        if (Object.keys(this.satisListesi).length == 0) { this.satisListesi = null}
-        this.urunListele()
-        this.mainLoader = false
-    }
-    
     async satisDetayListele() {
         this.detayLoader = true
         this.satisDetayListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisDetayListesi", this.detayFilterData)
         if (Object.keys(this.satisDetayListesi).length == 0) { this.satisDetayListesi = null}
-        // this.urunListele()
         this.detayLoader = false
     }
 
@@ -164,7 +155,6 @@ export class satisEkleComponent implements OnInit {
             console.log(this.responseData)
           if (this.responseData[0].S == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
-            this.satisListele()
             this.satisDetayListele()
             this.modalService.dismissAll()
           } else {

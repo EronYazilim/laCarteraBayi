@@ -81,14 +81,8 @@
                                         <strong>{{urun.e_stok_kart_adi}}</strong>
                                     </div>
                                     <div class="container mt-3" style="text-align: right;">
-                                        <div *ngIf="satisListesi[0].e_fiyat_politikasi == '1'">
-                                            <strong>{{urun.e_fiyat_1 | currency : ' '}} ₺</strong>
-                                        </div>
-                                        <div *ngIf="satisListesi[0].e_fiyat_politikasi == '2'">
-                                            <strong>{{urun.e_fiyat_2 | currency : ' '}} ₺</strong>
-                                        </div>
-                                        <div *ngIf="satisListesi[0].e_fiyat_politikasi == '3'">
-                                            <strong>{{urun.e_fiyat_3 | currency : ' '}} ₺</strong>
+                                        <div>
+                                            <strong>{{urun.e_fiyat | currency : ' '}} ₺</strong>
                                         </div>
                                     </div>
                                 </div>
