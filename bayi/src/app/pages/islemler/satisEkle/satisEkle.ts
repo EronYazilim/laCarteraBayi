@@ -270,6 +270,7 @@ export class satisEkleComponent implements OnInit {
             this.satisDetayListele()
             this.odemeTipi = ''
             this.urunFilterData.e_cinsiyet = ''
+            this.urunListele()
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }

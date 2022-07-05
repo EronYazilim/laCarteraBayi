@@ -323,7 +323,7 @@ export class satisIslemleriComponent implements OnInit {
         this.secilenUrunBtn[secilenUrun.e_id] = false
     }
 
-    async detayMiktarDuzenle(miktar) {
+    detayMiktarDuzenle(miktar) {
         let element =  (document.getElementById('miktarInput') as HTMLInputElement)
 
         if (miktar == '-') {

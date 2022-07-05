@@ -316,4 +316,14 @@ export class siparisIslemleriComponent implements OnInit {
         this.secilenUrunBtn[secilenUrun.e_id] = false
     }
 
+    detayMiktarDuzenle(miktar) {
+        let element =  (document.getElementById('miktarInput') as HTMLInputElement)
+
+        if (miktar == '-') {
+            this.siparisDetayEklemeFormu.controls.e_miktar.setValue(String(Number(element.value) - 1))
+        } else {
+            this.siparisDetayEklemeFormu.controls.e_miktar.setValue(String(Number(element.value) + 1))
+        }
+    }
+
 }
