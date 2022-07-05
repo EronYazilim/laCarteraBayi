@@ -176,7 +176,6 @@ export class satisEkleComponent implements OnInit {
     async islemiKaydetDetayEkle(): Promise<void> {
         if (this.satisDetayEklemeFormu.valid) {
           this.islemiKaydetBtn2 = true
-    
           this.requestData = Object.assign({}, this.satisDetayEklemeFormu.value)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
     
@@ -188,7 +187,6 @@ export class satisEkleComponent implements OnInit {
           } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
           }
-    
           this.islemiKaydetBtn2 = false
         }
     }
@@ -261,22 +259,18 @@ export class satisEkleComponent implements OnInit {
     }
     
     async sayfayiTemizle() {
-        this.detayLoader = true
-        this.odemeTipi = ''
         this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetayTemizle", { e_satis_unique_id : '' })
-
+        
         if ((this.responseData[0].S) == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
+            this.odemeTipi = ''
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
-
-        this.detayLoader = false
     }
-
+    
     async sepetiTemizle() {
-        this.detayLoader = true
         this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetayTemizle", { e_satis_unique_id : '' })
 
         if ((this.responseData[0].S) == "T") {
@@ -285,7 +279,5 @@ export class satisEkleComponent implements OnInit {
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
-
-        this.detayLoader = false
     }
 }
