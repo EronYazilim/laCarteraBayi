@@ -127,7 +127,7 @@
                                         </div>
                                         <div class="col-11" style="margin-top: 15px;">
                                             <div class="row m-0">
-                                                <div class="col-6" style="text-align: center;">
+                                                <div class="col-6" style="text-align: left;">
                                                     <div class="row m-0">
                                                         <div class="col-12">
                                                             <strong style="font-size: 12px;">{{detay.e_stok_kart_kodu}}</strong>
@@ -157,8 +157,8 @@
                 </div>
                 <div class="card-footer mt-2" style="border-radius: 5px; position: flex;">
                     <div class="row m-0">
-                        <div class="col-12 p-1" *ngIf="satisDetayListesi" style="text-align: right;">
-                            <strong> SEPET TOPLAMI : {{satisDetayListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong>
+                        <div class="col-12 p-1" style="text-align: right;">
+                            <strong> SEPET TOPLAMI : {{sepetToplami | currency : ' '}} ₺</strong>
                         </div>
                         <div class="col-6">
                             <a style="cursor: pointer;" class="card mb-2"

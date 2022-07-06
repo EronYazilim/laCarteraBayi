@@ -87,6 +87,8 @@ export class satisEkleComponent implements OnInit {
     silinenKayitBtn = [false]
     secilenUrunBtn = [false]
 
+    sepetToplami = 0
+
     ngOnInit() {
         this.titleService.setTitle("laCartera | Satış Ekle")
         this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
@@ -104,6 +106,12 @@ export class satisEkleComponent implements OnInit {
         this.detayLoader = true
         this.satisDetayListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisDetayListesi", this.detayFilterData)
         if (Object.keys(this.satisDetayListesi).length == 0) { this.satisDetayListesi = null}
+
+        if (this.satisDetayListesi == null)
+        {this.sepetToplami = 0}
+        else
+        {this.sepetToplami = this.satisDetayListesi[0].ALT_TOPLAM}
+        
         this.detayLoader = false
     }
 
@@ -261,6 +269,7 @@ export class satisEkleComponent implements OnInit {
     }
 
     async detayMiktarDuzenle(secilenDetay, miktar) {
+
         this.requestData = {
             islem           : 'satisIslemleri/satisDetayDuzenle',
             method          : 'PUT',
@@ -270,9 +279,14 @@ export class satisEkleComponent implements OnInit {
             ESKI_ID         :   secilenDetay.e_id
         }
         this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
-        // secilenDetay.e_miktar = this.requestData.e_miktar
-        // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
-        this.satisDetayListele()
+
+        if (this.responseData[0].S == "T"){
+            secilenDetay.e_miktar = secilenDetay.e_miktar + miktar
+            secilenDetay.e_satir_toplami = secilenDetay.e_miktar * secilenDetay.e_birim_fiyat
+            this.requestData = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisDetayListesi", this.detayFilterData)
+            this.sepetToplami = this.requestData[0].ALT_TOPLAM
+        }
+    
     }
     
     sayfayiTemizleButton() {
