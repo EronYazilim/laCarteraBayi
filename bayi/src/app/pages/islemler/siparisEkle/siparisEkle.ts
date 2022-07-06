@@ -48,7 +48,7 @@ export class siparisEkleComponent implements OnInit {
         SS          : '',
         KS          : '',
         e_durum     : '',
-        e_cinsiyet  : ''
+        e_cinsiyet  : 'Erkek'
     }
 
     siparisEklemeFormu = new FormGroup({
@@ -115,8 +115,7 @@ export class siparisEkleComponent implements OnInit {
         if (Object.keys(this.urunListesi).length == 0) { this.urunListesi = null}
         this.urunLoader = false
     }
-
-    
+  
     siparisEkle() {
         this.siparisEklemeFormu.patchValue({
             islem               :    'siparisIslemleri/siparisEkle',
@@ -139,14 +138,32 @@ export class siparisEkleComponent implements OnInit {
         this.islemiKaydetDetayEkle()
     }
     
-    async islemiKaydet(): Promise<void> {
-        if (this.siparisEklemeFormu.valid) {
-          this.islemiKaydetBtn = true
-
+    kaydetButton() {
         if (this.siparisDetayListesi == null) {
             this.toastr.error('Sepete Ürün Ekleyiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             return
+        } else {
+            Swal.fire({
+                title: 'Satış Kaydedilecek!',
+                text: "Satışı kaydetmek istediğinize emin misiniz ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Kaydet',
+                confirmButtonColor: '#c49c5c',
+                cancelButtonText: 'İptal',
+                cancelButtonColor: '#222'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                this.islemiKaydet()
+                }
+            })
         }
+        
+    }
+
+    async islemiKaydet(): Promise<void> {
+        if (this.siparisEklemeFormu.valid) {
+          this.islemiKaydetBtn = true
 
           this.requestData = Object.assign({}, this.siparisEklemeFormu.value)
           console.log(this.requestData)
@@ -154,6 +171,8 @@ export class siparisEkleComponent implements OnInit {
             console.log(this.responseData)
           if (this.responseData[0].S == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
+            this.urunFilterData.e_cinsiyet = 'Erkek'
+            this.urunListele()
             this.siparisDetayListele()
             this.modalService.dismissAll()
           } else {
@@ -227,20 +246,54 @@ export class siparisEkleComponent implements OnInit {
         }
         this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
         secilenDetay.e_miktar = this.requestData.e_miktar
-        // this.siparisDetayListele() 
+        // this.siparisDetayListele()
     }
     
+    sayfayiTemizleButton() {
+        Swal.fire({
+            title: 'Sayfa Yenilenecek!',
+            text: "Sayfayı yenilemek istediğinize emin misiniz ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yenile',
+            confirmButtonColor: '#c49c5c',
+            cancelButtonText: 'İptal',
+            cancelButtonColor: '#222'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            this.sayfayiTemizle()
+            }
+        })
+    }
+
     async sayfayiTemizle() {
         this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "siparisIslemleri/siparisDetayTemizle", { e_siparis_unique_id : '' })
         
         if ((this.responseData[0].S) == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
-            this.siparisDetayListele()
-            this.urunFilterData.e_cinsiyet = ''
+            this.urunFilterData.e_cinsiyet = 'Erkek'
             this.urunListele()
+            this.siparisDetayListele()
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
+    }
+
+    sepetiTemizleButton() {
+        Swal.fire({
+            title: 'Sepet Temizlenecek!',
+            text: "Sepeti temizlemek istediğinize emin misiniz ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Temizle',
+            confirmButtonColor: '#c49c5c',
+            cancelButtonText: 'İptal',
+            cancelButtonColor: '#222'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            this.sepetiTemizle()
+            }
+        })
     }
     
     async sepetiTemizle() {

@@ -56,7 +56,7 @@
                 </a>
                 </div>
             </div>
-            <div class="container" style="overflow-y: auto; height: calc(100vh - 263px) !important;">
+            <div class="container" style="overflow-y: auto; height: calc(100vh - 256px) !important;">
                 <div class="row m-0" *ngIf="!urunListesi && !urunLoader">
                     <div class="alert alert-primary col-12 mt-2 p-4">
                         <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
@@ -77,8 +77,15 @@
                                     <div class="col-2">
                                         <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="80px" width="80px" style="float: left;">
                                     </div>
-                                    <div class="col-10">
-                                        <strong>{{urun.e_stok_kart_adi}}</strong>
+                                    <div class="col-10" style="margin-top: 21px;">
+                                        <div class="row m-0">
+                                            <div class="col-12">
+                                                <strong>{{urun.e_stok_kart_kodu}}</strong>
+                                            </div>
+                                            <div class="col-12 mt-1" style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                <strong>{{urun.e_stok_kart_adi}}</strong>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +101,7 @@
                         <span class="fas fa-solid fa-cart-plus mr-1 mt-2 fs-16" style="color: #cdab60;"><a style="color: black; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;"> SEPETİM</a></span>
                     </div>
                 </div>
-                <div class="card-body bg-transparent" style="height: calc(100vh - 277px) !important; overflow-y: auto;">
+                <div class="card-body bg-transparent" style="height: calc(100vh - 270px) !important; overflow-y: auto;">
                     <div class="row m-0" *ngIf="!siparisDetayListesi && !detayLoader">
                         <div class="alert alert-primary col-12 m-3 p-4" style="text-align: center; font-size: large;">
                             <i class="ri-forbid-line fs-22 mr-3 valign-middle"></i>
@@ -112,18 +119,32 @@
                             <div class="card" style="box-shadow: 3px 3px 3px gray">
                                 <div class="card-body">
                                     <div class="row m-0">
-                                        <div class="col-7" style="text-align: left;">
-                                            <strong>{{detay.e_stok_kart_adi}}</strong>
+                                        <div class="col-2">
+                                            <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/A30213F1-2C98-4F0D-B4F2-A7F5BCE548C7.jpg" height="80px" width="80px" style="float: left;">
                                         </div>
-                                        <div class="col-3">
-                                            <button type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
-                                            <button disabled type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar == 1"><i class="fas fa-solid fa-minus"></i></button>
-                                            <strong>{{detay.e_miktar}}</strong>
-                                            <button type="button" class="btn btn-primary ml-2" (click)="detayMiktarDuzenle(detay, 1)"><i class="fas fa-solid fa-plus"></i></button>
-        
+                                        <div class="col-10" style="margin-top: 21px;">
+                                            <div class="row m-0">
+                                                <div class="col-8" style="text-align: left;">
+                                                    <div class="row m-0">
+                                                        <div class="col-12">
+                                                            <strong>{{detay.e_stok_kart_kodu}}</strong>
+                                                        </div>
+                                                        <div class="col-12" style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                            <a>{{detay.e_stok_kart_adi}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <button type="button" class="btn btn-primary btn-sm mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
+                                                    <button disabled type="button" class="btn btn-primary btn-sm mr-2" *ngIf="detay.e_miktar == 1"><i class="fas fa-solid fa-minus"></i></button>
+                                                    <strong>{{detay.e_miktar}}</strong>
+                                                    <button type="button" class="btn btn-primary btn-sm ml-2" (click)="detayMiktarDuzenle(detay, 1)"><i class="fas fa-solid fa-plus"></i></button>
+                
+                                                </div>
+                                                <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-sm" (click)="detaySilButton(detay, 'siparisIslemleri/siparisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
+                                                <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-sm"><i class="fas fa-times fs-16"></i></button></div>
+                                            </div>
                                         </div>
-                                        <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block" (click)="detaySilButton(detay, 'siparisIslemleri/siparisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
-                                        <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block"><i class="fas fa-times fs-16"></i></button></div>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +156,7 @@
                         <div class="col-4">
                             <a style="cursor: pointer;" class="card mb-4"
                                 [class]="{'shadow-warning': 1 == 1 }"
-                                (click)="sayfayiTemizle()">
+                                (click)="sayfayiTemizleButton()">
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
@@ -151,7 +172,7 @@
                         <div class="col-4">
                             <a style="cursor: pointer;" class="card mb-4"
                                 [class]="{'shadow-dark': 1 == 1}"
-                                (click)="sepetiTemizle()">
+                                (click)="sepetiTemizleButton()">
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
@@ -167,7 +188,7 @@
                         <div class="col-4">
                             <a style="cursor: pointer;" class="card shadow-outline-success mb-4"
                                 [class]="{'shadow-success': 1 == 1}"
-                                (click)="siparisEkle(); islemiKaydet()">
+                                (click)="siparisEkle(); kaydetButton()">
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">

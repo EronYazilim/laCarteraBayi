@@ -47,7 +47,7 @@ export class satisEkleComponent implements OnInit {
         SS          : '',
         KS          : '',
         e_durum     : '',
-        e_cinsiyet  : ''
+        e_cinsiyet  : 'Erkek'
     }
     
     satisEklemeFormu = new FormGroup({
@@ -91,7 +91,6 @@ export class satisEkleComponent implements OnInit {
         this.titleService.setTitle("laCartera | Satış Ekle")
         this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
 
-        this.urunFilterData.e_cinsiyet = 'Erkek'
         this.urunListele()
         this.satisDetayListele()
     }
@@ -140,36 +139,38 @@ export class satisEkleComponent implements OnInit {
     }
 
     kaydetButton() {
-        Swal.fire({
-            title: 'Satış Kaydedilecek!',
-            text: "Satışı kaydetmek istediğinize emin misiniz ?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Kaydet',
-            confirmButtonColor: '#c49c5c',
-            cancelButtonText: 'İptal',
-            cancelButtonColor: '#222'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            this.islemiKaydet()
-            }
-        })
-    }
-
-    async islemiKaydet(): Promise<void> {
-        if (this.satisEklemeFormu.valid) {
-          this.islemiKaydetBtn = true
-    
+        if (this.satisDetayListesi == null) {
+            this.toastr.error('Sepete Ürün Ekleyiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
+            return
+        }
+   
         if (this.odemeTipi != 'Nakit' && this.odemeTipi != 'Kredi Kartı') {
             this.toastr.error('Ödeme Tipi Seçiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.islemiKaydetBtn = false
             return
         }
 
-        if (this.satisDetayListesi == null) {
-            this.toastr.error('Sepete Ürün Ekleyiniz!', 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
-            return
+        if ((this.odemeTipi == 'Nakit' || this.odemeTipi == 'Kredi Kartı') && this.satisDetayListesi != null) {
+            Swal.fire({
+                title: 'Satış Kaydedilecek!',
+                text: "Satışı kaydetmek istediğinize emin misiniz ?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Kaydet',
+                confirmButtonColor: '#c49c5c',
+                cancelButtonText: 'İptal',
+                cancelButtonColor: '#222'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                this.islemiKaydet()
+                }
+            })
         }
+    }
+
+    async islemiKaydet(): Promise<void> {
+        if (this.satisEklemeFormu.valid) {
+          this.islemiKaydetBtn = true
 
           this.requestData = Object.assign({}, this.satisEklemeFormu.value)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
@@ -269,9 +270,9 @@ export class satisEkleComponent implements OnInit {
             ESKI_ID         :   secilenDetay.e_id
         }
         this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
-        secilenDetay.e_miktar = this.requestData.e_miktar
-        secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
-        // this.satisDetayListele() 
+        // secilenDetay.e_miktar = this.requestData.e_miktar
+        // secilenDetay.e_satir_toplami = this.requestData.e_satir_toplami
+        this.satisDetayListele()
     }
     
     sayfayiTemizleButton() {
@@ -332,4 +333,5 @@ export class satisEkleComponent implements OnInit {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
     }
+
 }
