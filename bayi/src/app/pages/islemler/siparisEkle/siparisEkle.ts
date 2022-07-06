@@ -98,7 +98,6 @@ export class siparisEkleComponent implements OnInit {
         this.siparisDetayListele()
     }
 
-    
     async siparisListele() {
         this.mainLoader = true
         this.siparisListesi = await this.islem.WebServisSorguSonucu("GET", "siparisIslemleri/siparisListesi", this.filterData)
@@ -122,10 +121,11 @@ export class siparisEkleComponent implements OnInit {
   
     siparisEkle() {
         this.siparisEklemeFormu.patchValue({
-            islem               :    'siparisIslemleri/siparisEkle',
-            method              :    'POST',
-            siparis_unique_id   :    '',
-            ESKI_ID             :    ''
+            islem               :   'siparisIslemleri/siparisEkle',
+            method              :   'POST',
+            e_durum             :   'Aktif',
+            siparis_unique_id   :   '',
+            ESKI_ID             :   ''
         })
     }
 
