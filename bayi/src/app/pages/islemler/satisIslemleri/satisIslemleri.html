@@ -15,12 +15,13 @@
                 <div class="col-6">
                   <a style="cursor: pointer;" class="card mb-3"
                       [class]="{'shadow-info': odemeTipi == 'Nakit'}"
-                      [ngStyle]="{'padding' : odemeTipi === 'Nakit' ? '8px' : '' }"
-                      (click)="odemeTipi = 'Nakit'; odemeTipiSec()">
+                      (click)="odemeTipi = 'Nakit'; odemeTipiSec()"
+                      [ngStyle]="{'font-size' : odemeTipi === 'Nakit' ? '16px' : '' }"
+                      >
                       <div class="card-body">
                         <div class="d-flex">
                           <div class="w-100">
-                          <b class="text-truncate fs-14 mb-2">Nakit</b>
+                          <b class="text-truncate mb-2">Nakit</b>
                           </div>
                           <div class="text-info ms-auto">
                           <i class="fas fa-solid fa-money-bill-wave fs-20"></i>
@@ -32,12 +33,13 @@
                 <div class="col-6">
                   <a style="cursor: pointer;" class="card mb-3"
                       [class]="{'shadow-danger':  odemeTipi == 'Kredi Kartı'}"
-                      [ngStyle]="{'padding' : odemeTipi === 'Kredi Kartı' ? '8px' : '' }"
-                      (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()">
+                      (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()"
+                      [ngStyle]="{'font-size' : odemeTipi === 'Kredi Kartı' ? '16px' : '' }"
+                      >
                       <div class="card-body">
                           <div class="d-flex">
                               <div class="w-100">
-                              <b class="text-truncate fs-14 mb-2">Kredi Kartı</b>
+                              <b class="text-truncate mb-2">Kredi Kartı</b>
                               </div>
                               <div class="text-danger ms-auto">
                               <i class="fas fa-regular fa-credit-card fs-20"></i>

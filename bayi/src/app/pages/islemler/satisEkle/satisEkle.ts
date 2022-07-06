@@ -91,6 +91,7 @@ export class satisEkleComponent implements OnInit {
         this.titleService.setTitle("laCartera | Satış Ekle")
         this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
 
+        this.urunFilterData.e_cinsiyet = 'Erkek'
         this.urunListele()
         this.satisDetayListele()
     }
