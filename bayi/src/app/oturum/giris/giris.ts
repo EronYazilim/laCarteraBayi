@@ -70,7 +70,7 @@ export class girisComponent implements OnInit {
           this.store.setItem("laCartera_bayi_e_bayi_kodu", "")
         }
 
-        window.location.href = './anasayfa'
+        window.location.href = './islemler/satisEkle'
       } else {
         this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'Giriş Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         this.authenticationService.logout()

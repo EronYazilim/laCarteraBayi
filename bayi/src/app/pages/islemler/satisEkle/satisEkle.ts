@@ -138,6 +138,23 @@ export class satisEkleComponent implements OnInit {
         this.islemiKaydetDetayEkle()
     }
 
+    kaydetButton() {
+        Swal.fire({
+            title: 'Satış Kaydedilecek!',
+            text: "Satışı kaydetmek istediğinize emin misiniz ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Kaydet',
+            confirmButtonColor: '#c49c5c',
+            cancelButtonText: 'İptal',
+            cancelButtonColor: '#222'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            this.islemiKaydet()
+            }
+        })
+    }
+
     async islemiKaydet(): Promise<void> {
         if (this.satisEklemeFormu.valid) {
           this.islemiKaydetBtn = true
@@ -154,11 +171,12 @@ export class satisEkleComponent implements OnInit {
         }
 
           this.requestData = Object.assign({}, this.satisEklemeFormu.value)
-          console.log(this.requestData)
           this.responseData = await this.islem.WebServisSorguSonucu(this.requestData.method, this.requestData.islem, this.requestData)
             console.log(this.responseData)
           if (this.responseData[0].S == "T") {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
+            this.urunFilterData.e_cinsiyet = 'Erkek'
+            this.urunListele()
             this.satisDetayListele()
             this.modalService.dismissAll()
           } else {
@@ -255,6 +273,23 @@ export class satisEkleComponent implements OnInit {
         // this.satisDetayListele() 
     }
     
+    sayfayiTemizleButton() {
+        Swal.fire({
+            title: 'Sayfa Yenilenecek!',
+            text: "Sayfayı yenilemek istediğinize emin misiniz ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yenile',
+            confirmButtonColor: '#c49c5c',
+            cancelButtonText: 'İptal',
+            cancelButtonColor: '#222'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            this.sayfayiTemizle()
+            }
+        })
+    }
+
     async sayfayiTemizle() {
         this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetayTemizle", { e_satis_unique_id : '' })
         
@@ -262,13 +297,30 @@ export class satisEkleComponent implements OnInit {
             this.toastr.success(this.responseData[0].MESAJ, 'İşlem Başarılı !', { timeOut: 3000, closeButton: true, progressBar: true })
             this.satisDetayListele()
             this.odemeTipi = ''
-            this.urunFilterData.e_cinsiyet = ''
+            this.urunFilterData.e_cinsiyet = 'Erkek'
             this.urunListele()
         } else {
             this.toastr.error(this.responseData[0].HATA_ACIKLAMASI, 'İşlem Başarısız !', { timeOut: 3000, closeButton: true, progressBar: true })
         }
     }
     
+    sepetiTemizleButton() {
+        Swal.fire({
+            title: 'Sepet Temizlenecek!',
+            text: "Sepeti temizlemek istediğinize emin misiniz ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Temizle',
+            confirmButtonColor: '#c49c5c',
+            cancelButtonText: 'İptal',
+            cancelButtonColor: '#222'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            this.sepetiTemizle()
+            }
+        })
+    }
+
     async sepetiTemizle() {
         this.responseData = await this.islem.WebServisSorguSonucu("DELETE", "satisIslemleri/satisDetayTemizle", { e_satis_unique_id : '' })
 

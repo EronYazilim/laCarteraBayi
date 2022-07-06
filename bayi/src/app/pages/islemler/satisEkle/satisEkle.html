@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-10">
                                         <div>
-                                            <strong>{{urun.e_stok_kart_adi}}</strong>
+                                            <strong>{{urun.e_stok_kart_kodu}} : {{urun.e_stok_kart_adi}}</strong>
                                         </div>
                                         <div class="container mt-3" style="text-align: right;">
                                             <strong>{{urun.e_fiyat | currency : ' '}} ₺</strong>
@@ -117,8 +117,11 @@
                             <div class="card" style="box-shadow: 3px 3px 3px gray">
                                 <div class="card-body">
                                     <div class="row m-0">
-                                        <div class="col-6" style="text-align: left;">
-                                            <strong>{{detay.e_stok_kart_adi}}</strong>
+                                        <div class="col-1" style="float: left;">
+                                            <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{detay.e_resim_uniq_id}}.{{detay.e_resim_dosya_uzantisi}}" width="70px" height="70px">
+                                        </div>
+                                        <div class="col-5" style="text-align: center;">
+                                            <strong style="font-size: 12px;">{{detay.e_stok_kart_kodu}} : {{detay.e_stok_kart_adi}}</strong>
                                         </div>
                                         <div class="col-3">
                                             <button type="button" class="btn btn-primary mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
@@ -128,8 +131,8 @@
         
                                         </div>
                                         <div class="col-2"><strong>{{detay.e_satir_toplami | currency: ' '}} ₺</strong></div>
-                                        <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block" (click)="detaySilButton(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
-                                        <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]"><button type="button" class="btn btn-dark btn-block"><i class="fas fa-times fs-16"></i></button></div>
+                                        <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]" style="float: right;"><button type="button" class="btn btn-dark btn-block" (click)="satisDetaySil(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
+                                        <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]" style="float: right;"><button type="button" class="btn btn-dark btn-block"><i class="fas fa-times fs-16"></i></button></div>
                                     </div>
                                 </div>
                             </div>
@@ -139,14 +142,15 @@
                 <div class="card-footer mt-2" style="border-radius: 5px; position: flex;">
                     <div class="row m-0">
                         <div class="col-6">
-                            <a style="cursor: pointer;" class="card mb-3"
+                            <a style="cursor: pointer;" class="card mb-2"
                                 [class]="{'shadow-info': odemeTipi == 'Nakit'}"
-                                [ngStyle]="{'padding' : odemeTipi === 'Nakit' ? '8px' : '' }"
-                                (click)="odemeTipi = 'Nakit'; odemeTipiSec()">
+                                (click)="odemeTipi = 'Nakit'; odemeTipiSec()"
+                                [ngStyle]="{'font-size' : odemeTipi == 'Nakit' ? '16px' : '' }"
+                                >
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
-                                        <b class="text-truncate fs-14 mb-2">Nakit</b>
+                                        <b class="text-truncate mb-2">Nakit</b>
                                         </div>
                                         <div class="text-info ms-auto">
                                         <i class="fas fa-solid fa-money-bill-wave fs-20"></i>
@@ -156,14 +160,15 @@
                             </a>
                         </div>
                         <div class="col-6">
-                            <a style="cursor: pointer;" class="card mb-3"
+                            <a style="cursor: pointer;" class="card mb-2"
                                 [class]="{'shadow-danger':  odemeTipi == 'Kredi Kartı'}"
-                                [ngStyle]="{'padding' : odemeTipi === 'Kredi Kartı' ? '8px' : '' }"
-                                (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()">
+                                (click)="odemeTipi = 'Kredi Kartı'; odemeTipiSec()"
+                                [ngStyle]="{'font-size' : odemeTipi === 'Kredi Kartı' ? '16px' : '' }"
+                                >
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
-                                        <b class="text-truncate fs-14 mb-2">Kredi Kartı</b>
+                                        <b class="text-truncate mb-2">Kredi Kartı</b>
                                         </div>
                                         <div class="text-danger ms-auto">
                                         <i class="fas fa-regular fa-credit-card fs-20"></i>
@@ -175,7 +180,7 @@
                         <div class="col-4">
                             <a style="cursor: pointer;" class="card mb-4"
                                 [class]="{'shadow-warning': 1 == 1 }"
-                                (click)="sayfayiTemizle()">
+                                (click)="sayfayiTemizleButton()">
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
@@ -191,7 +196,7 @@
                         <div class="col-4">
                             <a style="cursor: pointer;" class="card mb-4"
                                 [class]="{'shadow-dark': 1 == 1}"
-                                (click)="sepetiTemizle()">
+                                (click)="sepetiTemizleButton()">
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
@@ -207,7 +212,7 @@
                         <div class="col-4">
                             <a style="cursor: pointer;" class="card shadow-outline-success mb-4"
                                 [class]="{'shadow-success': 1 == 1}"
-                                (click)="satisEkle(); islemiKaydet()">
+                                (click)="satisEkle(); kaydetButton()">
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
