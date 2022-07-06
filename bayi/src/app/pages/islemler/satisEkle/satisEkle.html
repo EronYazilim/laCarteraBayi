@@ -72,19 +72,19 @@
                 <div class="row m-0" *ngIf="urunListesi && !urunLoader">
                     <div class="col-6 mt-2 mb-1" *ngFor="let urun of urunListesi" (click)="sepeteEkle(urun)">
                         <div class="card">
-                            <div class="card-body" style="text-align: right; box-shadow: 3px 3px 3px gray">
+                            <div class="card-body" style="text-align: right; box-shadow: 3px 3px 3px gray; padding: 5px !important;">
                                 <div class="row m-0">
-                                    <div class="col-2">
-                                        <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="80px" width="80px" style="float: left;">
+                                    <div class="col-2" style="padding-left: 0px !important; padding-right: 0px !important;">
+                                        <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="70px" width="70px" style="float: left !important;">
                                     </div>
-                                    <div class="col-10">
-                                        <div class="col-12" style="float: right;">
+                                    <div class="col-10" style="text-align: left;">
+                                        <div class="col-12">
                                             <strong>{{urun.e_stok_kart_kodu}}</strong>
                                         </div>
-                                        <div class="col-12 mt-2" style="float: right; width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <div class="col-12 mt-2" style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                             <a>{{urun.e_stok_kart_adi}}</a>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-12" style="text-align: right;">
                                             <div class="container mt-2" style="float: right;">
                                                 <strong class="fs-20">{{urun.e_fiyat | currency : ' '}} ₺</strong>
                                             </div>
@@ -120,33 +120,29 @@
                     <div class="row m-0" *ngIf="satisDetayListesi && !detayLoader" style="overflow-y: auto;">
                         <div class="col-12 mt-2 mb-1" *ngFor="let detay of satisDetayListesi">
                             <div class="card" style="box-shadow: 3px 3px 3px gray">
-                                <div class="card-body">
+                                <div class="card-body" style="padding: 5px !important;">
                                     <div class="row m-0">
-                                        <div class="col-1" style="float: left;">
-                                            <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{detay.e_resim_uniq_id}}.{{detay.e_resim_dosya_uzantisi}}" width="70px" height="70px">
+                                        <div class="col-2"></div>
+                                        <div class="col-10" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            <strong>{{detay.e_stok_kart_adi}}</strong>
                                         </div>
-                                        <div class="col-11" style="margin-top: 15px;">
+                                        <div class="col-2" style= "padding-left: 0px !important;">
+                                            <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{detay.e_resim_uniq_id}}.{{detay.e_resim_dosya_uzantisi}}" width="80px" height="60px">
+                                        </div>
+                                        <div class="col-10" style="margin-top: 15px; padding: 0 !important;">
                                             <div class="row m-0">
-                                                <div class="col-6" style="text-align: left;">
-                                                    <div class="row m-0">
-                                                        <div class="col-12">
-                                                            <strong style="font-size: 12px;">{{detay.e_stok_kart_kodu}}</strong>
-                                                        </div>
-                                                        <div class="col-12" style="width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                                            <a>{{detay.e_stok_kart_adi}}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div class="col-3">
+                                                    <strong style="font-size: 12px;">{{detay.e_stok_kart_kodu}}</strong>
+                                                </div>
+                                                <div class="col-4">
                                                     <button type="button" class="btn btn-primary btn-sm mr-2" *ngIf="detay.e_miktar != 1" (click)="detayMiktarDuzenle(detay, -1)"><i class="fas fa-solid fa-minus"></i></button>
                                                     <button disabled type="button" class="btn btn-primary btn-sm  mr-2" *ngIf="detay.e_miktar == 1"><i class="fas fa-solid fa-minus"></i></button>
                                                     <strong>{{detay.e_miktar}}</strong>
                                                     <button type="button" class="btn btn-primary btn-sm ml-2" (click)="detayMiktarDuzenle(detay, 1)"><i class="fas fa-solid fa-plus"></i></button>
-                
                                                 </div>
-                                                <div class="col-2"><strong class="fs-13">{{detay.e_satir_toplami | currency: ' '}} ₺</strong></div>
-                                                <div class="col-1" *ngIf="!silinenKayitBtn[detay.e_id]" style="float: right;"><button type="button" class="btn btn-dark btn-sm" (click)="satisDetaySil(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
-                                                <div class="col-1" *ngIf="silinenKayitBtn[detay.e_id]" style="float: right;"><button type="button" class="btn btn-dark btn-sm"><i class="fas fa-times fs-16"></i></button></div>
+                                                <div class="col-3"><strong class="fs-13">{{detay.e_satir_toplami | currency: ' '}} ₺</strong></div>
+                                                <div class="col-2" *ngIf="!silinenKayitBtn[detay.e_id]" style="float: right;"><button type="button" class="btn btn-dark btn-sm" (click)="satisDetaySil(detay, 'satisIslemleri/satisDetaySil');"><i class="fas fa-times fs-16"></i></button></div>
+                                                <div class="col-2" *ngIf="silinenKayitBtn[detay.e_id]" style="float: right;"><button type="button" class="btn btn-dark btn-sm"><i class="fas fa-times fs-16"></i></button></div>
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +199,7 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
-                                        <b class="text-truncate fs-14 mb-2">Yeni Sayfa</b>
+                                        <b class="text-truncate fs-12 mb-2">Yeni Sayfa</b>
                                         </div>
                                         <div class="text-warning ms-auto">
                                         <i class="fas fa-sync"></i>
@@ -219,7 +215,7 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
-                                        <b class="text-truncate fs-14 mb-2">Sepeti Temizle</b>
+                                        <b class="text-truncate fs-12 mb-2">Sepet Temizle</b>
                                         </div>
                                         <div class="text-dark ms-auto">
                                         <i class="fas fa-solid fa-trash"></i>
@@ -235,7 +231,7 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <div class="w-100">
-                                        <b class="text-truncate fs-14 mb-2">Kaydet</b>
+                                        <b class="text-truncate fs-12 mb-2">Kaydet</b>
                                         </div>
                                         <div class="text-success ms-auto">
                                         <i class="fas fa-solid fa-check"></i>
