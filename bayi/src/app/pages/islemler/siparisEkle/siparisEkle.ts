@@ -7,7 +7,7 @@ import { webServisIslemCalistir } from "src/app/ISLEM";
 import { SharedAnimations } from "src/app/shared/animations/shared-animations";
 import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
-
+import { Meta } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-siparisEkle',
@@ -22,7 +22,8 @@ export class siparisEkleComponent implements OnInit {
         private modalService: NgbModal,
         private bs: BreadcrumpService,
         private titleService: Title,
-        private modalConfig: NgbModalConfig
+        private modalConfig: NgbModalConfig,
+        private readonly meta: Meta
     ) { 
         modalConfig.backdrop = 'static'
         modalConfig.keyboard = false
@@ -87,6 +88,9 @@ export class siparisEkleComponent implements OnInit {
     secilenUrunBtn = [false]
 
     ngOnInit() {
+
+        this.meta.addTag({ name: 'viewport', content: 'width=1920' })
+
         this.titleService.setTitle("laCartera | Sipariş Ekle")
         this.bs.change(["İşlemler", "Sipariş İşlemleri", "Sipariş Ekle"])
 

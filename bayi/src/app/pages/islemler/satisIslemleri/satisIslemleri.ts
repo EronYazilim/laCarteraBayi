@@ -7,6 +7,7 @@ import { webServisIslemCalistir } from "src/app/ISLEM";
 import { SharedAnimations } from "src/app/shared/animations/shared-animations";
 import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-satisIslemleri',
@@ -21,7 +22,8 @@ export class satisIslemleriComponent implements OnInit {
         private modalService: NgbModal,
         private bs: BreadcrumpService,
         private titleService: Title,
-        private modalConfig: NgbModalConfig
+        private modalConfig: NgbModalConfig,
+        private router: Router
     ) { 
         modalConfig.backdrop = 'static'
         modalConfig.keyboard = false
@@ -134,18 +136,19 @@ export class satisIslemleriComponent implements OnInit {
     }
 
     satisEkleButton() {
-        this.secilenKayit = null
-        this.satisEklemeFormu.patchValue({
-            islem               :   'satisIslemleri/satisEkle',
-            method              :   'POST',
-            e_odeme_tipi        :   '',
-            e_satis_unique_id   :   '',
-        })
-        this.detayFilterData.e_satis_unique_id = ''
+        this.router.navigateByUrl('/islemler/satisEkle')
+        // this.secilenKayit = null
+        // this.satisEklemeFormu.patchValue({
+        //     islem               :   'satisIslemleri/satisEkle',
+        //     method              :   'POST',
+        //     e_odeme_tipi        :   '',
+        //     e_satis_unique_id   :   '',
+        // })
+        // this.detayFilterData.e_satis_unique_id = ''
 
-        this.satisDetayListele()
-        this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSatis, 'xl')
+        // this.satisDetayListele()
+        // this.modalHeader.title = 'Ekleme'
+        // this.modalAc(this.modalSatis, 'xl')
     }
 
     satisDetayEkleButton() {
