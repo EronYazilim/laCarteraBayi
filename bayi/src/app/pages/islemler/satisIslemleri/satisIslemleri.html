@@ -299,7 +299,7 @@
                 <td class="text-left">{{satis.e_satisi_acan_kullanici_adi}}</td>
                 <td class="text-left">
                   <span *ngFor="let kalem of satis.KALEMLER">
-                    • {{kalem.e_stok_kart_kodu}} : {{kalem.e_stok_kart_adi}} <br>
+                    • {{kalem.e_stok_kart_kodu}} : {{kalem.e_stok_kart_adi}} ({{kalem.e_miktar}} adet)<br>
                   </span>
                 </td>
                 <td class="text-right">{{satis.e_sepet_toplami | currency : ' '}} ₺</td>
