@@ -151,7 +151,7 @@ export class siparisIslemleriComponent implements OnInit {
             method              :   'POST',
             e_stok_kart_id      :   '',
             e_stok_kart_adi     :   '',
-            e_miktar            :   '',
+            e_miktar            :   1,
             e_siparis_unique_id :   this.secilenKayit ? this.secilenKayit.e_unique_id : ""
         })
         this.modalHeader.title = 'Ekleme'
