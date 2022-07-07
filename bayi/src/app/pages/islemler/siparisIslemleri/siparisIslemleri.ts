@@ -7,6 +7,8 @@ import { webServisIslemCalistir } from "src/app/ISLEM";
 import { SharedAnimations } from "src/app/shared/animations/shared-animations";
 import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-siparisIslemleri',
@@ -21,7 +23,9 @@ export class siparisIslemleriComponent implements OnInit {
         private modalService: NgbModal,
         private bs: BreadcrumpService,
         private titleService: Title,
-        private modalConfig: NgbModalConfig
+        private modalConfig: NgbModalConfig,
+        private router: Router
+
     ) { 
         modalConfig.backdrop = 'static'
         modalConfig.keyboard = false
@@ -129,20 +133,21 @@ export class siparisIslemleriComponent implements OnInit {
     }
 
     siparisEkleButton() {
-        this.secilenKayit = null
-        this.siparisEklemeFormu.patchValue({
-            islem               :   'siparisIslemleri/siparisEkle',
-            method              :   'POST',
-            e_odeme_tipi        :   '',
-            e_aciklama          :   '',
-            e_satis_unique_id   :   '',
-            e_durum             :   'Aktif'
-        })
-        this.detayFilterData.e_siparis_unique_id = ''
+        this.router.navigateByUrl('/islemler/siparisEkle')
+        // this.secilenKayit = null
+        // this.siparisEklemeFormu.patchValue({
+        //     islem               :   'siparisIslemleri/siparisEkle',
+        //     method              :   'POST',
+        //     e_odeme_tipi        :   '',
+        //     e_aciklama          :   '',
+        //     e_satis_unique_id   :   '',
+        //     e_durum             :   'Aktif'
+        // })
+        // this.detayFilterData.e_siparis_unique_id = ''
 
-        this.siparisDetayListele()
-        this.modalHeader.title = 'Ekleme'
-        this.modalAc(this.modalSiparis, 'xl')
+        // this.siparisDetayListele()
+        // this.modalHeader.title = 'Ekleme'
+        // this.modalAc(this.modalSiparis, 'xl')
     }
 
     siparisDetayEkleButton() {

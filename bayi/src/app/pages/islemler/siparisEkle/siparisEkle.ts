@@ -56,7 +56,6 @@ export class siparisEkleComponent implements OnInit {
         islem               :   new FormControl(''),
         method              :   new FormControl(''),
         e_aciklama          :   new FormControl(''),
-        e_durum             :   new FormControl(''),
         e_siparis_unique_id :   new FormControl(''),
         ESKI_ID             :   new FormControl('')
     })
@@ -88,7 +87,7 @@ export class siparisEkleComponent implements OnInit {
     secilenUrunBtn = [false]
 
     ngOnInit() {
-        
+
         this.meta.addTag({ name: 'viewport', content: 'width=1920' })
 
         this.titleService.setTitle("laCartera | Sipariş Ekle")
@@ -123,7 +122,6 @@ export class siparisEkleComponent implements OnInit {
         this.siparisEklemeFormu.patchValue({
             islem               :   'siparisIslemleri/siparisEkle',
             method              :   'POST',
-            e_durum             :   'Aktif',
             siparis_unique_id   :   '',
             ESKI_ID             :   ''
         })
@@ -148,8 +146,8 @@ export class siparisEkleComponent implements OnInit {
             return
         } else {
             Swal.fire({
-                title: 'Satış Kaydedilecek!',
-                text: "Satışı kaydetmek istediğinize emin misiniz ?",
+                title: 'Sipariş Kaydedilecek!',
+                text: "Siparişi kaydetmek istediğinize emin misiniz ?",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Kaydet',

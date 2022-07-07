@@ -9,16 +9,9 @@
       <div class="container">
         <form validControl [formGroup]="siparisEklemeFormu" (submit)="islemiKaydet()">
           <div class="row m-0">
-            <div class="col-md-6 form-group">
+            <div class="col-md-12 form-group">
               <label>Açıklama *</label>
               <input type="text" class="form-control" formControlName="e_aciklama" title="Açıklama">
-            </div>
-            <div class="col-md-6 form-group">
-              <label>Durum *</label>
-              <select class="form-control" formControlName="e_durum" title="Durum">
-                <option value="Aktif">Aktif</option>
-                <option value="Pasif">Pasif</option>
-              </select>
             </div>
           </div>
           <button id="submitButton" class="hidden">Kaydet</button>
@@ -246,7 +239,7 @@
               <th class="text-center w-10">Toplam</th>
               <th class="text-center w-10">Durum</th>
               <th class="text-center w-20">
-                <a href="http://localhost:5772/islemler/siparisEkle"><button class="btn btn-primary btn-sm btn-block"><i class="fas fa-plus mr-1"></i> Yeni Sipariş Ekle</button></a>
+                <button class="btn btn-primary btn-sm btn-block" (click)="siparisEkleButton()"><i class="fas fa-plus mr-1"></i> Yeni Sipariş Ekle</button>
               </th>
             </tr>
           </thead>
