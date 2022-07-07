@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { satisDetaylariComponent } from './satisDetaylari/satisDetaylari';
 import { satisEkleComponent } from './satisEkle/satisEkle';
 import { satisIslemleriComponent } from './satisIslemleri/satisIslemleri';
 import { siparisEkleComponent } from './siparisEkle/siparisEkle';
@@ -19,9 +18,6 @@ const routes: Routes = [{
   }, {
     path: 'satisEkle',
     component: satisEkleComponent
-  }, {
-    path: 'satisDetaylari/:ID',
-    component: satisDetaylariComponent
   }
 ];
 

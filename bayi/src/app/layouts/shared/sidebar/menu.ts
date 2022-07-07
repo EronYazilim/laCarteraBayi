@@ -7,8 +7,8 @@ export const MENU: MenuItem[] = [
 		link: '/anasayfa'
 	}, 
 	{
-		label: 'Satış İşlemleri',
-		icon: 'fas fa-cubes lg-icon',
+		label: 'Satışlar',
+		icon: 'fas fa-solid fa-check',
 		subItems: [{
 			label: 'Satış Ekleme',
 			link: './islemler/satisEkle'
@@ -19,7 +19,7 @@ export const MENU: MenuItem[] = [
 	},
 	{
 		label: 'Siparişler',
-		icon: 'fas fa-cubes lg-icon',
+		icon: 'fas fa-solid fa-list',
 		subItems: [{
 			label: 'Sipariş Oluştur',
 			link: '/islemler/siparisEkle'
@@ -30,7 +30,7 @@ export const MENU: MenuItem[] = [
 	},
 	{
 		label: 'Ayarlar',
-		icon: 'ri-user-3-line',
+		icon: 'ri-settings-3-fill',
 		subItems: [{
 			label: 'Kullanıcı Kayıtları',
 			link: '/kayitlar/kullaniciKayitlari'

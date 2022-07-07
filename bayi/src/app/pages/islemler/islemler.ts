@@ -11,7 +11,6 @@ import { islemlerRoutingModule } from "./islemler-routing";
 import { siparisIslemleriComponent } from "./siparisIslemleri/siparisIslemleri";
 import { satisIslemleriComponent } from "./satisIslemleri/satisIslemleri";
 import { satisEkleComponent } from "./satisEkle/satisEkle";
-import { satisDetaylariComponent } from "./satisDetaylari/satisDetaylari";
 
 import { FormDirective } from "./islemler-directive";
 import { siparisEkleComponent } from "./siparisEkle/siparisEkle";
@@ -35,7 +34,6 @@ import { siparisEkleComponent } from "./siparisEkle/siparisEkle";
         siparisIslemleriComponent,
         satisIslemleriComponent,
         satisEkleComponent,
-        satisDetaylariComponent,
         siparisEkleComponent,
 
         FormDirective

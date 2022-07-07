@@ -88,7 +88,7 @@ export class siparisEkleComponent implements OnInit {
     secilenUrunBtn = [false]
 
     ngOnInit() {
-
+        
         this.meta.addTag({ name: 'viewport', content: 'width=1920' })
 
         this.titleService.setTitle("laCartera | Sipariş Ekle")

@@ -178,7 +178,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let urun of urunListesi">
+              <tr *ngFor="let urun of urunListesi" (click)="urunSec(urun)">
                 <td class="text-left">
                   <img src="https://test.eronsoftware.com:5770/admin/uploads/stokKartIslemleri/{{urun.e_resim_uniq_id}}.{{urun.e_resim_dosya_uzantisi}}" height="80px" width="80px">
                 </td>
@@ -186,7 +186,7 @@
                 <td class="text-left">{{urun.e_stok_kart_adi}}</td>
                 <td class="text-right">{{urun.e_fiyat | currency: ' '}} ₺</td>
                 <td class="text-left">
-                  <button type="button" class="btn btn-block btn-primary w-100" (click)="urunSec(urun)"><span class="fas fa-plus mr-2"></span> Seç</button>
+                  <button type="button" class="btn btn-block btn-primary w-100"><span class="fas fa-plus mr-2"></span> Seç</button>
                 </td>
               </tr>
             </tbody>
