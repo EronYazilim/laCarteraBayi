@@ -7,30 +7,35 @@ export const MENU: MenuItem[] = [
 		link: '/anasayfa'
 	}, 
 	{
-		label: 'Kayıtlar',
+		label: 'Satış İşlemleri',
+		icon: 'fas fa-cubes lg-icon',
+		subItems: [{
+			label: 'Satış Ekleme',
+			link: './islemler/satisEkle'
+		},{
+			label: 'Satış Geçmişi',
+			link: '/islemler/satisIslemleri'
+		}]
+	},
+	{
+		label: 'Siparişler',
+		icon: 'fas fa-cubes lg-icon',
+		subItems: [{
+			label: 'Sipariş Oluştur',
+			link: '/islemler/siparisEkle'
+		},{
+			label: 'Sipariş Geçmişi',
+			link: '/islemler/siparisIslemleri'
+		}]
+	},
+	{
+		label: 'Ayarlar',
 		icon: 'ri-user-3-line',
 		subItems: [{
 			label: 'Kullanıcı Kayıtları',
 			link: '/kayitlar/kullaniciKayitlari'
 			}
 		]
-	},
-	{
-		label: 'İşlemler',
-		icon: 'fas fa-cubes lg-icon',
-		subItems: [{
-			label: 'Sipariş İşlemleri',
-			link: '/islemler/siparisIslemleri'
-		}, {
-			label: 'Sipariş Ekleme',
-			link: '/islemler/siparisEkle'
-		}, {
-			label: 'Satış İşlemleri',
-			link: '/islemler/satisIslemleri'
-		}, {
-			label: 'Satış Ekleme',
-			link: './islemler/satisEkle'
-		}]
 	}
 ]
 	
