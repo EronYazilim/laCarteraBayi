@@ -134,20 +134,6 @@ export class siparisIslemleriComponent implements OnInit {
 
     siparisEkleButton() {
         this.router.navigateByUrl('/islemler/siparisEkle')
-        // this.secilenKayit = null
-        // this.siparisEklemeFormu.patchValue({
-        //     islem               :   'siparisIslemleri/siparisEkle',
-        //     method              :   'POST',
-        //     e_odeme_tipi        :   '',
-        //     e_aciklama          :   '',
-        //     e_satis_unique_id   :   '',
-        //     e_durum             :   'Aktif'
-        // })
-        // this.detayFilterData.e_siparis_unique_id = ''
-
-        // this.siparisDetayListele()
-        // this.modalHeader.title = 'Ekleme'
-        // this.modalAc(this.modalSiparis, 'xl')
     }
 
     siparisDetayEkleButton() {
