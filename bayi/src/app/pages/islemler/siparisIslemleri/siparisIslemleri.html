@@ -254,8 +254,9 @@
               <td class="text-left" *ngIf="siparis.e_toplam_miktar">{{siparis.e_toplam_miktar}} adet</td>
               <td class="text-left" *ngIf="!siparis.e_toplam_miktar">Ürün Yok</td>
               <td class="text-center">
-                <span class="badge badge-success p-1 w-100 " *ngIf="siparis.e_durum == 'Aktif'">Aktif</span>
-                <span class="badge badge-secondary p-1 w-100 " *ngIf="siparis.e_durum != 'Aktif'">Pasif</span>
+                <span class="badge badge-warning p-1 w-100 " *ngIf="siparis.e_durum == 'İşlem Bekliyor'">İşlem Bekliyor</span>
+                <span class="badge badge-info p-1 w-100 " *ngIf="siparis.e_durum == 'İşleme Alındı'">İşleme Alındı</span>
+                <span class="badge badge-success p-1 w-100 " *ngIf="siparis.e_durum == 'Gönderildi'">Gönderildi</span>
               </td>
               <td class="text-center">
                 <button class="btn btn-sm btn-outline-primary w-48" style="margin-right: 3%;" (click)="siparisDuzenleButton(siparis)"><i class="fas fa-edit"></i></button>
