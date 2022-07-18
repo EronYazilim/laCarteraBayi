@@ -7,7 +7,7 @@
         <div class="row m-0">
           <div class="col-md-12 form-group">
             <label>Kullanıcı Adı</label>
-            <input type="text" class="form-control" formControlName="e_kull_adi" title="Kullanıcı Adı">
+            <input type="text" class="form-control" formControlName="e_kull_adi" title="Kullanıcı Adı" required>
           </div>
           <div class="col-md-12 form-group">
             <label>Şifre *</label>
@@ -15,7 +15,7 @@
           </div>
           <div class="col-md-12 form-group">
             <label>Durum *</label>
-            <select class="form-control" formControlName="e_durum" title="Durum">
+            <select class="form-control" formControlName="e_durum" title="Durum" required>
               <option value="">-- Seçiniz --</option>
               <option value="Aktif">Aktif</option>
               <option value="Pasif">Pasif</option>
@@ -30,7 +30,7 @@
         <i class="fas fa-check mr-2"></i> Kaydet
       </button>
       <button class="btn btn-primary mr-1 w-lg" *ngIf="islemiKaydetBtn">
-        <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
+        <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydediliyor
       </button>
       <button class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
     </div>

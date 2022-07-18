@@ -117,7 +117,7 @@
             <i class="fas fa-check mr-2"></i> Kaydet
         </button>
         <button class="btn btn-primary mr-1 w-lg" *ngIf="islemiKaydetBtn">
-          <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
+          <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydediliyor
         </button>
         <button class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
     </div>
@@ -163,7 +163,7 @@
           <i class="fas fa-check mr-2"></i> Kaydet
         </button>
         <button class="btn btn-primary mr-1 w-lg" *ngIf="islemiKaydetBtn">
-          <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydeliyor
+          <div class="spinner-glow spinner-glow-light mt-0 mr-2"></div> Kaydediliyor
         </button>
         <button id="detayKapatBtn" class="btn btn-outline-dark w-lg" (click)="modal.dismiss('')"><span class="fas fa-times mr-2"></span> İptal</button>
   </div>
@@ -313,8 +313,8 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="text-right">ALT TOPLAM :<strong> {{satisListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong></td>
                 <td></td>
+                <td class="text-right">ALT TOPLAM :<strong> {{satisListesi[0].ALT_TOPLAM | currency : ' '}} ₺</strong></td>
                 <td></td>
             </tr>
           </tbody>
