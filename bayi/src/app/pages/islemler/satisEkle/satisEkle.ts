@@ -30,14 +30,6 @@ export class satisEkleComponent implements OnInit {
 
     modalHeader = { title: '' }
 
-    filterData = {
-        ARAMA   : '',
-        SS      : 1,
-        KS      : 15,
-        e_durum : '',
-        ESKI_ID : ''
-    }
-
     detayFilterData = {
         e_satis_unique_id   : ''
     }

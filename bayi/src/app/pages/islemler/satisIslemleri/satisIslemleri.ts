@@ -137,18 +137,6 @@ export class satisIslemleriComponent implements OnInit {
 
     satisEkleButton() {
         this.router.navigateByUrl('/islemler/satisEkle')
-        // this.secilenKayit = null
-        // this.satisEklemeFormu.patchValue({
-        //     islem               :   'satisIslemleri/satisEkle',
-        //     method              :   'POST',
-        //     e_odeme_tipi        :   '',
-        //     e_satis_unique_id   :   '',
-        // })
-        // this.detayFilterData.e_satis_unique_id = ''
-
-        // this.satisDetayListele()
-        // this.modalHeader.title = 'Ekleme'
-        // this.modalAc(this.modalSatis, 'xl')
     }
 
     satisDetayEkleButton() {
