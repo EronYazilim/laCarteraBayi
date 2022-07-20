@@ -31,8 +31,8 @@ export class satisIslemleriComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle("laCartera | Satış İşlemleri")
-        this.bs.change(["İşlemler", "Satış İşlemleri"])
+        this.titleService.setTitle("laCartera | Satış Geçmişi")
+        this.bs.change(["Satışlar", "Satış Geçmişi"])
 
         this.satisListele()
         this.urunListele()

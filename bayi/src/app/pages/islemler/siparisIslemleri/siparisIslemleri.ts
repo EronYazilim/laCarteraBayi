@@ -33,8 +33,8 @@ export class siparisIslemleriComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle("laCartera | Sipariş İşlemleri")
-        this.bs.change(["İşlemler", "Sipariş İşlemleri"])
+        this.titleService.setTitle("laCartera | Sipariş Geçmişi")
+        this.bs.change(["Siparişler", "Sipariş Geçmişi"])
 
         this.siparisListele()
         this.urunListele()

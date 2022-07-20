@@ -30,7 +30,7 @@ export class satisEkleComponent implements OnInit {
     
     ngOnInit() {
         this.titleService.setTitle("laCartera | Satış Ekle")
-        this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
+        this.bs.change(["Satışlar", "Satış Ekle"])
 
         this.urunListele()
         this.satisDetayListele()

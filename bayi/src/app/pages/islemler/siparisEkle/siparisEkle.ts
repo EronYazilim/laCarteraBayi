@@ -35,7 +35,7 @@ export class siparisEkleComponent implements OnInit {
         this.meta.addTag({ name: 'viewport', content: 'width=1920' })
 
         this.titleService.setTitle("laCartera | Sipariş Ekle")
-        this.bs.change(["İşlemler", "Sipariş İşlemleri", "Sipariş Ekle"])
+        this.bs.change(["Siparişler", "Sipariş Ekle"])
 
         this.urunListele()
         this.siparisDetayListele()
