@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
@@ -28,6 +28,17 @@ export class siparisEkleComponent implements OnInit {
         modalConfig.backdrop = 'static'
         modalConfig.keyboard = false
         modalConfig.size = 'sm'
+    }
+
+    ngOnInit() {
+
+        this.meta.addTag({ name: 'viewport', content: 'width=1920' })
+
+        this.titleService.setTitle("laCartera | Sipariş Ekle")
+        this.bs.change(["İşlemler", "Sipariş İşlemleri", "Sipariş Ekle"])
+
+        this.urunListele()
+        this.siparisDetayListele()
     }
 
     modalHeader = { title: '' }
@@ -85,17 +96,6 @@ export class siparisEkleComponent implements OnInit {
     islemiKaydetBtn2 = false
     silinenKayitBtn = [false]
     secilenUrunBtn = [false]
-
-    ngOnInit() {
-
-        this.meta.addTag({ name: 'viewport', content: 'width=1920' })
-
-        this.titleService.setTitle("laCartera | Sipariş Ekle")
-        this.bs.change(["İşlemler", "Sipariş İşlemleri", "Sipariş Ekle"])
-
-        this.urunListele()
-        this.siparisDetayListele()
-    }
 
     async siparisListele() {
         this.mainLoader = true

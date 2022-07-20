@@ -32,6 +32,19 @@ export class siparisIslemleriComponent implements OnInit {
         modalConfig.size = 'sm'
     }
 
+    ngOnInit() {
+        this.titleService.setTitle("laCartera | Sipariş İşlemleri")
+        this.bs.change(["İşlemler", "Sipariş İşlemleri"])
+
+        this.siparisListele()
+        this.urunListele()
+    }
+
+    modalAc(content, size) {
+        this.modalConfig.size = size
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+    }
+
     @ViewChild('modalSiparis') modalSiparis: ElementRef
     @ViewChild('modalSiparisDetay') modalSiparisDetay: ElementRef
     @ViewChild('modalUrun') modalUrun: ElementRef
@@ -97,19 +110,6 @@ export class siparisIslemleriComponent implements OnInit {
     islemiKaydetBtn = false
     silinenKayitBtn = [false]
     secilenUrunBtn = [false]
-
-    ngOnInit() {
-        this.titleService.setTitle("laCartera | Sipariş İşlemleri")
-        this.bs.change(["İşlemler", "Sipariş İşlemleri"])
-
-        this.siparisListele()
-        this.urunListele()
-    }
-
-    modalAc(content, size) {
-        this.modalConfig.size = size
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
-    }
 
     async siparisListele() {
         this.mainLoader = true

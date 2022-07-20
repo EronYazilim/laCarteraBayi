@@ -30,6 +30,19 @@ export class satisIslemleriComponent implements OnInit {
         modalConfig.size = 'sm'
     }
 
+    ngOnInit() {
+        this.titleService.setTitle("laCartera | Satış İşlemleri")
+        this.bs.change(["İşlemler", "Satış İşlemleri"])
+
+        this.satisListele()
+        this.urunListele()
+    }
+
+    modalAc(content, size) {
+        this.modalConfig.size = size
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+    }
+    
     @ViewChild('modalSatis') modalSatis: ElementRef
     @ViewChild('modalSatisDetay') modalSatisDetay: ElementRef
     @ViewChild('modalUrun') modalUrun: ElementRef
@@ -101,19 +114,6 @@ export class satisIslemleriComponent implements OnInit {
     silinenKayitBtn = [false]
     secilenUrunBtn = [false]
 
-    ngOnInit() {
-        this.titleService.setTitle("laCartera | Satış İşlemleri")
-        this.bs.change(["İşlemler", "Satış İşlemleri"])
-
-        this.satisListele()
-        this.urunListele()
-    }
-
-    modalAc(content, size) {
-        this.modalConfig.size = size
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
-    }
-    
     async satisListele() {
         this.mainLoader = true
         this.satisListesi = await this.islem.WebServisSorguSonucu("GET", "satisIslemleri/satisListesi", this.filterData)

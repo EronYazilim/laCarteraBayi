@@ -27,6 +27,18 @@ export class kullaniciKayitlariComponent implements OnInit {
     modalConfig.keyboard = false
     modalConfig.size = 'sm'
   }
+
+  ngOnInit() {
+    this.titleService.setTitle("laCartera | Kullanıcılar")
+    this.bs.change(["Kayıtlar", "Kullanıcı Kayıtları"])
+
+    this.kullaniciTanimlariListele()
+  }
+
+  modalAc(content, size) {
+  this.modalConfig.size = size
+  this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+  }
           
   @ViewChild('modalkullaniciTanimlari') modalkullaniciTanimlari: ElementRef
 
@@ -56,18 +68,6 @@ export class kullaniciKayitlariComponent implements OnInit {
 
   islemiKaydetBtn = false
   silinenKayitBtn = [false]
-
-  ngOnInit() {
-    this.titleService.setTitle("laCartera | Kullanıcılar")
-    this.bs.change(["Kayıtlar", "Kullanıcı Kayıtları"])
-
-    this.kullaniciTanimlariListele()
-  }
-
-  modalAc(content, size) {
-  this.modalConfig.size = size
-  this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
-  }
 
   async kullaniciTanimlariListele(): Promise<void> {
     this.mainLoader = true

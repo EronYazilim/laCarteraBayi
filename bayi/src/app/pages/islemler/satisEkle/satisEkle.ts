@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
@@ -27,7 +27,19 @@ export class satisEkleComponent implements OnInit {
         modalConfig.keyboard = false
         modalConfig.size = 'sm'
     }
+    
+    ngOnInit() {
+        this.titleService.setTitle("laCartera | Satış Ekle")
+        this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
 
+        this.urunListele()
+        this.satisDetayListele()
+    }
+    
+    modalAc(content, size) {
+        this.modalConfig.size = size
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
+    }
     modalHeader = { title: '' }
 
     detayFilterData = {
@@ -80,19 +92,6 @@ export class satisEkleComponent implements OnInit {
     secilenUrunBtn = [false]
 
     sepetToplami = 0
-
-    ngOnInit() {
-        this.titleService.setTitle("laCartera | Satış Ekle")
-        this.bs.change(["İşlemler", "Satış İşlemleri", "Satış Ekle"])
-
-        this.urunListele()
-        this.satisDetayListele()
-    }
-    
-    modalAc(content, size) {
-        this.modalConfig.size = size
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true })
-    }
     
     async satisDetayListele() {
         this.detayLoader = true
