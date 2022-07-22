@@ -8,6 +8,7 @@ import { SharedAnimations } from "src/app/shared/animations/shared-animations";
 import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
+import { isDevMode } from '@angular/core';
 
 @Component({
     selector: 'app-satisIslemleri',
@@ -33,6 +34,12 @@ export class satisIslemleriComponent implements OnInit {
     ngOnInit() {
         this.titleService.setTitle("laCartera | Satış Geçmişi")
         this.bs.change(["Satışlar", "Satış Geçmişi"])
+
+        if (isDevMode() == true){
+            this.MAIN_URL = "https://test.eronsoftware.com:5770";
+          } else {
+            this.MAIN_URL = "https://eronsoftware.com:5770";
+          }
 
         this.satisListele()
         this.urunListele()
@@ -95,6 +102,7 @@ export class satisIslemleriComponent implements OnInit {
         ESKI_ID             :   new FormControl('')
     })
 
+    MAIN_URL = ""
     requestData
     responseData
     mainLoader = false

@@ -8,6 +8,7 @@ import { SharedAnimations } from "src/app/shared/animations/shared-animations";
 import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
 import { Meta } from '@angular/platform-browser';
+import { isDevMode } from '@angular/core';
 
 @Component({
     selector: 'app-siparisEkle',
@@ -36,6 +37,13 @@ export class siparisEkleComponent implements OnInit {
 
         this.titleService.setTitle("laCartera | Sipariş Ekle")
         this.bs.change(["Siparişler", "Sipariş Ekle"])
+
+        if (isDevMode() == true){
+            this.MAIN_URL = "https://test.eronsoftware.com:5770";
+          } else {
+            this.MAIN_URL = "https://eronsoftware.com:5770";
+          }
+      
 
         this.urunListele()
         this.siparisDetayListele()
@@ -81,6 +89,7 @@ export class siparisEkleComponent implements OnInit {
         ESKI_ID             :   new FormControl('')
     })
 
+    MAIN_URL = ""
     requestData
     responseData
     mainLoader = false

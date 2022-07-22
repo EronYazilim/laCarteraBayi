@@ -7,6 +7,7 @@ import { webServisIslemCalistir } from "src/app/ISLEM";
 import { SharedAnimations } from "src/app/shared/animations/shared-animations";
 import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
+import { isDevMode } from '@angular/core';
 
 @Component({
     selector: 'app-satisEkle',
@@ -32,6 +33,12 @@ export class satisEkleComponent implements OnInit {
         this.titleService.setTitle("laCartera | Satış Ekle")
         this.bs.change(["Satışlar", "Satış Ekle"])
 
+        if (isDevMode() == true){
+            this.MAIN_URL = "https://test.eronsoftware.com:5770";
+          } else {
+            this.MAIN_URL = "https://eronsoftware.com:5770";
+          }
+      
         this.urunListele()
         this.satisDetayListele()
     }
@@ -79,6 +86,7 @@ export class satisEkleComponent implements OnInit {
     mainLoader = false
     detayLoader = false
     urunLoader = false
+    MAIN_URL = ""
     
     satisListesi
     satisDetayListesi
