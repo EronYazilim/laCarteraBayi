@@ -18,7 +18,13 @@ export class webServisIslemCalistir {
 
 	WebServisSorguSonucu(METHOD, ISLEM_URL, BODY): Promise < object > {
 		return new Promise < object > (resolve => {
-			var URL = "https://test.eronsoftware.com:5770/bayi/"
+			
+			if (location.origin == "http://localhost:5772") {
+				var URL = "https://test.eronsoftware.com:5770/bayi/"
+			} else {
+				var URL = "https://eronsoftware.com:5770/bayi/"
+			}
+
 			var UTOKEN = ""
 
 			try { UTOKEN = this.store.getItem("laCartera_bayi_kullanici_token") } catch (e) { UTOKEN = "" }
