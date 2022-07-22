@@ -9,6 +9,7 @@ import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
 import { isDevMode } from '@angular/core';
+import { formatDate } from "@angular/common";
 
 
 @Component({
@@ -39,12 +40,14 @@ export class siparisIslemleriComponent implements OnInit {
 
         if (isDevMode() == true){
             this.MAIN_URL = "https://test.eronsoftware.com:5770";
-          } else {
-            this.MAIN_URL = "https://eronsoftware.com:5770";
-          }
+        } else {
+        this.MAIN_URL = "https://eronsoftware.com:5770";
+        }
 
         this.siparisListele()
         this.urunListele()
+        console.log(this.filterData.e_tarih_baslangic)
+        console.log(this.filterData.e_tarih_bitis)
     }
 
     modalAc(content, size) {
@@ -59,11 +62,13 @@ export class siparisIslemleriComponent implements OnInit {
     modalHeader = { title: '' }
 
     filterData = {
-        ARAMA   : '',
-        SS      : 1,
-        KS      : 15,
-        e_durum : '',
-        ESKI_ID : ''
+        ARAMA               : '',
+        SS                  : 1,
+        KS                  : 15,
+        e_durum             : '',
+        e_tarih_baslangic   : formatDate(new Date().setMonth(new Date().getMonth()), "dd-MM-yyyy", "en"),
+        e_tarih_bitis       : formatDate(new Date().setMonth(new Date().getMonth() + 1), "dd-MM-yyyy", "en"),
+        ESKI_ID             : ''
     }
 
     detayFilterData = {

@@ -195,9 +195,17 @@
 <div class="card shadow-dark mb-3">
   <div class="card-body">
     <form class="row m-0" (submit)="siparisListele()">
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-4">
         <label>Arama:</label>
         <input type="text" class="form-control" [(ngModel)]="filterData.ARAMA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group col-md-2">
+        <label>Tarih Başlangıcı</label>
+        <input type="date" class="form-control" [(ngModel)]="filterData.e_tarih_baslangic" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group col-md-2">
+        <label>Tarih Bitiş</label>
+        <input type="date" class="form-control" [(ngModel)]="filterData.e_tarih_bitis" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group col-md-2">
         <label>Durum:</label>
@@ -232,11 +240,12 @@
         <table class="table table-bordered table-hover">
           <thead>
             <tr class="alert-primary">
-              <th class="text-center w-15">Tarih</th>
+              <th class="text-center w-10">Tarih</th>
+              <th class="text-center w-10">Sipariş No</th>
               <th class="text-center w-15">Açıklama</th>
               <th class="text-center w-10">Ürün Kalem Adedi</th>
               <th class="text-center w-10">Siparişi Veren</th>
-              <th class="text-center w-10">Toplam</th>
+              <th class="text-center w-5">Toplam</th>
               <th class="text-center w-10">Durum</th>
               <th class="text-center w-20">
                 <button class="btn btn-primary btn-sm btn-block" (click)="siparisEkleButton()"><i class="fas fa-plus mr-1"></i> Yeni Sipariş Ekle</button>
@@ -246,6 +255,7 @@
           <tbody>
             <tr *ngFor="let siparis of siparisListesi">
               <td class="text-center">{{siparis.e_tarih | date: 'dd.MM.yyyy - HH:mm'}}</td>
+              <td class="text-left">{{siparis.e_id}}</td>
               <td class="text-left" *ngIf="siparis.e_aciklama != ''">{{siparis.e_aciklama}}</td>
               <td class="text-left" *ngIf="siparis.e_aciklama == ''" style="color: gray;">(Açıklama Yok)</td>
               <td class="text-left" *ngIf="siparis.e_farkli_kalem_sayisi != 0">{{siparis.e_farkli_kalem_sayisi}} adet</td>

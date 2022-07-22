@@ -9,6 +9,8 @@ import Swal from 'sweetalert2/dist/sweetalert2'
 import { FormGroup, FormControl } from "@angular/forms";
 import { Router } from '@angular/router';
 import { isDevMode } from '@angular/core';
+import { formatDate } from "@angular/common";
+
 
 @Component({
     selector: 'app-satisIslemleri',
@@ -57,11 +59,13 @@ export class satisIslemleriComponent implements OnInit {
     modalHeader = { title: '' }
 
     filterData = {
-        ARAMA   : '',
-        SS      : 1,
-        KS      : 15,
-        e_durum : '',
-        ESKI_ID : ''
+        ARAMA               : '',
+        SS                  : 1,
+        KS                  : 15,
+        e_durum             : '',
+        e_tarih_baslangic   : formatDate(new Date().setMonth(new Date().getMonth()), "dd-MM-yyyy", "en"),
+        e_tarih_bitis       : formatDate(new Date().setMonth(new Date().getMonth() + 1), "dd-MM-yyyy", "en"),
+        ESKI_ID             : ''
     }
 
     detayFilterData = {

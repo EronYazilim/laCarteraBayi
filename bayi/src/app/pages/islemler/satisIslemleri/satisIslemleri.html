@@ -245,9 +245,17 @@
 <div class="card shadow-dark mb-3">
   <div class="card-body">
     <form class="row m-0" (submit)="satisListele()">
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-4">
         <label>Arama:</label>
         <input type="text" class="form-control" [(ngModel)]="filterData.ARAMA" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group col-md-2">
+        <label>Tarih Başlangıç</label>
+        <input type="text" class="form-control" [(ngModel)]="filterData.e_tarih_baslangic" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group col-md-2">
+        <label>Tarih Bitiş</label>
+        <input type="text" class="form-control" [(ngModel)]="filterData.e_tarih_bitis" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="form-group col-md-2">
         <label>Durum:</label>
